@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './layout/header/header.component';
 import { BannerCardComponent } from './shared/components/banner-card/banner-card.component';
+import { I18nService } from './shared/services/i18n.service';
 
 
 @Component({
@@ -14,6 +15,11 @@ import { BannerCardComponent } from './shared/components/banner-card/banner-card
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(private i18nService:I18nService){
+    //todo translate page
+    i18nService.changeCurrentLanguage('ka')
+  }
+  
   navLeftItems = ['Home', 'Categories'];
   navRightItems = ['Offers', 'Contact', 'About Us'];
   buttonLabel = 'Register';

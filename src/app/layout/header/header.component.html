@@ -2,7 +2,7 @@
 
     <div class="header">
       <div class="nav_left navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navLeftItems">{{ item }}</div>
+        <div class="headerTitles" *ngFor="let item of navLeftItems">{{ item | translate}}</div>
       </div>
   
       <div class="logo nav_left headerItems">
@@ -10,7 +10,7 @@
       </div>
 
       <div class="nav_right navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navRightItems">{{ item }}</div>
+        <div class="headerTitles" *ngFor="let item of navRightItems">{{ item | translate}}</div>
       </div>
     </div>
   

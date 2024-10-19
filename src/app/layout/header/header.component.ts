@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { I18nService } from '../../shared/services/i18n.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,22 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  public language : string = 'English'
+  public dropdownOpen : boolean = false;
+  
   @Input() navLeftItems: string[] = [];
   @Input() navRightItems: string[] = [];
-  @Input() buttonLabel: string = 'Button'; // This can also come dynamically
+  @Input() buttonLabel: string = 'Button';
 
+  constructor(private i18nService:I18nService){}
+
+  switchLanguage(lang: string) {
+    this.dropdownOpen = false;
+    lang == 'en' ? this.language = 'English' : this.language = 'ქართული'
+    this.i18nService.changeCurrentLanguage(lang)
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
 }

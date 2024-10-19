@@ -24,6 +24,7 @@ export class I18nService {
   }
 
   changeCurrentLanguage(language: string) {
+    console.log(language)
     this.translateService.use(language);
     localStorage.setItem(STORAGE_KEY, language);
   }

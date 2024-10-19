@@ -1,10 +1,10 @@
 <div class="header_container">
   <div class="language-selector">
     <button class="dropdown-btn" (click)="toggleDropdown()">
-      <span class="icon">&#127760;</span> {{language}}
+      <span class="icon"><img src="assets/imgs/Globe.svg" alt="Globe icon"></span> {{language}}
       <span class="arrow">&#9660;</span>
     </button>
-  
+    
     <ul class="dropdown-content" *ngIf="dropdownOpen">
       <li (click)="switchLanguage('en')">English</li>
       <li (click)="switchLanguage('ka')">ქართული</li>

@@ -1,3 +1,9 @@
 {
-  "Home":"Home"
+  "Home":"Home",
+  "Categories":"Categories",
+  "Clasification":"Clasification",
+  "Records":"Records",
+  "SwimMeets":"Swim Meets",
+  "About":"About",
+  "Contact":"Contact"
 }

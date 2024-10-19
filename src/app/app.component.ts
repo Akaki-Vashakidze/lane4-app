@@ -15,12 +15,11 @@ import { I18nService } from './shared/services/i18n.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private i18nService:I18nService){
-    //todo translate page
-    i18nService.changeCurrentLanguage('ka')
+  constructor(private i18nService: I18nService) {
+    i18nService.setInitialLanguage();
   }
-  
-  navLeftItems = ['Home', 'Categories'];
-  navRightItems = ['Offers', 'Contact', 'About Us'];
+
+  navLeftItems = ['Home', 'Clasification','Records'];
+  navRightItems = ['SwimMeets', 'About', 'Contact'];
   buttonLabel = 'Register';
 }

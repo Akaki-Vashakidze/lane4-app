@@ -6,16 +6,15 @@ const STORAGE_KEY = 'language';
 @Injectable()
 export class I18nService {
   private readonly availableLanguages = ['ka', 'en'];
-
   constructor(private translateService: TranslateService) {}
 
   setInitialLanguage(): void {
-    const browserLang = this.translateService.getBrowserLang() || 'ka';
+    const browserLang = this.translateService.getBrowserLang() || 'en';
     let currentLanguage = localStorage.getItem(STORAGE_KEY);
-
+    
     if (!currentLanguage) {
       const defaultLang = this.availableLanguages.includes(browserLang);
-      const preferredLang = defaultLang ? browserLang : 'ka';
+      const preferredLang = defaultLang ? browserLang : 'en';
       currentLanguage = preferredLang;
     }
 
@@ -24,7 +23,6 @@ export class I18nService {
   }
 
   changeCurrentLanguage(language: string) {
-    console.log(language)
     this.translateService.use(language);
     localStorage.setItem(STORAGE_KEY, language);
   }

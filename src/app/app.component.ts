@@ -8,12 +8,13 @@ import { I18nService } from './shared/services/i18n.service';
 import { FeaturesComponent } from './shared/components/features/features.component';
 import { OurServicesComponent } from './shared/components/our-services/our-services.component';
 import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
+import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, BannerCardComponent, OurServicesComponent,CompetitionsListComponent],
+  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, BannerCardComponent, OurServicesComponent,CompetitionsListComponent,AboutUsSectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

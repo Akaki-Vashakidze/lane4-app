@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-competition-card',
   standalone: true,
-  imports: [CommonModule,ButtonComponent],
+  imports: [CommonModule,ButtonComponent,TranslateModule],
   templateUrl: './competition-card.component.html',
   styleUrl: './competition-card.component.scss'
 })

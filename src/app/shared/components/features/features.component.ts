@@ -8,9 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './features.component.scss'
 })
 export class FeaturesComponent {
-  @Input() text: string = 'Click';
+  @Input() text: string = 'Header';
   @Input() height: string = '30px';
-  @Input() width: string = '100px';
+  @Input() width: string = '100%';
   @Input() fontSize: string = '16px';
   @Input() bodyText: string = 'text';
 }

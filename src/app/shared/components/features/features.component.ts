@@ -8,9 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './features.component.scss'
 })
 export class FeaturesComponent {
-  @Input() text: string = 'Header';
-  @Input() height: string = '30px';
+  @Input() title: string = 'Header';
+  @Input() height: string = '100%';
   @Input() width: string = '100%';
   @Input() fontSize: string = '16px';
-  @Input() bodyText: string = 'text';
+  @Input() bodyText: string = 'fjasnk fas f a l';
 }

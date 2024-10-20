@@ -1,0 +1,32 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.competitionCard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.title, .text {
+    padding: 10px;
+}
+
+.title {
+    background-color: var(--p-color-blue);
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.date {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-bottom: 0px;
+}

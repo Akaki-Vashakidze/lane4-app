@@ -7,12 +7,13 @@ import { BannerCardComponent } from './shared/components/banner-card/banner-card
 import { I18nService } from './shared/services/i18n.service';
 import { FeaturesComponent } from './shared/components/features/features.component';
 import { OurServicesComponent } from './shared/components/our-services/our-services.component';
+import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, BannerCardComponent, OurServicesComponent],
+  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, BannerCardComponent, OurServicesComponent,CompetitionsListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

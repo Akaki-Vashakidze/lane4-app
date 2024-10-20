@@ -11,5 +11,6 @@ export class ButtonComponent {
   @Input() text: string = 'Click';
   @Input() height: string = '30px';
   @Input() width: string = '100px';
-  @Input() fontSize: string = '16px';
+  @Input() fontSize: string = '12px';
+  @Input() borderRadius: string = '50px';
 }

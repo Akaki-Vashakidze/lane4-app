@@ -1,0 +1,25 @@
+.featureCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    color: #ffffff;
+}
+
+.header {
+    background-color: var(--p-color-blue);
+    padding: 5px 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    color: var(--banner-text-color-dark);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

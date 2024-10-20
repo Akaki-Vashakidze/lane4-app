@@ -1,0 +1,23 @@
+.ourServices_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 50px;
+}
+
+.header {
+    font-size: 28px;
+    margin: 10px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+

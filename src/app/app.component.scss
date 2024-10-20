@@ -2,6 +2,10 @@
     // background-color: $background-color;
     background-color: var(--primary-color);
 }
-.homePageCont {
-    padding: 100px;
+
+.website_content {
+    width: 85%;
+    max-width: 1250px;
+    margin: auto;
+    padding-bottom: 100px;
 }

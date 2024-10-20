@@ -1,0 +1,15 @@
+#button {
+    background-color: var(--p-color-blue); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#button:hover {
+    background-color: var(--p-color-d-blue); 
+
+}

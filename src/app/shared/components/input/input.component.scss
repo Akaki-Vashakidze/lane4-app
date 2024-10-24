@@ -1,0 +1,33 @@
+.inputButton {
+    border-radius: 20px;
+    height: 36px;
+    background: var(--p-color-blue);
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.actionInput {
+    background: #fff;
+    height: 46px;
+    border-radius: 25px;
+    width: 100%;
+    border: none;
+    padding: 5px 20px; /* Adds padding to the input field, affecting both placeholder and input value */
+    font-size: 16px;
+}
+
+.customInput {
+    position: relative;
+}
+
+.actionInput::placeholder {
+    color: #aaa; /* Example color for the placeholder text */
+    font-size: 16px; /* Matches the input text size */
+}

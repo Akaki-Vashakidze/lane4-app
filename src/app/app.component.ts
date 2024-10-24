@@ -9,12 +9,13 @@ import { FeaturesComponent } from './shared/components/features/features.compone
 import { OurServicesComponent } from './shared/components/our-services/our-services.component';
 import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
 import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
+import { SaveEmailComponent } from './shared/components/save-email/save-email.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, BannerCardComponent, OurServicesComponent,CompetitionsListComponent,AboutUsSectionComponent],
+  imports: [RouterOutlet,MatIconModule,MatButtonModule,HeaderComponent, SaveEmailComponent, BannerCardComponent, OurServicesComponent,CompetitionsListComponent,AboutUsSectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

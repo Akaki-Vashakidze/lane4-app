@@ -1,0 +1,19 @@
+.saveEmailSection {
+    background-image: url('/assets/imgs/Rectangle235.svg');
+    background-size: contain; /* Ensures the whole image is visible while maintaining aspect ratio */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh; /* Takes up the full height of the viewport */
+}
+
+.emailInput {
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 500px;
+    text-align: center;
+}

@@ -5,7 +5,44 @@
         <h1>What Costumers Say</h1>
         <h3>Lorem ipsum dolor sit amet</h3>
         <div class="costumerCards">
-            <app-costumer-card *ngFor="let comment of costumerComments" [comment]="comment" width="300px" height="300px"></app-costumer-card>
+            <!-- <app-costumer-card *ngFor="let comment of costumerComments" [comment]="comment" width="300px" height="300px"></app-costumer-card> -->
+             
+
+
+            <div class="carousel-container">
+                <owl-carousel-o [options]="carouselOptions" #carousel>
+                    <ng-container *ngFor="let slide of slides; let i = index">
+                        <ng-template carouselSlide
+                            *ngIf="i >= (currentPage - 1) * itemsPerPage && i < (currentPage * itemsPerPage)">
+                            <div>{{slide}}</div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            
+                <div class="pagesContainer">
+                    <button (click)="prevPage(carousel)" class="custom-nav-button prev" [disabled]="currentPage === 1">Prev</button>
+                    <div class="paging-indicator">
+            
+                        <div class="page-numbers">
+                            <ng-container *ngFor="let page of pageNumbers">
+                                <ng-container *ngIf="page === 0">
+                                    <span class="ellipsis">...</span>
+                                </ng-container>
+                                <ng-container *ngIf="page > 0">
+                                    <button (click)="goToPage(carousel, page)" [class.active]="page === currentPage"
+                                        class="page-button">{{ page }}</button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+            
+                    </div>
+            
+                    <button (click)="nextPage(carousel)" class="custom-nav-button next"
+                        [disabled]="currentPage === totalPages">Next</button>
+                </div>
+            
+            </div>
+
         </div>
     </div>
 </div>

@@ -20,3 +20,64 @@
     flex-direction: row;
     gap: 15px;
 }
+
+.carousel-container {
+    position: relative;
+}
+
+.custom-nav-button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.custom-nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.paging-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.page-button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.page-button.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.ellipsis {
+    font-weight: bold;
+}
+
+.pagesContainer {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    margin-top: 15px;
+}

@@ -1,0 +1,11 @@
+
+<div class="costumerCommentsContainer">
+    <img style="width: 100%;" src="assets/imgs/Light Wave.svg" >
+    <div class="costumerCommentsContent">
+        <h1>What Costumers Say</h1>
+        <h3>Lorem ipsum dolor sit amet</h3>
+        <div class="costumerCards">
+            <app-costumer-card *ngFor="let comment of costumerComments" [comment]="comment" width="300px" height="300px"></app-costumer-card>
+        </div>
+    </div>
+</div>

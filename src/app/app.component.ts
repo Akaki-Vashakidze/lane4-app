@@ -10,12 +10,13 @@ import { CompetitionsListComponent } from './shared/components/competitions-list
 import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
 import { SaveEmailComponent } from './shared/components/save-email/save-email.component';
 import { FooterComponent } from "./shared/components/footer/footer.component";
+import { CostumerCommentsComponent } from './shared/components/costumer-comments/costumer-comments.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatIconModule, MatButtonModule, HeaderComponent, SaveEmailComponent, BannerCardComponent, OurServicesComponent, CompetitionsListComponent, AboutUsSectionComponent, FooterComponent],
+  imports: [RouterOutlet, MatIconModule, MatButtonModule, HeaderComponent,CostumerCommentsComponent, SaveEmailComponent, BannerCardComponent, OurServicesComponent, CompetitionsListComponent, AboutUsSectionComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

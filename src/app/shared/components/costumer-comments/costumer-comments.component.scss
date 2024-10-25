@@ -1,0 +1,22 @@
+.costumerCommentsContainer {
+    width: 100%;
+}
+
+.costumerCommentsContent {
+    width: 100%;
+    position: relative;
+    top: -20px;
+    background: var(--p-card-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.costumerCards {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+}

@@ -14,8 +14,8 @@ export class HeaderComponent {
   public language : string = 'English'
   public dropdownOpen : boolean = false;
   
-  @Input() navLeftItems: string[] = [];
-  @Input() navRightItems: string[] = [];
+  @Input() navLeftItems:  {title:string, route:string}[] = [];
+  @Input() navRightItems:  {title:string, route:string}[] = [];
   @Input() buttonLabel: string = 'Button';
 
   constructor(private i18nService:I18nService){}

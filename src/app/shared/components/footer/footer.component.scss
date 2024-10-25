@@ -1,0 +1,89 @@
+.footerContainer {
+    width: 100%;
+    background: var(--p-color-blue);
+    padding: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.lane4LogoFooter {
+    height: 60px;
+}
+
+.lane4LogoFooter img {
+    cursor: pointer;
+}
+
+.logo-hover {
+    display: none;
+}
+
+.lane4LogoFooter:hover .logo-hover {
+    display: flex;
+}
+
+.lane4LogoFooter:hover .logo-default {
+    display: none;
+}
+
+.headers {
+    width: 100%;
+}
+
+.footerHeaders {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.socailNetsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 15px;
+    border-top: 1px solid #fff;
+}
+
+.socialNets {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.socialNets div {
+    cursor: pointer;
+}
+
+.term {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.term a {
+    line-height: 0.9;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
+
+.footerHeaders a {
+    cursor: pointer;
+}
+
+.footerHeaders a:hover {
+    color: #bf0101;
+}

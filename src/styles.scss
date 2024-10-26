@@ -1,5 +1,3 @@
-
-
 * {
   margin: 0;
   padding: 0;
@@ -46,4 +44,18 @@ body {
 
   .displayBlock{
     display: block;
+  }
+
+  .owl-dot span {
+    background: #007bff !important; 
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0.5; 
+  }
+
+  .owl-dot.active span {
+    background: #ff5733; 
+    opacity: 1; 
+    transform: scale(1.2); 
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CostumerCardComponent } from '../costumer-card/costumer-card.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CostumerComment } from '../../interfaces/interfaces';
@@ -14,6 +14,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   styleUrl: './costumer-comments.component.scss'
 })
 export class CostumerCommentsComponent {
+  @ViewChild('customOwl', { static: false }) customOwl!: any;
+
   public costumerComments:CostumerComment[] = [
   {
     name:'Minjulina Irina',
@@ -55,7 +57,7 @@ export class CostumerCommentsComponent {
 carouselOptions: any = {
   loop: true,
   margin: 10,
-  nav: true,
+  nav: false,
   dots: true,
   dotsData: true, 
   responsive: {
@@ -64,22 +66,11 @@ carouselOptions: any = {
     1000: { items: 3 }
   }
 };
+goNext() {
+  this.customOwl.next([300]);
+}
 
-contents = [
-  { title: 'Slide 1', description: 'Description for Slide 1' },
-
-  { title: 'Slide 1', description: 'Description for Slide 1' },
-  { title: 'Slide 2', description: 'Description for Slide 2' },
-  { title: 'Slide 3', description: 'Description for Slide 3' },
-  { title: 'Slide 2', description: 'Description for Slide 2' },
-
-  { title: 'Slide 1', description: 'Description for Slide 1' },
-  { title: 'Slide 2', description: 'Description for Slide 2' },
-  { title: 'Slide 3', description: 'Description for Slide 3' },
-  { title: 'Slide 3', description: 'Description for Slide 3' }
-];
-
-pages = this.contents.map((_, index) => index + 1);
-
-
+goPrev() {
+  this.customOwl.prev([300]);
+}
 }

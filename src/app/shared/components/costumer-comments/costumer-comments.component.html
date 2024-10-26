@@ -5,22 +5,8 @@
         <h1>What Costumers Say</h1>
         <h3>Lorem ipsum dolor sit amet</h3>
     </div>
-    <owl-carousel-o #customOwl class="costumer_owl" [options]="carouselOptions">
-      <ng-template carouselSlide *ngFor="let content of costumerComments">
-        <div class="custom-slide-content">
-          <app-costumer-card 
-            style="display: flex; justify-content: center;" 
-            [comment]="content" 
-            width="300px" 
-            height="300px">
-          </app-costumer-card>
-        </div>
-      </ng-template>
-    </owl-carousel-o>
-    <div class="carouselButtons">
-        <div class="carouselButtonItem" (click)="goPrev()"><img width="40px" src="assets/imgs/carouselButtonLeft.svg"></div>
-        <div class="carouselButtonItem" (click)="goNext()"><img width="40px" src="assets/imgs/carouselButtonRight.svg"></div>
-    </div>
+
+    <app-dynamic-carousel></app-dynamic-carousel>
 
 </div>
 

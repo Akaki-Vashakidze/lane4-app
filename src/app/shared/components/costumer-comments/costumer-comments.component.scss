@@ -1,59 +1,13 @@
+.costumerComponentHeaders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .costumerCommentsContainer {
     width: 100%;
     background-color: var(--p-color-card);
     position: relative;
     top: -15px;
 }
-
-.costumerCommentsContent {
-    width: 100%;
-    position: relative;
-    top: -20px;
-    background: var(--p-card-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-}
-
-.costumerCards {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 15px;
-}
-
-.custom-slide-content {
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .costumerComponentHeaders {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .carouselButtons {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    top: -35px;
-  }
-
-  .carouselButtonItem {
-    z-index: 100;
-    cursor: pointer;
-  }
-   .owl-dot span {
-    background: #007bff !important; /* Change this to your desired color */
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    opacity: 0.5; /* Customize opacity for inactive state */
-  }

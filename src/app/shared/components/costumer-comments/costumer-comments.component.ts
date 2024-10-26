@@ -4,73 +4,16 @@ import { CostumerCardComponent } from '../costumer-card/costumer-card.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { CostumerComment } from '../../interfaces/interfaces';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DynamicCarouselComponent } from '../dynamic-carousel/dynamic-carousel.component';
 
 
 @Component({
   selector: 'app-costumer-comments',
   standalone: true,
-  imports: [CommonModule, CostumerCardComponent, TranslateModule,CarouselModule],
+  imports: [CommonModule, CostumerCardComponent, TranslateModule,CarouselModule, DynamicCarouselComponent],
   templateUrl: './costumer-comments.component.html',
   styleUrl: './costumer-comments.component.scss'
 })
 export class CostumerCommentsComponent {
-  @ViewChild('customOwl', { static: false }) customOwl!: any;
-
-  public costumerComments:CostumerComment[] = [
-  {
-    name:'Minjulina Irina',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Abzianidze Giorgi',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Gelashvili Davit',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Abzianidze Giorgi',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Abzianidze Giorgi',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Gelashvili Davit',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-  {
-    name:'Gelashvili Davit',
-    comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae debitis vitae tenetur voluptatibus, tempora excepturi.',
-    img:'assets/imgs/costumer1.svg'
-  },
-]
-
-carouselOptions: any = {
-  loop: true,
-  margin: 10,
-  nav: false,
-  dots: true,
-  dotsData: true, 
-  responsive: {
-    0: { items: 1 },
-    600: { items: 2 },
-    1000: { items: 3 }
-  }
-};
-goNext() {
-  this.customOwl.next([300]);
-}
-
-goPrev() {
-  this.customOwl.prev([300]);
-}
+  
 }

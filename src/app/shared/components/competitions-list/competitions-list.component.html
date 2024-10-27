@@ -1,13 +1,32 @@
 <div class="competitionsList">
     <div class="header">
-        <div class="title">Competitions</div>
-        <app-button width="100px" height="40px" text="Load More" fontSize="12px"></app-button>
+      <div class="title">Competitions</div>
     </div>
     <div class="body">
-        <app-competition-card></app-competition-card>
-        <app-competition-card></app-competition-card>
-        <app-competition-card></app-competition-card>
-        <app-competition-card></app-competition-card>
-        <app-competition-card></app-competition-card>
+      <app-competition-card 
+        *ngFor="let comp of competitions | slice:0:displayedCompetitions" 
+        [title]="comp.title" 
+        [text]="comp.text">
+      </app-competition-card>
     </div>
-</div>
+    <div class="actionsCont">
+        <app-button 
+        *ngIf="displayedCompetitions > 6"
+        class="loadMoreButton" 
+        width="100px" 
+        height="40px" 
+        text="Load Less" 
+        fontSize="12px" 
+        (click)="loadLess()">
+      </app-button>
+        <app-button 
+        *ngIf="competitions.length > 6"
+          class="loadMoreButton"
+          width="100px" 
+          height="40px" 
+          text="Load More" 
+          fontSize="12px" 
+          (click)="loadMore()">
+        </app-button>
+    </div>
+  </div>

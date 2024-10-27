@@ -5,8 +5,8 @@
     <div class="body">
       <app-competition-card 
         *ngFor="let comp of competitions | slice:0:displayedCompetitions" 
-        [title]="comp.title" 
-        [text]="comp.text">
+        [title]="comp.event.title" 
+        [text]="comp.event.description">
       </app-competition-card>
     </div>
     <div class="actionsCont">

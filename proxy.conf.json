@@ -1,0 +1,10 @@
+{
+  "/consoleApi": {
+    "target": "https://poolshark-api-bvtsv.ondigitalocean.app",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/consoleApi": ""
+    }
+  }
+}

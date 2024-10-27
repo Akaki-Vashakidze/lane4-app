@@ -16,20 +16,20 @@ import { LiveEvent } from '../../interfaces/interfaces';
 export class CompetitionsListComponent {
   constructor(private sharedService:SharedService){
     sharedService.getCompetitions().subscribe(item => {
-      this.competitions = [...item,...item,...item,...item];
+      this.competitions = [...item,...item,...item,...item,...item];
     })
   }
-  public competitions!:LiveEvent[];
+  public competitions:LiveEvent[] = [];
   public displayedCompetitions = 6; 
 
   loadMore() {
     this.competitions.length > this.displayedCompetitions ? this.displayedCompetitions += 6 : '';
-    console.log(this.displayedCompetitions)
+    console.log(this.displayedCompetitions,this.competitions.length )
   }
 
   loadLess() {
     this.displayedCompetitions > 6 ? this.displayedCompetitions -= 6 : '';
     this.displayedCompetitions < 6 ? this.displayedCompetitions = 6 : '';
-    console.log(this.displayedCompetitions)
+    console.log(this.displayedCompetitions,this.competitions.length )
   }
 }

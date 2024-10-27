@@ -17,16 +17,16 @@
         class="loadMoreButton" 
         width="100px" 
         height="40px" 
-        text="Load Less" 
+        text="Show Less" 
         fontSize="12px" 
         (click)="loadLess()">
       </app-button>
         <app-button 
-        *ngIf="competitions.length > 6"
+        *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions"
           class="loadMoreButton"
           width="100px" 
           height="40px" 
-          text="Load More" 
+          text="Show More" 
           fontSize="12px" 
           (click)="loadMore()">
         </app-button>

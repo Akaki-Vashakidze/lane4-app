@@ -5,12 +5,11 @@
 }
 
 .competitionCard {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     background-color: #ffffff;
     border-radius: 20px;
     padding: 15px;
+    display: grid;
+    grid-template-rows: 30% 40% 20% 10%;
 }
 
 .title, .text {
@@ -29,4 +28,11 @@
     justify-content: space-between;
     padding: 10px;
     padding-bottom: 0px;
+    align-items: center;
+}
+
+.text {
+    white-space: nowrap;  
+    overflow: hidden;      
+    text-overflow: ellipsis;
 }

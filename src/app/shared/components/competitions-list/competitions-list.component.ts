@@ -16,7 +16,7 @@ import { LiveEvent } from '../../interfaces/interfaces';
 export class CompetitionsListComponent {
   constructor(private sharedService:SharedService){
     sharedService.getCompetitions().subscribe(item => {
-      this.competitions = item;
+      this.competitions = [...item,...item,...item,...item];
     })
   }
   public competitions!:LiveEvent[];

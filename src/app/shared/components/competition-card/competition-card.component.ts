@@ -13,7 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class CompetitionCardComponent {
   @Input() text: string = 'text';
   @Input() title: string = 'title';
-  @Input() height: string = '';
+  @Input() date!:Date;
+  @Input() height: string = '100%';
   @Input() width: string = '100%';
   @Input() fontSize: string = '12px';
 }

@@ -6,7 +6,9 @@
       <app-competition-card 
         *ngFor="let comp of competitions | slice:0:displayedCompetitions" 
         [title]="comp.event.title" 
-        [text]="comp.event.description">
+        [text]="comp.event.description"
+        [date]="comp.event.startDate"
+        >
       </app-competition-card>
     </div>
     <div class="actionsCont">

@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18nService } from '../../shared/services/i18n.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -18,7 +19,7 @@ export class HeaderComponent {
   @Input() navRightItems:  {title:string, route:string}[] = [];
   @Input() buttonLabel: string = 'Button';
 
-  constructor(private i18nService:I18nService){}
+  constructor(private i18nService:I18nService, private _router:Router){}
 
   switchLanguage(lang: string) {
     this.dropdownOpen = false;
@@ -28,5 +29,13 @@ export class HeaderComponent {
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  navigate(route:string){
+    console.log(route)
+    this._router.navigate([route])
+  }
+  navigateToDashboard(){
+    this._router.navigate(['/Dashboard'])
   }
 }

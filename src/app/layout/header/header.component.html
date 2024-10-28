@@ -13,16 +13,16 @@
   
     <div class="header">
       <div class="nav_left navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navLeftItems">{{ item.title| translate}}</div>
+        <div class="headerTitles" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
       </div>
   
-      <div class="logo nav_left headerItems">
+      <div class="logo nav_left headerItems" (click)="navigateToDashboard()">
         <img src="assets/imgs/lane4logo.png" class="logo-default" />
         <img src="assets/imgs/lane4logoRed.png" class="logo-hover"/>
       </div>
 
       <div class="nav_right navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navRightItems">{{ item.title| translate}}</div>
+        <div class="headerTitles" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
       </div>
     </div>
   

@@ -1,35 +1,20 @@
-<div class="competitionsList">
+<div class="CompetitionsListSection">
+  <div class="competitionsList">
     <div class="header">
       <div class="title">Competitions</div>
     </div>
     <div class="body">
-      <app-competition-card 
-        *ngFor="let comp of competitions | slice:0:displayedCompetitions" 
-        [title]="comp.event.title" 
-        [text]="comp.event.description"
-        [EventId]="comp.event._id"
-        [date]="comp.event.startDate"
-        >
+      <app-competition-card *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"
+        [text]="comp.event.description" [EventId]="comp.event._id" [date]="comp.event.startDate">
       </app-competition-card>
     </div>
     <div class="actionsCont">
-        <app-button 
-        *ngIf="displayedCompetitions > 6"
-        class="loadMoreButton" 
-        width="100px" 
-        height="40px" 
-        text="Show Less" 
-        fontSize="12px" 
-        (click)="loadLess()">
+      <app-button *ngIf="displayedCompetitions > 6" class="loadMoreButton" width="100px" height="40px" text="Show Less"
+        fontSize="12px" (click)="loadLess()">
       </app-button>
-        <app-button 
-        *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions"
-          class="loadMoreButton"
-          width="100px" 
-          height="40px" 
-          text="Show More" 
-          fontSize="12px" 
-          (click)="loadMore()">
-        </app-button>
+      <app-button *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
+        width="100px" height="40px" text="Show More" fontSize="12px" (click)="loadMore()">
+      </app-button>
     </div>
   </div>
+</div>

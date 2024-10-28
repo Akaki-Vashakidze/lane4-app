@@ -1,23 +1,10 @@
 
 <div class="website_content">
     <app-header style="width: 100%;" [navLeftItems]="navLeftItems" [navRightItems]="navRightItems" [buttonLabel]="buttonLabel"></app-header>
+</div>
 
-    <div class="flexD homePageCont">
-        <app-banner-card style="width: 100%;"></app-banner-card>
-    </div>
-    <app-our-services style="width: 100%;"></app-our-services>
-</div>
-<div class="CompetitionsListSection">
-    <app-competitions-list></app-competitions-list>
-</div>
-<div class="AboutUsSection">
-    <app-about-us-section></app-about-us-section>
-    <app-save-email></app-save-email>
-</div>
-<div class="costumerComments">
-    <app-costumer-comments></app-costumer-comments>
-</div>
+<router-outlet></router-outlet>
+
 <div class="website_content">
     <app-footer [headers]="footerHeaders"></app-footer>
 </div>
-

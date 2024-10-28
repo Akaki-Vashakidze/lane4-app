@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedService } from '../../services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-competition-card',
@@ -20,7 +21,7 @@ export class CompetitionCardComponent {
   @Input() width: string = '100%';
   @Input() fontSize: string = '12px';
 
-  constructor(private _sharedService:SharedService){}
+  constructor(private _sharedService:SharedService, private _router:Router){}
 
   async getRankingsPdf(){
     (await this._sharedService.getEventResultsPDF(this.EventId)).subscribe((res:any) => {
@@ -29,5 +30,9 @@ export class CompetitionCardComponent {
       console.log(blob,url)
       window.open(url)
    })
+  }
+
+  launchAllResults(event:any){
+    this._router.navigate(['/meetResults/results/' + event.event._id])
   }
 }

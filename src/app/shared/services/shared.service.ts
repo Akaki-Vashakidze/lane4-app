@@ -16,4 +16,12 @@ export class SharedService {
         map(events => events.filter(event => event.event))
       );
   }
+
+  async getEventResultsPDF(eventId:string) {
+    return this.httpClient.get('/consoleApi/event/eventPdf/' + eventId, { responseType: 'blob' }).pipe(
+      map(res => {
+        return new Blob([res], { type: 'application/pdf', });
+    })
+    )
+  }
 }

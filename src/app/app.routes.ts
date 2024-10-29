@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
+import { CompetitionResultsComponent } from './features/competitions/components/competition-results/competition-results.component';
 
 export const routes: Routes = [
     {
@@ -19,7 +20,26 @@ export const routes: Routes = [
         },
         {
             path: 'Competitions',
-            component: CompetitionsListComponent,
+            children: [
+              {
+                path: '',
+                children: [
+                  {
+                    path: '',
+                    component: CompetitionsListComponent,
+                  },
+                ],
+              },
+            {
+              path: 'results/:id',
+              children: [
+                {
+                  path: '',
+                  component: CompetitionResultsComponent,
+                },
+              ],
+            },
+          ],
         },
         // {
         //   path: 'application',

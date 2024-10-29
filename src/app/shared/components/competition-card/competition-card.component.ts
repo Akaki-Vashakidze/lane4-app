@@ -32,7 +32,7 @@ export class CompetitionCardComponent {
    })
   }
 
-  launchAllResults(event:any){
-    this._router.navigate(['/meetResults/results/' + event.event._id])
+  navigateToCompResults(){
+    this._router.navigate(['/Competitions/results/' + this.EventId])
   }
 }

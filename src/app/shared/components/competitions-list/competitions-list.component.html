@@ -1,11 +1,11 @@
-<div class="MaskBlureImgCont" *ngIf="competitions.length > 0" >
-  <img class="musk_blure_img" src="/assets/imgs/Mask-Blure.svg"/>
+<div class="MaskBlureImgCont" *ngIf="competitions.length > 0 && BackgroundImg" >
+  <img class="musk_blure_img" src="/assets/imgs/MaskBlureNew.svg"/>
 </div>
 
 <div class="CompetitionsListSection" *ngIf="competitions.length > 0" >
   <div class="competitionsList">
     <div class="header">
-      <div class="title">Competitions</div>
+      <div class="title">{{'Competitions' | translate}}</div>
     </div>
     <div class="body">
       <app-competition-card *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"

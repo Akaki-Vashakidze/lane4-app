@@ -33,9 +33,10 @@
     background: var(--p-card-color);
     border-radius: 20px;
     z-index: 100;
+    box-shadow: #218bff 0px 2px 4px 0px, #218bff 0px 2px 16px 0px;
 }
 
-.MaskBlureImgCont {
-    height: 900px;
-    overflow: hidden;
-}
+// .MaskBlureImgCont {
+//     height: 900px;
+//     overflow: hidden;
+// }

@@ -10,7 +10,7 @@
             <!-- <app-pdf [eventId]="eventId" class="pdfButton"></app-pdf> -->
         </div>
         <div class="header">
-            <mat-tab-group *ngIf="event" [color]="'accent'" (selectedTabChange)="onTabChanged($event);">
+            <mat-tab-group *ngIf="event" (selectedTabChange)="onTabChanged($event);">
                 @for (partition of partitions; track $index) {
                 <mat-tab [label]="partition.title"></mat-tab>
                 }

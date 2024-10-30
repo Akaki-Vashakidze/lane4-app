@@ -1,5 +1,5 @@
 
-<div *ngIf="chosenPartition()" class="compContainer">
+<div *ngIf="chosenPartition()"  class="compContainer">
     <div class="musk_blure">
         <img class="musk_blure_img" src="/assets/imgs/Mask-Blure.svg"/>
     </div>
@@ -16,21 +16,6 @@
             </mat-tab-group>
         </div>
         <div class="resBody">
-            <div *ngIf="!event" class="lds-default">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-    
             @for (race of chosenPartition().races; track $index) {
             <div class="resLineCont">
                 <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
@@ -82,3 +67,4 @@
         </div>
     </div>
 </div>
+<app-loader-spinner *ngIf="!chosenPartition()" color="black" height="500px"></app-loader-spinner>

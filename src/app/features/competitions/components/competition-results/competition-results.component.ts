@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
+import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-competition-results',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, TranslateModule , MatIconModule],
+  imports: [CommonModule, MatTabsModule, TranslateModule , MatIconModule, LoaderSpinnerComponent],
   templateUrl: './competition-results.component.html',
   styleUrl: './competition-results.component.scss'
 })

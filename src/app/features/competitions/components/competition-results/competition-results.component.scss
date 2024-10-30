@@ -189,24 +189,10 @@ mat-tab-group {
 }
 
 .compContainer {
-    position: relative;
-    transform: translate(0,-180px);
     z-index: 10;
-}
-
-.musk_blure {
-    width: 100%;
     position: relative;
-}
-
-.musk_blure_img {
-    width: 100%;
-}
-
-.resultsContainer {
-    position: absolute;
-    width: 81%;     
-    left: 50%;             
+    left: 50%;
     transform: translateX(-50%);
-    top: 13%;         
 }
+
+

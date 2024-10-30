@@ -31,4 +31,11 @@
     padding-top: 40px;
     padding-bottom: 100px;
     background: var(--p-card-color);
+    border-radius: 20px;
+    z-index: 100;
+}
+
+.MaskBlureImgCont {
+    height: 900px;
+    overflow: hidden;
 }

@@ -1,8 +1,9 @@
 
-<div *ngIf="chosenPartition()"  class="compContainer">
-    <div class="musk_blure">
-        <img class="musk_blure_img" src="/assets/imgs/Mask-Blure.svg"/>
-    </div>
+
+<div class="MaskBlureImgCont" *ngIf="chosenPartition()" >
+    <img class="musk_blure_img" src="/assets/imgs/Mask-Blure.svg"/>
+  </div>
+<div *ngIf="chosenPartition()" class="compContainer">
     <div class="resultsContainer">
         <!-- <div *ngIf="chosenPartition() == ''" class="whiteBackgr"></div> -->
         <div class="compTitle">{{event?.title}}

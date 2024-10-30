@@ -60,3 +60,16 @@ body {
     opacity: 1; 
     transform: scale(1.2); 
   }
+
+  .MaskBlureImgCont {
+    position: absolute;
+    width: 100%;
+    max-width: 1440px;
+    left: 50%;
+    top: 0px;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+.musk_blure_img {
+  width: 100%;
+}

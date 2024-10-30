@@ -1,4 +1,8 @@
-<div class="CompetitionsListSection">
+<div class="MaskBlureImgCont" *ngIf="competitions.length > 0" >
+  <img class="musk_blure_img" src="/assets/imgs/Mask-Blure.svg"/>
+</div>
+
+<div class="CompetitionsListSection" *ngIf="competitions.length > 0" >
   <div class="competitionsList">
     <div class="header">
       <div class="title">Competitions</div>
@@ -18,3 +22,5 @@
     </div>
   </div>
 </div>
+
+<app-loader-spinner *ngIf="competitions.length == 0" color="black" height="500px"></app-loader-spinner>

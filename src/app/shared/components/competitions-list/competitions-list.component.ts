@@ -5,11 +5,12 @@ import { ButtonComponent } from '../button/button.component';
 import { V } from '@angular/cdk/keycodes';
 import { SharedService } from '../../services/shared.service';
 import { LiveEvent } from '../../interfaces/interfaces';
+import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-competitions-list',
   standalone: true,
-  imports: [CommonModule,CompetitionCardComponent,ButtonComponent],
+  imports: [CommonModule,CompetitionCardComponent,ButtonComponent, LoaderSpinnerComponent],
   templateUrl: './competitions-list.component.html',
   styleUrl: './competitions-list.component.scss'
 })

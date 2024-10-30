@@ -6,7 +6,7 @@
 <div *ngIf="chosenPartition()" class="compContainer">
     <div class="resultsContainer">
         <!-- <div *ngIf="chosenPartition() == ''" class="whiteBackgr"></div> -->
-        <div class="compTitle">{{event?.title}}
+        <div class="compTitle shadow1">{{event?.title}}
             <!-- <app-pdf [eventId]="eventId" class="pdfButton"></app-pdf> -->
         </div>
         <div class="header">
@@ -16,7 +16,7 @@
                 }
             </mat-tab-group>
         </div>
-        <div class="resBody">
+        <div class="resBody shadow1">
             @for (race of chosenPartition().races; track $index) {
             <div class="resLineCont">
                 <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"

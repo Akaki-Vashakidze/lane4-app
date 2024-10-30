@@ -16,7 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './competitions-list.component.scss'
 })
 export class CompetitionsListComponent {
-  @Input() BackgroundImg: boolean = false;
+  @Input() BackgroundImg: boolean = true;
   constructor(private sharedService:SharedService){
     sharedService.getCompetitions().subscribe(item => {
       this.competitions = [...item,...item,...item,...item,...item];

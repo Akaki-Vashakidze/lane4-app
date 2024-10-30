@@ -1,11 +1,7 @@
 .banner_card_cont {
     width: 100%;
-    margin-top: 60px;
     background: var(--p-card-color);
     border-radius: 30px;
-}
-
-.banner_card_cont {
     display: grid;
     grid-template-columns: 70% 30%;
 }

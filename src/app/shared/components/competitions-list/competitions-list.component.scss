@@ -31,8 +31,13 @@
     padding-top: 40px;
     padding-bottom: 100px;
     background: var(--p-card-color);
-    border-radius: 20px;
     z-index: 100;
+}
+
+.stylesForCompetitionsPage {
+    width: 85%;
+    max-width: 1226px;
+    border-radius: 20px;
 }
 
 // .MaskBlureImgCont {

@@ -1,7 +1,9 @@
 .header_container {
   position: relative;
   background-color: var(--p-color-blue);
-  width: 100%;
+  width: 85%;
+  max-width: 1226px;
+  margin: auto;
   height: 80px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

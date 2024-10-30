@@ -2,7 +2,7 @@
   <img class="musk_blure_img" src="/assets/imgs/MaskBlureNew.svg"/>
 </div>
 
-<div class="CompetitionsListSection shadow1" *ngIf="competitions.length > 0" >
+<div class="CompetitionsListSection shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''" *ngIf="competitions.length > 0" >
   <div class="competitionsList">
     <div class="header">
       <div class="title">{{'Competitions' | translate}}</div>

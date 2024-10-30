@@ -1,8 +1,8 @@
+<app-header class="mainHeader" [navLeftItems]="navLeftItems"
+    [navRightItems]="navRightItems" [buttonLabel]="buttonLabel"></app-header>
 <div class="website_content">
-    <app-header style="width: 100%; z-index: 100!important;" [navLeftItems]="navLeftItems"
-        [navRightItems]="navRightItems" [buttonLabel]="buttonLabel"></app-header>
-        <div style="margin-top: 100px;" class="content">
-            <router-outlet></router-outlet>
-        </div>
-    <app-footer [headers]="footerHeaders"></app-footer>
+    <div style="margin-top: 100px;" class="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>
+<app-footer class="mainFooter" [headers]="footerHeaders"></app-footer>

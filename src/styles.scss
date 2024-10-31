@@ -1,3 +1,4 @@
+@import "./fonts.css";
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +8,14 @@
 html,
 body {
   height: 100%;
+}
+
+.GeoUppB {
+  font-family: "Georgian Uppercase Bold";
+}
+
+.GeoLowB {
+  font-family: "Georgian Lowercase Normal";
 }
 
 body {

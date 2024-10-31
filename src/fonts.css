@@ -489,7 +489,7 @@
   font-display: swap;
 }
 
-  @font-face {
+@font-face {
   font-family: "Georgian Uppercase Bold";
   src: 
     url("/assets/new-fonts/bpg_nino_mtavruli_bold.ttf")
@@ -499,3 +499,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Georgian Lowercase Normal";
+  src: 
+    url("/assets/new-fonts/bpg_glaho.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

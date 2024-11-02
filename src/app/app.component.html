@@ -1,8 +1,8 @@
-<app-header class="mainHeader" [ngClass]="headersFont" [navLeftItems]="navLeftItems"
+<app-header class="mainHeader" [ngClass]="font" [navLeftItems]="navLeftItems"
     [navRightItems]="navRightItems" [buttonLabel]="buttonLabel"></app-header>
-<div class="website_content" [ngClass]="normalFont">
+<div class="website_content" [ngClass]="font">
     <div style="margin-top: 100px;" class="content">
         <router-outlet></router-outlet>
     </div>
 </div>
-<app-footer class="mainFooter" [ngClass]="headersFont" [headers]="footerHeaders"></app-footer>
+<app-footer class="mainFooter" [ngClass]="font" [headers]="footerHeaders"></app-footer>

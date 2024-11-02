@@ -16,16 +16,14 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy{
   private subscription!: Subscription;
-  public headersFont!:string;
-  public normalFont!:string;
+  public font!:string;
   constructor(private i18nService: I18nService) {
     i18nService.setInitialLanguage();
   }
   ngOnInit(): void {
     this.subscription = this.i18nService.changedLang.subscribe(lang => {
       console.log(lang)
-      lang == 'en' ? this.normalFont = "EngUppB" : this.normalFont = "GeoLowB";
-      lang == 'en' ? this.headersFont = "EngLowB" : this.headersFont = "GeoUppB";
+      lang == 'en' ? this.font = "EngFont" : this.font = "GeoFont";
     })
   }
 

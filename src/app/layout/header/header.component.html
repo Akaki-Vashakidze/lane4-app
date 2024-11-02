@@ -13,7 +13,7 @@
   
     <div class="header">
       <div class="nav_left navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
+        <h5 class="headerTitles" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{ item.title| translate}}</h5>
       </div>
   
       <div class="logo nav_left headerItems" (click)="navigateToDashboard()">
@@ -22,7 +22,7 @@
       </div>
 
       <div class="nav_right navTitles headerItems">
-        <div class="headerTitles" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
+        <h5 class="headerTitles" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{ item.title| translate}}</h5>
       </div>
     </div>
   

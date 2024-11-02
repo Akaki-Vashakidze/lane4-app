@@ -22,7 +22,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
   ngOnInit(): void {
     this.subscription = this.i18nService.changedLang.subscribe(lang => {
-      console.log(lang)
       lang == 'en' ? this.font = "EngFont" : this.font = "GeoFont";
     })
   }

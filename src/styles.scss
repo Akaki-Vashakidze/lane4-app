@@ -11,21 +11,21 @@ body {
   // font-family: "Georgian Lowercase Normal" !important;
 }
 
-.GeoFont h1,.GeoFont h2,.GeoFont h3,.GeoFont h4,.GeoFont h5,.GeoFont h6 {
+.GeoFont .headerFont {
   font-family: "Georgian Uppercase Bold" !important;
   margin: 0;
 }
 
-.GeoFont div {
+.GeoFont .normalFont {
   font-family: "Georgian Lowercase Normal" !important;
 }
 
-.EngFont h1{
+.EngFont .headerFont {
   font-family: "Arial" !important;
   font-weight: bold;
 }
 
-.EngFont div{
+.EngFont .normalFont{
   font-family: "Arial" !important;
   font-weight: normal;
 }

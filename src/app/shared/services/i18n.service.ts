@@ -8,11 +8,12 @@ const STORAGE_KEY = 'language';
 export class I18nService {
   private readonly availableLanguages = ['ka', 'en'];
   constructor(private translateService: TranslateService) {}
-  public changedLang = new BehaviorSubject<string>('en');
+  public changedLang = new BehaviorSubject<string | null>('en');
  
   setInitialLanguage(): void {
     const browserLang = this.translateService.getBrowserLang() || 'en';
     let currentLanguage = localStorage.getItem(STORAGE_KEY);
+    this.changedLang.next(currentLanguage);
     
     if (!currentLanguage) {
       const defaultLang = this.availableLanguages.includes(browserLang);

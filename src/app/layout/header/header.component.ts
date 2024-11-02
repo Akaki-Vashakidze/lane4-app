@@ -32,7 +32,6 @@ export class HeaderComponent {
   }
 
   navigate(route:string){
-    console.log(route)
     this._router.navigate([route])
   }
   navigateToDashboard(){

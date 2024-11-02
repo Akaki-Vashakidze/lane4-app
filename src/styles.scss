@@ -8,14 +8,23 @@
 html,
 body {
   height: 100%;
+  // font-family: "Georgian Lowercase Normal" !important;
 }
 
 .GeoUppB {
-  font-family: "Georgian Uppercase Bold";
+  font-family: "Georgian Uppercase Bold" !important;
 }
 
 .GeoLowB {
-  font-family: "Georgian Lowercase Normal";
+  font-family: "Georgian Lowercase Normal" !important;
+}
+
+.EngUppB {
+  font-family: "Arial" !important;
+}
+
+.EngLowB {
+  font-family: "Arial" !important;
 }
 
 body {

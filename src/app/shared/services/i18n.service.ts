@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
 
 const STORAGE_KEY = 'language';
 
@@ -7,7 +8,8 @@ const STORAGE_KEY = 'language';
 export class I18nService {
   private readonly availableLanguages = ['ka', 'en'];
   constructor(private translateService: TranslateService) {}
-
+  public changedLang = new BehaviorSubject<string>('en');
+ 
   setInitialLanguage(): void {
     const browserLang = this.translateService.getBrowserLang() || 'en';
     let currentLanguage = localStorage.getItem(STORAGE_KEY);
@@ -25,5 +27,6 @@ export class I18nService {
   changeCurrentLanguage(language: string) {
     this.translateService.use(language);
     localStorage.setItem(STORAGE_KEY, language);
+    this.changedLang.next(language);
   }
 }

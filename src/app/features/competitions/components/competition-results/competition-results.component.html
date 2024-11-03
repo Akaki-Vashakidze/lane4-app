@@ -6,13 +6,13 @@
 <div *ngIf="chosenPartition()" class="compContainer">
     <div class="resultsContainer">
         <!-- <div *ngIf="chosenPartition() == ''" class="whiteBackgr"></div> -->
-        <div class="compTitle shadow1">{{event?.title}}
+        <div class="compTitle shadow1 headerFont">{{event?.title}}
             <!-- <app-pdf [eventId]="eventId" class="pdfButton"></app-pdf> -->
         </div>
         <div class="header">
             <mat-tab-group *ngIf="event" (selectedTabChange)="onTabChanged($event);">
                 @for (partition of partitions; track $index) {
-                <mat-tab [label]="partition.title"></mat-tab>
+                <mat-tab style="background-color: red;" [label]="partition.title"></mat-tab>
                 }
             </mat-tab-group>
         </div>

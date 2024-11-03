@@ -1,0 +1,32 @@
+.recordsContainer {
+    position: relative;
+    width: 85%;
+    max-width: 1226px;
+    margin: auto;
+}
+
+.banner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/assets/imgs/poolBanner.svg');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 450px; 
+    text-align: center;
+}
+
+.bannerHeader {
+    font-size: 2rem; 
+    color: white; 
+}
+
+.recordsContainer {
+    width: 100%;
+    border: 1.5px solid var(--dark-blue);
+    border-radius: 20px;
+    margin-top: 20px;
+    
+}

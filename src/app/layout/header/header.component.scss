@@ -1,6 +1,6 @@
 .header_container {
   position: relative;
-  background-color: var(--p-color-blue);
+  background-color: var(--blue2);
   width: 85%;
   max-width: 1226px;
   margin: auto;
@@ -36,7 +36,7 @@
 }
 
 .headerTitles:hover {
-  color: var(--p-color-d-blue);
+  color: var(--dark-blue3);
 }
 
 .language-selector {
@@ -45,7 +45,7 @@
 }
 
 .dropdown-btn {
-  background-color: var(--p-color-blue);
+  background-color: var(--blue2);
   font-size: 12px;
   color: white;
   padding: 10px 7px;

@@ -19,7 +19,7 @@ export class CompetitionsListComponent {
   @Input() BackgroundImg: boolean = true;
   constructor(private sharedService:SharedService){
     sharedService.getCompetitions().subscribe(item => {
-      this.competitions = [...item,...item,...item,...item,...item];
+      this.competitions = [...item];
     })
   }
   public competitions:LiveEvent[] = [];

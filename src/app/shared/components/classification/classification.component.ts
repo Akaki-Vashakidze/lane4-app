@@ -1,31 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CustomTabsComponent } from '../custom-tabs/custom-tabs.component';
 import { SharedService } from '../../services/shared.service';
+import { TransformedRankData } from '../../interfaces/interfaces';
+import { TimeComponent } from '../time/time.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-classification',
   standalone: true,
-  imports: [CommonModule,CustomTabsComponent],
+  imports: [CommonModule,CustomTabsComponent,TimeComponent, TranslateModule],
   templateUrl: './classification.component.html',
   styleUrl: './classification.component.scss'
 })
 export class ClassificationComponent {
   tabs = ['25 კაცები','50 კაცები','25 ქალები','50 ქალები']
   activeTabIndex = 0;
-
+  transformedRankData = signal<TransformedRankData[][] >([])
+  chosenRanksData!:TransformedRankData[];
   constructor(_sharedService:SharedService){
     _sharedService.getRankings().subscribe(item => {
-     console.log(this.transformRanksToArray(item.rankData))
+     this.transformedRankData.set(this.transformRanksToArray(item.rankData))
+     console.log(this.transformedRankData())
+     this.chosenRanksData = this.transformedRankData()[0]
     })
   }
 
   array: any = []
   transformRanksToArray(rankings: any) {
     const tables: any = [];
+    let course!:string;
     Object.keys(rankings).forEach(gender => {
       Object.keys(rankings[gender]).forEach(poolLength => {
         let arr: any[] = []
+        course = poolLength;
         Object.keys(rankings[gender][poolLength]).forEach(style => {
           Object.keys(rankings[gender][poolLength][style]).forEach(distance => {
             if (distance != '25') {
@@ -36,18 +44,64 @@ export class ClassificationComponent {
                 poolLength,
                 ranks: rankings[gender][poolLength][style][distance]
               }
-              arr.push(obj)
              let event = distance + ' ' + style;
-              if(event == '1500 FREESTYLE' || event == '200 BUTTERFLY' || event == '200 BACKSTROKE' || event == '200 BREASTSTROKE' ){
+              if(event == '50 FREESTYLE' ){
                 let obj = {
                   distance:null,
-                  style:null,
+                  style:"FREESTYLE",
+                  gender:null,
+                  poolLength:null,
+                  ranks:null
+                }
+                arr.push(obj)
+              } else if(event == '50 BUTTERFLY') {
+                let obj = {
+                  distance:null,
+                  style:"BUTTERFLY",
+                  gender:null,
+                  poolLength:null,
+                  ranks:null
+                }
+                arr.push(obj)
+              }  else if(event == '50 BACKSTROKE' ) {
+                let obj = {
+                  distance:null,
+                  style:"BACKSTROKE",
+                  gender:null,
+                  poolLength:null,
+                  ranks:null
+                }
+                arr.push(obj)
+              }  else if( event == '50 BREASTSTROKE' ) {
+                let obj = {
+                  distance:null,
+                  style:"BREASTSTROKE",
+                  gender:null,
+                  poolLength:null,
+                  ranks:null
+                }
+                arr.push(obj)
+              } else if( event == '100 MEDLEY' && course == 'SHORT' ) {
+                let obj = {
+                  distance:null,
+                  style:"MEDLEY",
+                  gender:null,
+                  poolLength:null,
+                  ranks:null
+                }
+                arr.push(obj)
+              } else if( event == '200 MEDLEY' && course == 'LONG' ) {
+                let obj = {
+                  distance:null,
+                  style:"MEDLEY",
                   gender:null,
                   poolLength:null,
                   ranks:null
                 }
                 arr.push(obj)
               }
+
+              arr.push(obj)
             }
           })
         })
@@ -59,6 +113,6 @@ export class ClassificationComponent {
 
   onTabChange(index: number) {
     this.activeTabIndex = index; 
-    console.log('Active tab index:', index);
+    this.chosenRanksData = this.transformedRankData()[index]
   }
 }

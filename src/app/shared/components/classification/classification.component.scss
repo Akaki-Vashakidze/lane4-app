@@ -5,3 +5,15 @@
     border:1.5px solid var(--dark-blue);
     border-radius:20px;
 }
+
+.bodyRow , .tableHeader{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-top: 1px solid gray;
+    padding: 3px 10px;
+}
+
+.tableHeader {
+    padding: 13px 10px;
+    background-color: var(--p-color-blue);
+ }

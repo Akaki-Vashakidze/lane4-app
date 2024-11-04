@@ -213,9 +213,19 @@ export interface poolCourse {
 }
  
 export interface GetRanksData {
-  rankData:{
-    FEMALE:poolCourse
-    MALE:poolCourse
-  }
+  rankData: RankData
   rankName:string[]
+}
+
+export interface RankData {
+  FEMALE:poolCourse
+  MALE:poolCourse
+}
+
+export interface TransformedRankData {
+  distance: string
+  gender: string
+  poolLength: string
+  ranks: Ranks
+  style: string
 }

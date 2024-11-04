@@ -1,10 +1,25 @@
 <div class="classificationContainer">
-    <app-custom-tabs [tabs]="tabs" (tabChanged)="onTabChange($event)">
+    <app-custom-tabs infoTitle="ცურვა, ერთიანი ეროვნული კლასიფიკაცია" infoText='საერთაშორისო კლასის სპორტის ოსტატის ნორმატივი (მსოფლიო ჩემპიონატის "B" სტანდარტი) ნებისმიერ დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემაზე. სპორტის ოსტატის ნორმატივი -50 მეტრიან დისტანციაზე ფიქსირდება მხოლოდ ელექტროლულ სისტემაზე.' [tabs]="tabs" (tabChanged)="onTabChange($event)">
         <div class="body">
-            <div class="body1" *ngIf="activeTabIndex === 0">body1</div>
-            <div class="body2" *ngIf="activeTabIndex === 1">body2</div>
-            <div class="body3" *ngIf="activeTabIndex === 2">body3</div>
-            <div class="body4" *ngIf="activeTabIndex === 3">body4</div>
+            <div class="tableHeader">
+                <div>დისციპლინა</div>
+                <div>ს.კ.ს.ო</div>
+                <div>ს.ო</div>
+                <div>ს.ო.კ</div>
+                <div>1-თან</div>
+                <div>2-თან</div>
+                <div>3-თან</div>
+            </div>
+            <div *ngFor="let item of chosenRanksData" class="bodyRow">
+                <div class="" *ngIf="item.style && !item.distance">{{item.style | translate}}</div>
+                <div class="row" *ngIf="item.distance">{{item.distance}}</div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['INTERNATIONAL_MASTER'].time"></app-time></div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['MASTER'].time"></app-time></div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['CANDIDATE'].time"></app-time></div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['FIRST'].time"></app-time></div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['SECOND'].time"></app-time></div>
+                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['THIRD'].time"></app-time></div>
+            </div>
         </div>
     </app-custom-tabs>
 </div>

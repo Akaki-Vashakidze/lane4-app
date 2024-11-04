@@ -12,7 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class CustomTabsComponent {
   @Input() tabs:string[] = ['tab1','tab2','tab3','tab4'];
   @Input() header!:string;
-  @Input() info!:string;
+  @Input() infoTitle!:string;
+  @Input() infoText!:string;
   activeTabIndex:number = 0; 
   @Output() tabChanged = new EventEmitter<number>();
   tabChange(index:number){

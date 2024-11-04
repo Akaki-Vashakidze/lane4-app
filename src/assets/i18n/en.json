@@ -15,5 +15,10 @@
   "Enter_your_email":"Enter your Email",
   "subscribe":"Subscribe",
   "Competitions":"Competitions",
-  "georgian_records":"Georgian Records"
+  "georgian_records":"Georgian Records",
+  "FREESTYLE":"Freestyle",
+  "BACKSTROKE": "Backstroke",
+  "BREASTSTROKE": "Breaststroke",
+  "BUTTERFLY": "Butterfly",
+  "MEDLEY": "Individual  Medley"
 }

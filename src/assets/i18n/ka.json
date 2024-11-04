@@ -15,5 +15,10 @@
   "Enter_your_email":"შეიყვანეთ ელ.ფოსტა",
   "subscribe":"გამოწერა",
   "Competitions":"შეჯიბრები",
-  "georgian_records":"საქართველოს რეკორდები"
+  "georgian_records":"საქართველოს რეკორდები",
+  "FREESTYLE":"თავისუფალი ყაიდა",
+  "BACKSTROKE": "გულაღმა ცურვა",
+  "BREASTSTROKE": "ბრასი",
+  "BUTTERFLY": "ბატერფლაი",
+  "MEDLEY": "კომპლექსი"
 }

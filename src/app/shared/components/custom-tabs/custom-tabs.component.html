@@ -1,9 +1,10 @@
 <div class="header">
+    <div *ngIf="header" class="headerText headerFont">{{header}}</div>
     <div class="tabs">
         <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)" [ngClass]="{'activeTab': i === activeTabIndex}">{{tab}}</div>
     </div>
 </div>
-<div class="info">
+<div *ngIf="info" class="info">
     kfnaksl
 </div>
 <div class="body">

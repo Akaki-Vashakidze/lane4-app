@@ -32,6 +32,11 @@ mat-tab-group {
     gap: 5px;
 }
 
+.resultsContainer{
+    border: 2px solid var(--dark-blue);
+    border-radius: 25px;
+}
+
 .resBody {
     min-height: 100%;
     width: 100%;
@@ -41,7 +46,6 @@ mat-tab-group {
     align-items: center;
     padding: 20px 0px;
     gap: 15px;
-    border: 2px solid var(--dark-blue);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }

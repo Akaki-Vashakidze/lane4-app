@@ -7,11 +7,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
+import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 
 @Component({
   selector: 'app-competition-results',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, TranslateModule , MatIconModule, LoaderSpinnerComponent],
+  imports: [CommonModule, MatTabsModule, TranslateModule , MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
   templateUrl: './competition-results.component.html',
   styleUrl: './competition-results.component.scss'
 })
@@ -19,7 +20,9 @@ export class CompetitionResultsComponent {
   resultsOpen!: any;
   eventId!: string;
   event: any;
+  activeTabIndex!:number;
   partitions!: EventPartition[];
+  partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   allChosenResults!: Lane[];
   allAthletesInHeatsArr: Lane[] = []
@@ -44,10 +47,18 @@ export class CompetitionResultsComponent {
       })
       this.event = res.event;
       this.partitions = res.partitions;
+      this.partitionTitles = this.partitions.map(item => item.title)
+      console.log(this.partitionTitles)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a:any,b:any) => a.orderNumber - b.orderNumber);
     })
 
+  }
+
+  onTabChange(index: number) {
+    this.activeTabIndex = index; 
+    console.log('Active tab index:', index);
+    this.chosenPartition.set(this.partitions[index])
   }
 
   openResults(index: any, heats: any) {

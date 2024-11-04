@@ -17,7 +17,7 @@ export const routes: Routes = [
           pathMatch: 'full',
         },
         {
-          path: 'Dashboard',
+          path: 'dashboard',
           component: DashboardComponent,
         },
         {
@@ -29,7 +29,7 @@ export const routes: Routes = [
           component: ClassificationComponent,
         },
         {
-          path: 'Competitions',
+          path: 'competitions',
           children: [
             {
               path: '',

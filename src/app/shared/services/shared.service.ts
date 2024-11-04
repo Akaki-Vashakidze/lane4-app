@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { LiveEvent } from '../interfaces/interfaces';
+import { GetRanksData, LiveEvent } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +24,9 @@ export class SharedService {
     })
     )
   }
+
+  getRankings(){
+    return this.httpClient.get<GetRanksData>('/consoleApi/congifuration/rankings')
+  }
+  
 }

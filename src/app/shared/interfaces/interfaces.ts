@@ -172,3 +172,50 @@ export interface EventDetails {
           seconds: any
           milliseconds: any
     }
+
+    export interface RankInfo {
+      finaPoint:number
+      time:Time
+    }
+
+  export interface Ranks {
+    CANDIDATE: RankInfo
+    FIRST: RankInfo
+    INTERNATIONAL_MASTER: RankInfo
+    JUNIOR_FIRST: RankInfo
+    JUNIOR_SECOND: RankInfo
+    JUNIOR_THIRD: RankInfo
+    MASTER: RankInfo
+    SECOND: RankInfo
+    THIRD: RankInfo
+}
+
+export interface Distances {
+  50:Ranks
+  100:Ranks
+  200:Ranks
+  400:Ranks
+  800:Ranks
+  1500:Ranks
+}
+
+export interface Strokes {
+  BACKSTROKE: Distances
+  BREASTSTROKE: Distances
+  FREESTYLE: Distances
+  BUTTERFLY: Distances
+  MEDLEY: Distances
+}
+
+export interface poolCourse {
+  LONG:Strokes
+  SHORT:Strokes
+}
+ 
+export interface GetRanksData {
+  rankData:{
+    FEMALE:poolCourse
+    MALE:poolCourse
+  }
+  rankName:string[]
+}

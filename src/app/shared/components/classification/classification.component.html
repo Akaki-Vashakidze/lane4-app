@@ -1,0 +1,10 @@
+<div class="classificationContainer">
+    <app-custom-tabs [tabs]="tabs" (tabChanged)="onTabChange($event)">
+        <div class="body">
+            <div class="body1" *ngIf="activeTabIndex === 0">body1</div>
+            <div class="body2" *ngIf="activeTabIndex === 1">body2</div>
+            <div class="body3" *ngIf="activeTabIndex === 2">body3</div>
+            <div class="body4" *ngIf="activeTabIndex === 3">body4</div>
+        </div>
+    </app-custom-tabs>
+</div>

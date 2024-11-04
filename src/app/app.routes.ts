@@ -3,6 +3,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
 import { CompetitionResultsComponent } from './features/competitions/components/competition-results/competition-results.component';
 import { RecordsComponent } from './shared/components/records/records.component';
+import { ClassificationComponent } from './shared/components/classification/classification.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +23,10 @@ export const routes: Routes = [
         {
           path: 'records',
           component: RecordsComponent,
+        },
+        {
+          path: 'classification',
+          component: ClassificationComponent,
         },
         {
           path: 'Competitions',

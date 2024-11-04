@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="tabs">
+        <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)" [ngClass]="{'activeTab': i === activeTabIndex}">{{tab}}</div>
+    </div>
+</div>
+<div class="info">
+    kfnaksl
+</div>
+<div class="body">
+    <ng-content select=".body" class="sss"></ng-content>
+</div>

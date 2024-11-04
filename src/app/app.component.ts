@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy{
   constructor(private i18nService: I18nService) {
     i18nService.setInitialLanguage();
   }
+
   ngOnInit(): void {
     this.subscription = this.i18nService.changedLang.subscribe(lang => {
       lang == 'en' ? this.font = "EngFont" : this.font = "GeoFont";
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   buttonLabel = 'Register';
-  navLeftItems = [{title:'Home', route:'/Home'},{title:'Clasification', route:'/Clasification'},{title:'Records', route:'/records'}];
+  navLeftItems = [{title:'Home', route:'/Home'},{title:'Classification', route:'/classification'},{title:'Records', route:'/records'}];
   navRightItems =  [{title:'Competitions', route:'/Competitions'},{title:'About', route:'/About'},{title:'Contact', route:'/Contact'}];
   footerHeaders = [{title:'Home', route:'/Home'},{title:'Clasification', route:'/Clasification'},{title:'Records', route:'/Records'},{title:'Competitions', route:'/Competitions'},{title:'About', route:'/About'},{title:'Contact', route:'/Contact'}];
   

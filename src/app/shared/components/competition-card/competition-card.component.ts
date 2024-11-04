@@ -27,8 +27,6 @@ export class CompetitionCardComponent {
     (await this._sharedService.getEventResultsPDF(this.EventId)).subscribe((res:any) => {
       let blob:Blob = res as Blob
       let url = window.URL.createObjectURL(blob)
-      console.log(blob,url)
-      window.open(url)
    })
   }
 

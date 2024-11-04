@@ -23,10 +23,21 @@
     color: white; 
 }
 
-.recordsContainer {
+.recordsInfo {
     width: 100%;
     border: 1.5px solid var(--dark-blue4);
     border-radius: 20px;
     margin-top: 20px;
-
 }
+
+.bodyRow , .tableHeader{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-top: 1px solid gray;
+    padding: 3px 10px;
+}
+
+.tableHeader {
+    padding: 13px 10px;
+    background-color: var(--blue4);
+ }

@@ -3,12 +3,31 @@
         <div class="bannerHeader headerFont" style="font-size: 50px;">{{'georgian_records' | translate}}</div>
     </div>
 
-    <div class="recordsContainer">  
-        <div class="header">
-            
-        </div>
-        <div class="body">
-            
-        </div>
+    <div class="recordsInfo">  
+        <app-custom-tabs tabsWidth="400px" [tabs]="tabs" infoTitle="ცურვა, საქართველოს ეროვნული რეკორდები" infoText="საქართველოს რეკორდები ყველა დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემზე">
+            <div class="body">
+                <div class="tableHeader">
+                    <div>დისციპლინა</div>
+                    <div>ს.კ.ს.ო</div>
+                    <div>ს.ო</div>
+                    <div>ს.ო.კ</div>
+                    <div>1-თან</div>
+                    <div>2-თან</div>
+                    <div>3-თან</div>
+                </div>
+                <app-loader-spinner *ngIf="!array[0]" color="black" height="500px"></app-loader-spinner>
+                <div *ngIf="array[0]" >
+                    <div *ngFor="let item of array[0]" class="bodyRow">
+                        <div class="" *ngIf="item.style">{{item.distance}}{{'m ' | translate}}{{item.style | translate}}</div>
+                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['WR']"></app-time></div>
+                        <!-- <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['MASTER'].time"></app-time></div>
+                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['CANDIDATE'].time"></app-time></div>
+                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['FIRST'].time"></app-time></div>
+                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['SECOND'].time"></app-time></div>
+                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['THIRD'].time"></app-time></div>  -->
+                    </div>
+                </div>
+            </div>
+        </app-custom-tabs>
     </div>
 </div>

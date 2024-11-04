@@ -190,26 +190,26 @@ export interface EventDetails {
     THIRD: RankInfo
 }
 
-export interface Distances {
-  50:Ranks
-  100:Ranks
-  200:Ranks
-  400:Ranks
-  800:Ranks
-  1500:Ranks
+export interface Distances<T> {
+  50:T
+  100:T
+  200:T
+  400:T
+  800:T
+  1500:T
 }
 
-export interface Strokes {
-  BACKSTROKE: Distances
-  BREASTSTROKE: Distances
-  FREESTYLE: Distances
-  BUTTERFLY: Distances
-  MEDLEY: Distances
+export interface Strokes<T> {
+  BACKSTROKE: Distances<T>
+  BREASTSTROKE: Distances<T>
+  FREESTYLE: Distances<T>
+  BUTTERFLY: Distances<T>
+  MEDLEY: Distances<T>
 }
 
-export interface poolCourse {
-  LONG:Strokes
-  SHORT:Strokes
+export interface poolCourse<T> {
+  LONG:Strokes<T>
+  SHORT:Strokes<T>
 }
  
 export interface GetRanksData {
@@ -218,8 +218,8 @@ export interface GetRanksData {
 }
 
 export interface RankData {
-  FEMALE:poolCourse
-  MALE:poolCourse
+  FEMALE:poolCourse<Ranks>
+  MALE:poolCourse<Ranks>
 }
 
 export interface TransformedRankData {
@@ -228,4 +228,14 @@ export interface TransformedRankData {
   poolLength: string
   ranks: Ranks
   style: string
+}
+
+export interface WRTsData {
+  FEMALE:poolCourse<BaseTimeWR>
+  MALE:poolCourse<BaseTimeWR>
+}
+
+export interface BaseTimeWR {
+  BASE_TIME:Time;
+  WR:Time;
 }

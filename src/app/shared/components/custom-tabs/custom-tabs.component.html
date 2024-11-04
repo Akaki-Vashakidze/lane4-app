@@ -4,7 +4,7 @@
         <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)" [ngClass]="{'activeTab': i === activeTabIndex}">{{tab | translate}}</div>
     </div>
 </div>
-<div class="info">
+<div *ngIf="infoTitle || infoText" class="info">
     <div *ngIf="infoTitle" class="infoTitle headerFont">{{infoTitle}}</div>
     <div *ngIf="infoText" class="infoText">{{infoText}}</div>
 </div>

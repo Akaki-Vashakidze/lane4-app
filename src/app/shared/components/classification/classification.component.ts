@@ -5,16 +5,17 @@ import { SharedService } from '../../services/shared.service';
 import { TransformedRankData } from '../../interfaces/interfaces';
 import { TimeComponent } from '../time/time.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoaderSpinnerComponent } from "../loader-spinner/loader-spinner.component";
 
 @Component({
   selector: 'app-classification',
   standalone: true,
-  imports: [CommonModule,CustomTabsComponent,TimeComponent, TranslateModule],
+  imports: [CommonModule, CustomTabsComponent, TimeComponent, TranslateModule, LoaderSpinnerComponent, LoaderSpinnerComponent],
   templateUrl: './classification.component.html',
   styleUrl: './classification.component.scss'
 })
 export class ClassificationComponent {
-  tabs = ['25 კაცები','50 კაცები','25 ქალები','50 ქალები']
+  tabs = ['25m Men','50m Men','25m Women','50m Women']
   activeTabIndex = 0;
   transformedRankData = signal<TransformedRankData[][] >([])
   chosenRanksData!:TransformedRankData[];

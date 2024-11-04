@@ -10,15 +10,18 @@
                 <div>2-თან</div>
                 <div>3-თან</div>
             </div>
-            <div *ngFor="let item of chosenRanksData" class="bodyRow">
-                <div class="" *ngIf="item.style && !item.distance">{{item.style | translate}}</div>
-                <div class="row" *ngIf="item.distance">{{item.distance}}</div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['INTERNATIONAL_MASTER'].time"></app-time></div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['MASTER'].time"></app-time></div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['CANDIDATE'].time"></app-time></div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['FIRST'].time"></app-time></div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['SECOND'].time"></app-time></div>
-                <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['THIRD'].time"></app-time></div>
+            <app-loader-spinner *ngIf="!chosenRanksData" color="black" height="500px"></app-loader-spinner>
+            <div *ngIf="chosenRanksData" >
+                <div *ngFor="let item of chosenRanksData" class="bodyRow">
+                    <div class="" *ngIf="item.style && !item.distance">{{item.style | translate}}</div>
+                    <div class="row" *ngIf="item.distance">{{item.distance}}</div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['INTERNATIONAL_MASTER'].time"></app-time></div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['MASTER'].time"></app-time></div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['CANDIDATE'].time"></app-time></div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['FIRST'].time"></app-time></div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['SECOND'].time"></app-time></div>
+                    <div class="row" *ngIf="item.ranks"><app-time [timeObj]="item.ranks['THIRD'].time"></app-time></div>
+                </div>
             </div>
         </div>
     </app-custom-tabs>

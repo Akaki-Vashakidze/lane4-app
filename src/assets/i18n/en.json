@@ -20,5 +20,9 @@
   "BACKSTROKE": "Backstroke",
   "BREASTSTROKE": "Breaststroke",
   "BUTTERFLY": "Butterfly",
-  "MEDLEY": "Individual  Medley"
+  "MEDLEY": "Individual  Medley",
+  "25m Men":"25m Men",
+  "50m Men":"50m Men",
+  "25m Women":"25m Women",
+  "50m Women":"50m Women"
 }

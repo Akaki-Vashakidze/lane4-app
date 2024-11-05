@@ -6,11 +6,11 @@
       <div class="names">
         <div class="firstname">
           <div class="label">{{ 'First Name' | translate }}</div>
-          <input formControlName="firstname" class="custom-input1" [placeholder]="'Your first name' | translate" />
+          <input (keyup)="onInputChange()" formControlName="firstname" class="custom-input1" [placeholder]="'Your first name' | translate" />
         </div>
         <div class="lastname">
           <div class="label">{{ 'Last Name' | translate }}</div>
-          <input formControlName="lastname" class="custom-input1" [placeholder]="'Your last name' | translate" />
+          <input (keyup)="onInputChange()" formControlName="lastname" class="custom-input1" [placeholder]="'Your last name' | translate" />
         </div>
       </div>
       
@@ -21,18 +21,22 @@
       
       <div class="message">
         <div class="label">{{ 'Message' | translate }}</div>
-        <textarea formControlName="message" class="custom-input1" [placeholder]="'Your message here' | translate"></textarea>
+        <textarea (keyup)="onInputChange()" formControlName="message" class="custom-input1" [placeholder]="'Your message here' | translate"></textarea>
       </div>
       
       <div class="checkAgree">
-        <mat-checkbox formControlName="checkAgree" class="example-margin">
+        <mat-checkbox (change)="onInputChange()" formControlName="checkAgree" class="example-margin">
           {{ 'I accept the ' | translate }}
         </mat-checkbox>
         <span style="text-decoration: underline; cursor: pointer;">{{ 'Terms' }}</span>
       </div>
       
       <app-button (click)="submitForm()" style="margin: auto; padding-top: 20px;" height="50px" [text]="'Submit' | translate"></app-button>
-      <div [ngClass]="!showErrorMessage ? 'hide' : 'displayFlex'"  class="errorMes"> Message could not send </div>
+
+      <app-loader-spinner height="100px" color="$002155" *ngIf="requestOn"></app-loader-spinner>
+
+      <div [ngClass]="showErrorMessage == false ? 'hide' : 'displayFlex'"  class="errorMes"> {{errorMessage | translate}}</div>
+      <div [ngClass]="messageSent == true && showErrorMessage == false ? 'displayFlex' : 'hide'"  class="successMess"> Message Sent </div>
     </form>
   </div>
   

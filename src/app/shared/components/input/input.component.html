@@ -1,4 +1,8 @@
 <div [style.width]="width" class="customInput">
-    <input [placeholder]="inputText | translate" class="actionInput" [style.height]="height" />
-    <div class="inputButton headerFont">{{buttonText | translate}}</div>
+    <form [formGroup]="inputForm" >
+        <input formControlName="value" (keyup)="checkValidation()" [placeholder]="inputText | translate" class="actionInput" [style.height]="height" />
+        <div class="inputButton headerFont" (click)="onClick()">{{buttonText | translate}}</div>
+    </form>
 </div>
+
+<div *ngIf="isSubmited && showCheck" class="invalid">Please fill correctly</div>

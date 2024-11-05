@@ -36,4 +36,8 @@ export class SharedService {
   sendContactMessage(body:ContactMessage){
     return this.httpClient.post<any>('/consoleApi/contact/message',{data:body})
   }
+
+  addMailForSubscr(body : {email : string}){
+    return this.httpClient.post<any>('/consoleApi/contact/mail',{data:body})
+  }
 }

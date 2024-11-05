@@ -36,5 +36,15 @@
   "Birth Date":"დაბ. წელი",
   "City of origin":"დაბ. ქალაქი",
   "Location":"ლოკაცია",
-  "Date":"თარიღი"
+  "Date":"თარიღი",
+  "Contact us":"კონტაქტი",
+  "First Name":"სახელი",
+  "Last Name":"გვარი",
+  "Email":"ელ. ფოსტა",
+  "Message":"მესიჯი",
+  "Your message here":"მესიჯი...",
+  "YourMail@gmail.com":"YourMail@gmail.com",
+  "Your last name":"გვარი...",
+  "Your first name":"სახელი...",
+  "Have any questions or suggestions? Feel free to write to us":"რაიმე კითხვის ან შემოთავაზების შემთხვევაში შეგიძლიათ დაგვიკავშირდეთ"
 }

@@ -1,0 +1,37 @@
+<div class="contactContainer">
+    <div class="title headerFont">{{ 'Contact us' | translate }}</div>
+    <div class="info">{{ 'Have any questions or suggestions? Feel free to write to us' | translate }}</div>
+    
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contactUsCard">
+      <div class="names">
+        <div class="firstname">
+          <div class="label">{{ 'First Name' | translate }}</div>
+          <input formControlName="firstName" class="custom-input1" [placeholder]="'Your first name' | translate" />
+        </div>
+        <div class="lastname">
+          <div class="label">{{ 'Last Name' | translate }}</div>
+          <input formControlName="lastName" class="custom-input1" [placeholder]="'Your last name' | translate" />
+        </div>
+      </div>
+      
+      <div class="email">
+        <div class="label">{{ 'Email' | translate }}</div>
+        <input formControlName="email" class="custom-input1" [placeholder]="'YourMail@gmail.com' | translate" />
+      </div>
+      
+      <div class="message">
+        <div class="label">{{ 'Message' | translate }}</div>
+        <textarea formControlName="message" class="custom-input1" [placeholder]="'Your message here' | translate"></textarea>
+      </div>
+      
+      <div class="checkAgree">
+        <mat-checkbox formControlName="checkAgree" class="example-margin">
+          {{ 'I accept the ' | translate }}
+        </mat-checkbox>
+        <span style="text-decoration: underline; cursor: pointer;">{{ 'Terms' }}</span>
+      </div>
+      
+      <app-button (click)="submitForm()" style="margin: auto; padding-top: 20px;" height="50px" [text]="'Submit' | translate"></app-button>
+    </form>
+  </div>
+  

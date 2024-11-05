@@ -36,7 +36,6 @@
 .bodyRow , .tableHeader{
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    border-top: 1px solid gray;
     padding: 3px 10px;
 }
 
@@ -44,3 +43,22 @@
     padding: 13px 10px;
     background-color: var(--blue4);
  }
+
+ .bodyRow {
+    padding: 12px 8px;
+ }
+
+ .bodyRow:nth-child(even) {
+    background-color: #fff;
+    color: var(--black); 
+  }
+  
+  .bodyRow:nth-child(odd) {
+    background-color: var(--light-blue2);
+    color: var(--black); 
+  }
+
+  .bodyRow:last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }

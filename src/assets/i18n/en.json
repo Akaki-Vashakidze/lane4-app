@@ -36,5 +36,15 @@
   "Birth Date":"Birth Date",
   "City of origin":"City of origin",
   "Location":"Location",
-  "Date":"Date"
+  "Date":"Date",
+  "Contact us":"Contact Us",
+  "First Name":"First Name",
+  "Last Name":"Last Name",
+  "Email":"Email",
+  "Message":"Message",
+  "Your message here":"Your message here",
+  "YourMail@gmail.com":"YourMail@gmail.com",
+  "Your last name":"Your last name",
+  "Your first name":"Your first name",
+  "Have any questions or suggestions? Feel free to write to us":"Have any questions or suggestions? Feel free to write to us"
 }

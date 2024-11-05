@@ -4,6 +4,9 @@ import { CompetitionsListComponent } from './shared/components/competitions-list
 import { CompetitionResultsComponent } from './features/competitions/components/competition-results/competition-results.component';
 import { RecordsComponent } from './shared/components/records/records.component';
 import { ClassificationComponent } from './shared/components/classification/classification.component';
+import { ContactComponent } from './shared/components/contact/contact.component';
+import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
+import { AbousUsComponent } from './shared/components/abous-us/abous-us.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +26,14 @@ export const routes: Routes = [
         {
           path: 'records',
           component: RecordsComponent,
+        },
+        {
+          path: 'contact',
+          component: ContactComponent,
+        },
+        {
+          path: 'about',
+          component: AbousUsComponent,
         },
         {
           path: 'classification',

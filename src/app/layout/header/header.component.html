@@ -4,27 +4,32 @@
       <span class="icon"><img src="assets/imgs/Globe.svg" alt="Globe icon"></span> {{language}}
       <span class="arrow">&#9660;</span>
     </button>
-    
+
     <ul class="dropdown-content" *ngIf="dropdownOpen">
       <li (click)="switchLanguage('en')">English</li>
       <li (click)="switchLanguage('ka')">ქართული</li>
     </ul>
   </div>
-  
-    <div class="header">
-      <div class="nav_left navTitles headerItems">
-        <div class="headerTitles headerFont" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
-      </div>
-  
-      <div class="logo nav_left headerItems" (click)="navigateToDashboard()">
-        <img src="assets/imgs/lane4logo.png" class="logo-default" />
-        <img src="assets/imgs/lane4logoRed.png" class="logo-hover"/>
-      </div>
 
-      <div class="nav_right navTitles headerItems">
-        <div class="headerTitles headerFont" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{ item.title| translate}}</div>
-      </div>
+  <div class="header">
+    <div class="nav_left navTitles headerItems">
+      <div class="headerTitles headerFont" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{
+        item.title| translate}}</div>
     </div>
-  
+
+    <div class="logo nav_left headerItems" (click)="navigateToDashboard()">
+      <img src="assets/imgs/lane4logo.png" class="logo-default" />
+      <img src="assets/imgs/lane4logoRed.png" class="logo-hover" />
+    </div>
+
+    <div class="nav_right navTitles headerItems">
+      <div class="headerTitles headerFont" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{
+        item.title| translate}}</div>
+    </div>
   </div>
-  
+</div>
+
+<div class="headerMobile">
+  <img src="assets/imgs/lane4logo.png" class="logo-default-mobile" />
+  <img src="assets/imgs/menuIcon.svg" class="menuIcon" />
+</div>

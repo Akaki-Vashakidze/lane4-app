@@ -97,6 +97,10 @@
     .emailInput {
         display: none;
     }
+
+    .logo-default, .logo-hover {
+        width: 50px;
+    }
     
 }
 
@@ -186,5 +190,9 @@
 
     .term a{
         text-decoration: underline;
+    }
+
+    .logo-default {
+        width: 60px;
     }
 }

@@ -6,13 +6,13 @@
     <app-custom-tabs infoTitle="ცურვა, ერთიანი ეროვნული კლასიფიკაცია" infoText='საერთაშორისო კლასის სპორტის ოსტატის ნორმატივი (მსოფლიო ჩემპიონატის "B" სტანდარტი) ნებისმიერ დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემაზე. სპორტის ოსტატის ნორმატივი -50 მეტრიან დისტანციაზე ფიქსირდება მხოლოდ ელექტროლულ სისტემაზე.' [tabs]="tabs" (tabChanged)="onTabChange($event)">
         <div class="body">
             <div class="tableHeader">
-                <div>დისციპლინა</div>
-                <div>ს.კ.ს.ო</div>
-                <div>ს.ო</div>
-                <div>ს.ო.კ</div>
-                <div>1-თან</div>
-                <div>2-თან</div>
-                <div>3-თან</div>
+                <div>{{'Event' | translate}}</div>
+                <div>{{'MasterOfSports1' | translate}}</div>
+                <div>{{'MasterOfSports2' | translate}}</div>
+                <div>{{'Candidate' | translate}}</div>
+                <div>{{'First Level' | translate}}</div>
+                <div>{{'Second Level' | translate}}</div>
+                <div>{{'Third Level' | translate}}</div>
             </div>
             <app-loader-spinner *ngIf="!chosenRanksData" color="black" height="500px"></app-loader-spinner>
             <div *ngIf="chosenRanksData" >

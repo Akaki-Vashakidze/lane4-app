@@ -11,5 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class InputComponent {
   @Input() buttonText: string = '';
+  @Input() width: string = '100%';
+  @Input() height: string = '100%';
   @Input() inputText: string = 'confirm';
 }

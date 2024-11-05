@@ -50,12 +50,12 @@
 
  .bodyRow:nth-child(even) {
     background-color: #fff;
-    color: var(--black); 
+    color: var(--font-Blue); 
   }
   
   .bodyRow:nth-child(odd) {
     background-color: var(--light-blue2);
-    color: var(--black); 
+    color: var(--font-Blue); 
   }
 
   .bodyRow:last-child {

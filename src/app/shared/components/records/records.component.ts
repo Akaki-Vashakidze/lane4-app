@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomTabsComponent } from '../custom-tabs/custom-tabs.component';
 import { SharedService } from '../../services/shared.service';
@@ -15,6 +15,7 @@ import { TimeComponent } from '../time/time.component';
 })
 export class RecordsComponent {
   tabs = ["50m Men","50m Women"]
+  chosenRecords = signal<any>([])
   constructor(public _sharedService:SharedService){
     _sharedService.getWRTs().subscribe(item => {
       this.transformRanksToArray(item)
@@ -46,7 +47,11 @@ export class RecordsComponent {
         this.array.push(arr)
       })
     })
-    console.log(this.array)
+    this.chosenRecords.set(this.array[1])
     return this.array;
+  }
+
+  onTabChange(index:number){
+   index == 0 ? this.chosenRecords.set(this.array[1]) : this.chosenRecords.set(this.array[3]);
   }
 }

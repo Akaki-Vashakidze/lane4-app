@@ -29,5 +29,12 @@
   "FEMALE": "Female",
   "FREESTYLE_MEDLEY": "Freestyle",
   "MEDLEY_MEDLEY": "Medley",
-  "m ": "m "
+  "m ": "m ",
+  "Event":"Event",
+  "Time":"Time",
+  "Name":"Name",
+  "Birth Date":"Birth Date",
+  "City of origin":"City of origin",
+  "Location":"Location",
+  "Date":"Date"
 }

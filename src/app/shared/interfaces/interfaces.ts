@@ -230,6 +230,13 @@ export interface TransformedRankData {
   style: string
 }
 
+export interface ContactMessage {
+  name: string
+  lastName: string
+  email: string
+  message: Ranks
+}
+
 export interface WRTsData {
   FEMALE:poolCourse<BaseTimeWR>
   MALE:poolCourse<BaseTimeWR>

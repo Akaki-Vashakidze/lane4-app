@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { GetRanksData, LiveEvent, WRTsData } from '../interfaces/interfaces';
+import { ContactMessage, GetRanksData, LiveEvent, WRTsData } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +31,9 @@ export class SharedService {
   
   getWRTs(){
     return this.httpClient.get<WRTsData>('/consoleApi/congifuration/WRT')
+  }
+
+  sendContactMessage(body:ContactMessage){
+    return this.httpClient.post<any>('/consoleApi/contact/message',{data:body})
   }
 }

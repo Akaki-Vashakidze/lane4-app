@@ -6,11 +6,11 @@
       <div class="names">
         <div class="firstname">
           <div class="label">{{ 'First Name' | translate }}</div>
-          <input formControlName="firstName" class="custom-input1" [placeholder]="'Your first name' | translate" />
+          <input formControlName="firstname" class="custom-input1" [placeholder]="'Your first name' | translate" />
         </div>
         <div class="lastname">
           <div class="label">{{ 'Last Name' | translate }}</div>
-          <input formControlName="lastName" class="custom-input1" [placeholder]="'Your last name' | translate" />
+          <input formControlName="lastname" class="custom-input1" [placeholder]="'Your last name' | translate" />
         </div>
       </div>
       
@@ -32,6 +32,7 @@
       </div>
       
       <app-button (click)="submitForm()" style="margin: auto; padding-top: 20px;" height="50px" [text]="'Submit' | translate"></app-button>
+      <div [ngClass]="!showErrorMessage ? 'hide' : 'displayFlex'"  class="errorMes"> Message could not send </div>
     </form>
   </div>
   

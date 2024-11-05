@@ -57,3 +57,19 @@
 .label {
     color: #002155;
 }
+
+.errorMes {
+    color: red; 
+    text-align: center;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+.displayFlex {
+    display: flex;
+}

@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonComponent } from "../button/button.component";
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,11 +15,11 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 })
 export class ContactComponent {
   contactForm: FormGroup;
-
-  constructor() {
+  showErrorMessage:boolean = false;
+  constructor(public _sharedService:SharedService) {
     this.contactForm = new FormGroup({
-      firstName: new FormControl(null, [Validators.required]),
-      lastName: new FormControl(null, [Validators.required]),
+      firstname: new FormControl(null, [Validators.required]),
+      lastname: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       message: new FormControl(null, [Validators.required]),
       checkAgree: new FormControl(false, [Validators.requiredTrue]), // Must be true to pass validation
@@ -28,7 +29,16 @@ export class ContactComponent {
   submitForm() {
     console.log(this.contactForm.value)
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value); // Handle form submission
+      let message = {...this.contactForm.value}
+      delete message.checkAgree;
+      console.log(message); 
+      this._sharedService.sendContactMessage(message).subscribe(item => {
+        if(item.lastname) {
+          this.showErrorMessage = false;
+        } else {
+          this.showErrorMessage = true;
+        }
+      })
     } else {
       console.log("Form is invalid");
     }

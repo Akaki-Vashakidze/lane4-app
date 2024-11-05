@@ -32,8 +32,8 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   buttonLabel = 'Register';
-  navLeftItems = [{title:'Home', route:'/home'},{title:'Classification', route:'/classification'},{title:'Records', route:'/records'}];
+  navLeftItems = [{title:'Home', route:'/dashboard'},{title:'Classification', route:'/classification'},{title:'Records', route:'/records'}];
   navRightItems =  [{title:'Competitions', route:'/competitions'},{title:'About', route:'/about'},{title:'Contact', route:'/contact'}];
-  footerHeaders = [{title:'Home', route:'/home'},{title:'Classification', route:'/classification'},{title:'Records', route:'/records'},{title:'Competitions', route:'/competitions'},{title:'About', route:'/about'},{title:'Contact', route:'/contact'}];
+  footerHeaders = [{title:'Home', route:'/dashboard'},{title:'Classification', route:'/classification'},{title:'Records', route:'/records'},{title:'Competitions', route:'/competitions'},{title:'About', route:'/about'},{title:'Contact', route:'/contact'}];
   
 }

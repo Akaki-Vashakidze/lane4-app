@@ -16,6 +16,8 @@
     background-position: center;
     height: 450px; 
     text-align: center;
+    position: relative;
+    top: -50px;
 }
 
 .bannerHeader {
@@ -28,6 +30,7 @@
     border: 1.5px solid var(--dark-blue4);
     border-radius: 20px;
     margin-top: 20px;
+    background-color: #fff;
 }
 
 .bodyRow , .tableHeader{

@@ -2,18 +2,20 @@
     <div class="banner">
         <div class="bannerHeader headerFont" style="font-size: 50px;">{{'georgian_records' | translate}}</div>
     </div>
-
-    <div class="recordsInfo">  
+    <div class="MaskBlureImgCont">
+        <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
+    </div>
+    <div class="recordsInfo shadow1">  
         <app-custom-tabs tabsWidth="400px" [tabs]="tabs" infoTitle="ცურვა, საქართველოს ეროვნული რეკორდები" infoText="საქართველოს რეკორდები ყველა დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემზე">
             <div class="body">
                 <div class="tableHeader">
-                    <div>დისციპლინა</div>
-                    <div>ს.კ.ს.ო</div>
-                    <div>ს.ო</div>
-                    <div>ს.ო.კ</div>
-                    <div>1-თან</div>
-                    <div>2-თან</div>
-                    <div>3-თან</div>
+                    <div>{{'Event' | translate}}</div>
+                    <div>{{'Time' | translate}}</div>
+                    <div>{{'Name' | translate}}</div>
+                    <div>{{'Birth Date' | translate}}</div>
+                    <div>{{'City of origin' | translate}}</div>
+                    <div>{{'Location' | translate}}</div>
+                    <div>{{'Date' | translate}}</div>
                 </div>
                 <app-loader-spinner *ngIf="!array[0]" color="black" height="500px"></app-loader-spinner>
                 <div *ngIf="array[0]" >

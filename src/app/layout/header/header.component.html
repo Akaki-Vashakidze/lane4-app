@@ -39,7 +39,7 @@
 
 <div *ngIf="menuDropdownOpen" class="headerDropDownTitles headerFont">
   <div class="headerTitlesMobile">
-    <div *ngFor="let header of footerHeaders">
+    <div *ngFor="let header of footerHeaders" (click)="menuDropdownOpen = false;">
       <a [routerLink]="header.route">{{header.title | translate}}</a>
     </div>
   </div>

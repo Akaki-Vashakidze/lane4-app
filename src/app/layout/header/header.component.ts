@@ -26,13 +26,10 @@ export class HeaderComponent {
     this.dropdownOpen = false;
     lang == 'en' ? this.language = 'English' : this.language = 'ქართული'
     this.i18nService.changeCurrentLanguage(lang)
+    this.menuDropdownOpen = false;
   }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
-  }
-
-  navigate(route:string){
-    this._router.navigate([route])
   }
 }

@@ -2,19 +2,20 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18nService } from '../../shared/services/i18n.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ],
+  imports: [CommonModule, TranslateModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   public language : string = 'English'
   public dropdownOpen : boolean = false;
-  
+  menuDropdownOpen:boolean = false;
+  @Input() footerHeaders:  {title:string, route:string}[] = [];
   @Input() navLeftItems:  {title:string, route:string}[] = [];
   @Input() navRightItems:  {title:string, route:string}[] = [];
   @Input() buttonLabel: string = 'Button';

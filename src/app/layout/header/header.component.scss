@@ -1,3 +1,45 @@
+.dropdown-btn {
+  background-color: var(--blue2);
+  font-size: 12px;
+  color: white;
+  padding: 10px 7px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-btn .icon {
+  margin-right: 5px;
+}
+
+.dropdown-btn .arrow {
+  margin-left: 5px;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content li:hover {
+  background-color: #ddd;
+}
+
+
 @media (min-width: 768px) {
   .header_container {
     position: relative;
@@ -45,48 +87,6 @@
     display: inline-block;
   }
 
-  .dropdown-btn {
-    background-color: var(--blue2);
-    font-size: 12px;
-    color: white;
-    padding: 10px 7px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .dropdown-btn .icon {
-    margin-right: 5px;
-  }
-
-  .dropdown-btn .arrow {
-    margin-left: 5px;
-  }
-
-  .dropdown-content {
-    position: absolute;
-    background-color: white;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 8px;
-  }
-
-  .dropdown-content li {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-  }
-
-  .dropdown-content li:hover {
-    background-color: #ddd;
-  }
-
   .logo-hover {
     display: none;
   }
@@ -122,6 +122,33 @@
 
   .menuIcon {
     width: 30px;
+  }
+
+  .headerDropDownTitles {
+    padding: 0px 25px;
+    background-color: var(--blue2);
+    width: 100%;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .headerTitlesMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .headerTitlesMobile a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .dropdown-btn {
+    padding: 0px;
+    padding-right: 5px;
   }
 }
 

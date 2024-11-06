@@ -2,7 +2,7 @@
   <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
 </div>
 
-<div class="CompetitionsListSection hideOnMobile shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''"
+<div class="CompetitionsListSection shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : 'hideOnMobile'"
   *ngIf="competitions.length > 0">
   <div class="competitionsList">
     <div class="header headerFont">
@@ -14,10 +14,10 @@
       </app-competition-card>
     </div>
     <div class="actionsCont">
-      <app-button *ngIf="displayedCompetitions > 6" class="loadMoreButton" width="100px" height="40px" text="Show Less"
+      <app-button style="top: -15px;" *ngIf="displayedCompetitions > 6" class="loadMoreButton" width="100px" height="40px" text="Show Less"
         fontSize="12px" (click)="loadLess()">
       </app-button>
-      <app-button *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
+      <app-button style="top: -15px;" *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
         width="100px" height="40px" text="Show More" fontSize="12px" (click)="loadMore()">
       </app-button>
     </div>
@@ -26,7 +26,7 @@
 
 <app-loader-spinner *ngIf="competitions.length == 0" color="black" height="500px"></app-loader-spinner>
 
-<div class="CompetitionsListSection hideOnPc shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''"
+<div class="CompetitionsListSection hideOnPc shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage hideOnMobile' : ''"
   *ngIf="competitions.length > 0">
   <div class="competitionsList">
     <div class="header headerFont">
@@ -55,7 +55,7 @@
         </div>
       </div>
       <app-button class="buttonLoadMore" *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
-        width="100px" height="40px" text="Show More" fontSize="12px" (click)="loadMore()">
+        width="100px" height="40px" text="Show More" fontSize="12px" (click)="navigationToCompetitions()">
       </app-button>
     </div>
   </div>

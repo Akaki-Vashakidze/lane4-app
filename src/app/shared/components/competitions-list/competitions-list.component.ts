@@ -9,6 +9,7 @@ import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.compone
 import { TranslateModule } from '@ngx-translate/core';
 import { CostumerCardComponent } from '../costumer-card/costumer-card.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-competitions-list',
@@ -20,7 +21,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 export class CompetitionsListComponent {
   @ViewChild('customOwl', { static: false }) customOwl!: any;
   @Input() BackgroundImg: boolean = true;
-  constructor(private sharedService:SharedService){
+  constructor(private sharedService:SharedService, public _router:Router){
     sharedService.getCompetitions().subscribe(item => {
       this.competitions = [...item,...item,...item,...item];
     })
@@ -95,5 +96,9 @@ export class CompetitionsListComponent {
     this.displayedCompetitions > 6 ? this.displayedCompetitions -= 6 : '';
     this.displayedCompetitions < 6 ? this.displayedCompetitions = 6 : '';
     console.log(this.displayedCompetitions,this.competitions.length )
+  }
+
+  navigationToCompetitions(){
+    this._router.navigate(['/competitions'])
   }
 }

@@ -1,8 +1,9 @@
-<div class="MaskBlureImgCont" *ngIf=" BackgroundImg" >
-  <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
+<div class="MaskBlureImgCont" *ngIf=" BackgroundImg">
+  <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
 </div>
 
-<div class="CompetitionsListSection shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''" *ngIf="competitions.length > 0" >
+<div class="CompetitionsListSection hideOnMobile shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''"
+  *ngIf="competitions.length > 0">
   <div class="competitionsList">
     <div class="header headerFont">
       <div class="title">{{'Competitions' | translate}}</div>
@@ -24,3 +25,38 @@
 </div>
 
 <app-loader-spinner *ngIf="competitions.length == 0" color="black" height="500px"></app-loader-spinner>
+
+<div class="CompetitionsListSection hideOnPc shadow1" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage' : ''"
+  *ngIf="competitions.length > 0">
+  <div class="competitionsList">
+    <div class="header headerFont">
+      <div class="title">{{'Competitions' | translate}}</div>
+    </div>
+    <div class="body">
+      <owl-carousel-o #customOwl class="costumer_owl" [options]="carouselOptions">
+        <ng-template carouselSlide *ngFor="let content of competitions | slice:0:displayedCompetitions">
+          <div class="custom-slide-content">
+            <!-- <app-costumer-card 
+        style="display: flex; justify-content: center;" 
+        [comment]="content" 
+        width="300px" 
+        height="300px">
+      </app-costumer-card> -->
+            <app-competition-card [title]="content.event.title" [text]="content.event.description"
+              [EventId]="content.event._id" [date]="content.event.startDate">
+            </app-competition-card>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+      <div class="carouselButtons">
+        <div class="carouselButtonItem" (click)="goPrev()"><img width="40px" src="assets/imgs/carouselButtonLeft.svg">
+        </div>
+        <div class="carouselButtonItem" (click)="goNext()"><img width="40px" src="assets/imgs/carouselButtonRight.svg">
+        </div>
+      </div>
+      <app-button class="buttonLoadMore" *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
+        width="100px" height="40px" text="Show More" fontSize="12px" (click)="loadMore()">
+      </app-button>
+    </div>
+  </div>
+</div>

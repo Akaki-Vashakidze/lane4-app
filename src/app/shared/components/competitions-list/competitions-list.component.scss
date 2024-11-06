@@ -1,46 +1,157 @@
-.header {
+@media (min-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .actionsCont{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    
+    
+    .CompetitionsListSection {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+        margin: auto;
+        padding-top: 40px;
+        padding-bottom: 100px;
+        background: var(--p-card-color);
+        z-index: 100;
+    }
+    
+    .stylesForCompetitionsPage {
+        width: 85%;
+        max-width: 1226px;
+        border-radius: 20px;
+    }
+
+    .hideOnPc {
+        display: none;
+    }
+    
+    // .MaskBlureImgCont {
+    //     height: 900px;
+    //     overflow: hidden;
+    // }
+
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+    
+    .actionsCont{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    
+    
+    .CompetitionsListSection {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+        margin: auto;
+        padding-top: 40px;
+        background: var(--p-card-color);
+        z-index: 100;
+    }
+
+    .hideOnMobile {
+        display: none;
+    }
+    
+    .stylesForCompetitionsPage {
+        width: 85%;
+        max-width: 1226px;
+        border-radius: 20px;
+    }
+    
+    // .MaskBlureImgCont {
+    //     height: 900px;
+    //     overflow: hidden;
+    // }
+
+    app-competition-card {
+        width: 300px;
+        margin: auto;
+    }
+
+
+.costumerCommentsContent {
+    width: 100%;
+    position: relative;
+    top: -20px;
+    background: var(--p-card-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.costumerCards {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.custom-slide-content {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .carouselButtons {
+    position: relative;
+    width: 130%;
+    left: -15%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    padding: 20px;
-    margin-bottom: 30px;
-}
+    justify-content: space-evenly;
+    top: -50px;
+  }
 
-.body {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-}
+  .carouselButtonItem {
+    z-index: 100;
+    cursor: pointer;
+  } 
 
-.title {
-    font-size: 28px;
-}
-
-.actionsCont{
+  app-button {
+    position: relative;
+    top: -50px;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+  }
 }
-
-
-.CompetitionsListSection {
-    padding-left: 7.5%;
-    padding-right: 7.5%;
-    margin: auto;
-    padding-top: 40px;
-    padding-bottom: 100px;
-    background: var(--p-card-color);
-    z-index: 100;
-}
-
-.stylesForCompetitionsPage {
-    width: 85%;
-    max-width: 1226px;
-    border-radius: 20px;
-}
-
-// .MaskBlureImgCont {
-//     height: 900px;
-//     overflow: hidden;
-// }

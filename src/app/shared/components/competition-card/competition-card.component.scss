@@ -9,10 +9,10 @@
     border-radius: 20px;
     padding: 15px;
     display: grid;
-    grid-template-rows: 30% 40% 20% 10%;
 }
 
-.title, .text {
+.title,
+.text {
     padding: 10px;
 }
 
@@ -32,7 +32,16 @@
 }
 
 .text {
-    white-space: nowrap;  
-    overflow: hidden;      
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+@media (max-width: 768px) {
+    .competitionCard {
+        width: 300px;
+        margin: auto;
+    }
 }

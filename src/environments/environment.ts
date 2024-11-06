@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //  apiUri: 'https://poolshark-api-bvtsv.ondigitalocean.app',
-    apiUri: 'http://localhost:8080'
+   apiUri: 'https://poolshark-api-bvtsv.ondigitalocean.app',
+    // apiUri: 'http://localhost:8080'
 };
 
 /*

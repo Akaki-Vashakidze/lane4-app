@@ -9,7 +9,7 @@
             <img src="assets/imgs/lane4logoRed.png" class="logo-hover"/>
         </div>
         <div class="footerHeaders headerFont">
-            <a *ngFor="let item of headers" (click)="navigate(item.route)">{{item.title | translate}}</a>
+            <a *ngFor="let item of headers" [routerLink]="item.route">{{item.title | translate}}</a>
         </div>
     </div>
     <div class="socailNetsContainer">

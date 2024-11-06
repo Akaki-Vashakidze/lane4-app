@@ -35,7 +35,4 @@ export class HeaderComponent {
   navigate(route:string){
     this._router.navigate([route])
   }
-  navigateToDashboard(){
-    this._router.navigate(['/dashboard'])
-  }
 }

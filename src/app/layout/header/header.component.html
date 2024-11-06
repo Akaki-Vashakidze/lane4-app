@@ -13,24 +13,26 @@
 
   <div class="header">
     <div class="nav_left navTitles headerItems">
-      <div class="headerTitles headerFont" *ngFor="let item of navLeftItems" (click)="navigate(item.route)">{{
-        item.title| translate}}</div>
+      <div class="headerTitles headerFont" *ngFor="let item of navLeftItems">
+        <a [routerLink]="item.route"><div>{{item.title| translate}}</div></a>
+      </div>
     </div>
 
-    <div class="logo nav_left headerItems" (click)="navigateToDashboard()">
-      <img src="assets/imgs/lane4logo.png" class="logo-default" />
-      <img src="assets/imgs/lane4logoRed.png" class="logo-hover" />
+    <div class="logo nav_left headerItems">
+      <a routerLink="/dashboard"><img src="assets/imgs/lane4logo.png" class="logo-default" /></a>
+      <a routerLink="/dashboard"><img src="assets/imgs/lane4logoRed.png" class="logo-hover" /></a>
     </div>
 
     <div class="nav_right navTitles headerItems">
-      <div class="headerTitles headerFont" *ngFor="let item of navRightItems" (click)="navigate(item.route)">{{
-        item.title| translate}}</div>
+      <div class="headerTitles headerFont" *ngFor="let item of navRightItems">
+        <a [routerLink]="item.route">{{item.title| translate}}</a>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="headerMobile">
-  <img src="assets/imgs/lane4logo.png" class="logo-default-mobile" />
+  <a routerLink="/dashboard"><img src="assets/imgs/lane4logo.png" class="logo-default-mobile" /></a>
   <img src="assets/imgs/menuIcon.svg" *ngIf="!menuDropdownOpen" (click)="menuDropdownOpen = !menuDropdownOpen" class="menuIcon" />
   <img src="assets/imgs/X.svg" *ngIf="menuDropdownOpen" (click)="menuDropdownOpen = !menuDropdownOpen" class="menuIcon" />
 </div>
@@ -38,7 +40,7 @@
 <div *ngIf="menuDropdownOpen" class="headerDropDownTitles headerFont">
   <div class="headerTitlesMobile">
     <div *ngFor="let header of footerHeaders">
-      <a [routerLink]="header.route">{{header.title}}</a>
+      <a [routerLink]="header.route">{{header.title | translate}}</a>
     </div>
   </div>
   <div class="translate">

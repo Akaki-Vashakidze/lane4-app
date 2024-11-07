@@ -73,13 +73,16 @@
     justify-content: center;
 }
 
-
-
-
 .hide {
     display: none;
 }
 
 .displayFlex {
     display: flex;
+}
+
+@media (max-width:768px){
+    .contactUsCard {
+        padding: 0;
+    }
 }

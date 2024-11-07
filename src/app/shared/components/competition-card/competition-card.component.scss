@@ -32,9 +32,15 @@
 }
 
 .text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: 100px;
+}
+
+.title {
+height: 50px;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 

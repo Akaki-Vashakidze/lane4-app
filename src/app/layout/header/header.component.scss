@@ -98,6 +98,10 @@
   .logo:hover .logo-default {
     display: none;
   }
+
+  .headerMobile {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) { 

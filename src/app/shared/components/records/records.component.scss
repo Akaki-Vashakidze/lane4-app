@@ -21,7 +21,7 @@
 }
 
 .bannerHeader {
-    font-size: 2rem; 
+    font-size: 50px; 
     color: white; 
 }
 
@@ -61,4 +61,19 @@
   .bodyRow:last-child {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .MaskBlureImgCont {
+        display: none;
+    }
+    .banner {
+        height: 250px;
+    }
+    .bannerHeader {
+        font-size: 30px;
+    }
+    .recordsInfo {
+        margin-top: -30px;
+    }
   }

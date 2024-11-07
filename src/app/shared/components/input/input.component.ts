@@ -16,14 +16,14 @@ export class InputComponent {
   @Input() height: string = '100%';
   @Input() inputText: string = 'confirm';
   @Input() email: boolean = true;
-  @Output() onSubmit = new EventEmitter<{value:string}>();
+  @Output() onSubmit = new EventEmitter<{ value: string }>();
   inputForm !: FormGroup;
-  isSubmited:boolean = false;
-  showCheck:boolean = false;
-  constructor(){
-    if(this.email) {
+  isSubmited: boolean = false;
+  showCheck: boolean = false;
+  constructor() {
+    if (this.email) {
       this.inputForm = new FormGroup({
-        value: new FormControl(null, [Validators.required,Validators.email]),
+        value: new FormControl(null, [Validators.required, Validators.email]),
       });
     } else {
       this.inputForm = new FormGroup({
@@ -32,18 +32,21 @@ export class InputComponent {
     }
   }
 
-  checkValidation(){
-    if(this.inputForm.valid || this.inputForm.value.value == ''){
-      this.showCheck = false;
-    } else {
-      this.showCheck = true;
+  checkValidation() {
+    if (this.isSubmited) {
+      if (this.inputForm.valid || this.inputForm.value.value == '') {
+        this.showCheck = false;
+      } else {
+        this.showCheck = true;
+      }
     }
+
   }
 
-  onClick(){
+  onClick() {
     this.isSubmited = true;
-    if(this.inputForm.valid){
-      this.onSubmit.emit(this.inputForm.value); 
+    if (this.inputForm.valid) {
+      this.onSubmit.emit(this.inputForm.value);
     } else {
       this.showCheck = true;
     }

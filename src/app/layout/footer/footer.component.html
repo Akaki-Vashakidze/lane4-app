@@ -1,7 +1,7 @@
 <div class="footerContainer">
     <div class="emailInput">
         <h1 class="headerFont" style="color:#fff; font-size: 21px; line-height: 1.6; text-align: center;padding: 0px 20px; padding-bottom: 20px; ">ჩვენ შეგატყობინებთ ბოლო განახლების შესახებ</h1>
-        <app-input height="50px" width="335px" buttonText="subscribe"  inputText="Enter_your_email"></app-input>
+        <app-input height="50px" width="335px" buttonText="subscribe" (onSubmit)="onSubmit($event)"  inputText="Enter_your_email"></app-input>
      </div>
     <div class="headers">
         <div class="lane4LogoFooter">

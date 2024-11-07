@@ -64,6 +64,10 @@
   }
 
   @media (max-width: 768px) {
+
+    .PcBody {
+        display: none;
+    }
     .MaskBlureImgCont {
         display: none;
     }
@@ -72,8 +76,58 @@
     }
     .bannerHeader {
         font-size: 30px;
+        line-height: 1.0;
     }
     .recordsInfo {
         margin-top: -30px;
     }
+    .mobileBody {
+        display: flex;
+        flex-direction: column;
+    }
+    .mobTableRows {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .MbRow {
+        display: grid;
+       grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .rowPart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // text-align: center;
+        height: 44px;
+        padding: 0px 10px;
+    }
+
+    .firstPartRow {
+        display: flex;
+        justify-content: left;
+    }
+
+    .headerMob {
+        background-color: var(--light-blue1);
+    }
+
+    .mobTableRows {
+        padding: 0;
+    }
+
+    .row3:nth-child(even) {
+        background-color: #fff;
+        color: var(--font-Blue); 
+      }
+      
+      .row3:nth-child(odd) {
+        background-color: var(--light-blue2);
+        color: var(--font-Blue); 
+      }
+      .row3:last-child {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
   }

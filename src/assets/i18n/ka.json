@@ -21,6 +21,11 @@
   "BREASTSTROKE": "ბრასი",
   "BUTTERFLY": "ბატერფლაი",
   "MEDLEY": "კომპლექსი",
+  "FREESTYLE_Short":"თ.ყ",
+  "BACKSTROKE_Short": "გ.ც",
+  "BREASTSTROKE_Short": "ბრასი",
+  "BUTTERFLY_Short": "ბატ.",
+  "MEDLEY_Short": "კომპლექსი",
   "25m Men":"25მ კაცები",
   "50m Men":"50მ კაცები",
   "25m Women":"25მ ქალები",
@@ -57,5 +62,9 @@
   "Birth_date":"დაბ. წელი",
   "result":"შედეგი",
   "points":"ქულა",
-  "email":"ელ.ფოსტა"
+  "email":"ელ.ფოსტა",
+  "Long_Course":"25მ",
+  "Short_Course":"50მ",
+  "Men":"კაცები",
+  "Women":"ქალები"
 }

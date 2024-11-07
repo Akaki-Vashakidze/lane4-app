@@ -8,25 +8,45 @@
     <div class="recordsInfo shadow1">  
         <app-double-custom-tabs (tabChanged1)="on1TabChange($event)" (tabChanged2)="on2TabChange($event)" [tabs1]="tabs1" [tabs2]="tabs2" infoTitle="ცურვა, საქართველოს ეროვნული რეკორდები" infoText="საქართველოს რეკორდები ყველა დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემზე">
             <div class="body">
-                <div class="tableHeader">
-                    <div>{{'Event' | translate}}</div>
-                    <div>{{'Time' | translate}}</div>
-                    <div>{{'Name' | translate}}</div>
-                    <div>{{'Birth Date' | translate}}</div>
-                    <div>{{'City of origin' | translate}}</div>
-                    <div>{{'Location' | translate}}</div>
-                    <div>{{'Date' | translate}}</div>
+
+                <div class="PcBody">
+                    <div class="tableHeader">
+                        <div>{{'Event' | translate}}</div>
+                        <div>{{'Time' | translate}}</div>
+                        <div>{{'Name' | translate}}</div>
+                        <div>{{'Birth Date' | translate}}</div>
+                        <div>{{'City of origin' | translate}}</div>
+                        <div>{{'Location' | translate}}</div>
+                        <div>{{'Date' | translate}}</div>
+                    </div>
+                    <app-loader-spinner *ngIf="chosenRecords().length == 0" color="black" height="500px"></app-loader-spinner>
+                    <div *ngIf="chosenRecords().length > 0" >
+                        <div *ngFor="let item of chosenRecords()" class="bodyRow">
+                            <div class="" *ngIf="item.style">{{item.distance}}{{'m ' | translate}}{{item.style | translate}}</div>
+                            <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['GR'].time.seconds ? item.ranks['GR'].time : ''"></app-time></div>
+                            <div class="" *ngIf="item.style">{{item.ranks['GR'].athleteName}}</div>
+                            <div class="" *ngIf="item.style">{{item.ranks['GR'].birthDate}}</div>
+                            <div class="" *ngIf="item.style">{{item.ranks['GR'].city}}</div>
+                            <div class="" *ngIf="item.style">{{item.ranks['GR'].location}}</div>
+                            <div class="" *ngIf="item.style">{{item.ranks['GR'].recordDate}}</div>
+                        </div>
+                    </div>
                 </div>
-                <app-loader-spinner *ngIf="chosenRecords().length == 0" color="black" height="500px"></app-loader-spinner>
-                <div *ngIf="chosenRecords().length > 0" >
-                    <div *ngFor="let item of chosenRecords()" class="bodyRow">
-                        <div class="" *ngIf="item.style">{{item.distance}}{{'m ' | translate}}{{item.style | translate}}</div>
-                        <div class="row" *ngIf="item.style"><app-time [timeObj]="item.ranks['GR'].time.seconds ? item.ranks['GR'].time : ''"></app-time></div>
-                        <div class="" *ngIf="item.style">{{item.ranks['GR'].athleteName}}</div>
-                        <div class="" *ngIf="item.style">{{item.ranks['GR'].birthDate}}</div>
-                        <div class="" *ngIf="item.style">{{item.ranks['GR'].city}}</div>
-                        <div class="" *ngIf="item.style">{{item.ranks['GR'].location}}</div>
-                        <div class="" *ngIf="item.style">{{item.ranks['GR'].recordDate}}</div>
+
+                <div class="mobileBody">
+                    <div class="mobTableRows" *ngFor="let row3 of chosenRecordsMobile()" >
+                          <div *ngFor="let row of row3" class="row3">
+                            <div *ngIf="!row.distance" class="MbRow headerMob">
+                                <div class="rowPart firstPartRow">{{row.style + '_Short' | translate}}</div>
+                                <div class="rowPart">{{'Time' | translate}}</div>
+                                <div class="rowPart">{{'Name' | translate}}</div>
+                            </div>
+                            <div *ngIf="row.distance" class="MbRow">
+                                <div class="rowPart firstPartRow">{{row.distance}}</div>
+                                <app-time class="rowPart" [timeObj]="row?.ranks?.['GR']?.time.seconds ? row?.ranks?.['GR']?.time : ''"></app-time>
+                                <div class="rowPart">{{row?.ranks?.['GR']?.athleteName}}</div>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>

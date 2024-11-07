@@ -18,7 +18,6 @@ export class SaveEmailComponent {
   constructor(public _sharedService:SharedService){}
   onSubmit(val:{value:string}){
     this._sharedService.addMailForSubscr({email:val.value}).subscribe(item => {
-      console.log(item)
       this.openSnackBar(item.data.message ?  item.data.message : 'Email sent','Ok')
     })
   }

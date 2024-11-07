@@ -21,6 +21,11 @@
   "BREASTSTROKE": "Breaststroke",
   "BUTTERFLY": "Butterfly",
   "MEDLEY": "Individual  Medley",
+  "FREESTYLE_Short":"Free",
+  "BACKSTROKE_Short": "Back",
+  "BREASTSTROKE_Short": "Breast",
+  "BUTTERFLY_Short": "Fly",
+  "MEDLEY_Short": "Medley",
   "25m Men":"25m Men",
   "50m Men":"50m Men",
   "25m Women":"25m Women",
@@ -57,5 +62,9 @@
   "Birth_date":"Birth Date",
   "result":"Records",
   "points":"Points",
-  "email":"Email"
+  "email":"Email",
+  "Long_Course":"LC",
+  "Short_Course":"SC",
+  "Men":"Men",
+  "Women":"Women"
 }

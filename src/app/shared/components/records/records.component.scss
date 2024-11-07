@@ -11,18 +11,18 @@
     align-items: center;
     justify-content: center;
     background-image: url('/assets/imgs/poolBanner.svg');
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 450px; 
+    height: 450px;
     text-align: center;
     position: relative;
     top: -50px;
 }
 
 .bannerHeader {
-    font-size: 50px; 
-    color: white; 
+    font-size: 50px;
+    color: white;
 }
 
 .recordsInfo {
@@ -33,7 +33,8 @@
     background-color: #fff;
 }
 
-.bodyRow , .tableHeader{
+.bodyRow,
+.tableHeader {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 3px 10px;
@@ -42,57 +43,70 @@
 .tableHeader {
     padding: 13px 10px;
     background-color: var(--blue4);
- }
+}
 
- .bodyRow {
+.bodyRow {
     padding: 12px 8px;
- }
+}
 
- .bodyRow:nth-child(even) {
+.bodyRow:nth-child(even) {
     background-color: #fff;
-    color: var(--font-Blue); 
-  }
-  
-  .bodyRow:nth-child(odd) {
-    background-color: var(--light-blue2);
-    color: var(--font-Blue); 
-  }
+    color: var(--font-Blue);
+}
 
-  .bodyRow:last-child {
+.bodyRow:nth-child(odd) {
+    background-color: var(--light-blue2);
+    color: var(--font-Blue);
+}
+
+.bodyRow:last-child {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-  }
+}
 
-  @media (max-width: 768px) {
+@media (min-width: 768px) {
+    .mobileBody {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
 
     .PcBody {
         display: none;
     }
+
     .MaskBlureImgCont {
         display: none;
     }
+
     .banner {
         height: 250px;
     }
+
     .bannerHeader {
         font-size: 30px;
         line-height: 1.0;
     }
+
     .recordsInfo {
         margin-top: -30px;
     }
+
     .mobileBody {
         display: flex;
         flex-direction: column;
     }
+
     .mobTableRows {
         display: flex;
         flex-direction: column;
         padding: 10px;
     }
+
     .MbRow {
         display: grid;
-       grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .rowPart {
@@ -119,15 +133,16 @@
 
     .row3:nth-child(even) {
         background-color: #fff;
-        color: var(--font-Blue); 
-      }
-      
-      .row3:nth-child(odd) {
+        color: var(--font-Blue);
+    }
+
+    .row3:nth-child(odd) {
         background-color: var(--light-blue2);
-        color: var(--font-Blue); 
-      }
-      .row3:last-child {
+        color: var(--font-Blue);
+    }
+
+    .row3:last-child {
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
-      }
-  }
+    }
+}

@@ -19,7 +19,6 @@
                         <div>{{'Location' | translate}}</div>
                         <div>{{'Date' | translate}}</div>
                     </div>
-                    <app-loader-spinner *ngIf="chosenRecords().length == 0" color="black" height="500px"></app-loader-spinner>
                     <div *ngIf="chosenRecords().length > 0" >
                         <div *ngFor="let item of chosenRecords()" class="bodyRow">
                             <div class="" *ngIf="item.style">{{item.distance}}{{'m ' | translate}}{{item.style | translate}}</div>
@@ -33,7 +32,9 @@
                     </div>
                 </div>
 
-                <div class="mobileBody">
+                <app-loader-spinner *ngIf="chosenRecords().length == 0" color="black" height="500px"></app-loader-spinner>
+                
+                <div class="mobileBody" *ngIf="chosenRecordsMobile().length != 0">
                     <div class="mobTableRows" *ngFor="let row3 of chosenRecordsMobile()" >
                           <div *ngFor="let row of row3" class="row3">
                             <div *ngIf="!row.distance" class="MbRow headerMob">

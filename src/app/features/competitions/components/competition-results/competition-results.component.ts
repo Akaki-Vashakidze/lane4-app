@@ -57,7 +57,7 @@ export class CompetitionResultsComponent {
 
   onTabChange(index: number) {
     this.activeTabIndex = index; 
-    console.log('Active tab index:', index);
+    this.resultsOpen = 999
     this.chosenPartition.set(this.partitions[index])
   }
 
@@ -74,7 +74,6 @@ export class CompetitionResultsComponent {
         }
       }
     }
-    console.log(this.allAthletesInHeatsArr)
     this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
   }

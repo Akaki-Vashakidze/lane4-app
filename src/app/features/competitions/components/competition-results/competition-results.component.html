@@ -43,7 +43,7 @@
                             <div class="athleteResult">
                                 <div class="athlete">{{$index + 1}}. {{athlete?.participant?.lastName}}
                                     {{athlete?.participant?.firstName || athlete?.participant?.title}}</div>
-                                <div class="birthDate">{{athlete?.participant?.birthDate}}</div>
+                                <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
                                 <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
                                     athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div>
                                 <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">

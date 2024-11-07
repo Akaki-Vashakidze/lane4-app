@@ -52,5 +52,9 @@
   "Candidate":"კანდიდატი",
   "First Level":"პირველი თანრიგი",
   "Second Level":"მეორე თანრიგი",
-  "Third Level":"მესამე თანრიგი"
+  "Third Level":"მესამე თანრიგი",
+  "name":"სახელი",
+  "Birth_date":"დაბ. წელი",
+  "result":"შედეგი",
+  "points":"ქულა"
 }

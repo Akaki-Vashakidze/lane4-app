@@ -52,5 +52,9 @@
   "Candidate":"Candidate",
   "First Level":"First Level",
   "Second Level":"Second Level",
-  "Third Level":"Third Level"
+  "Third Level":"Third Level",
+  "name":"Name",
+  "Birth_date":"Birth Date",
+  "result":"Records",
+  "points":"Points"
 }

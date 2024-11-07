@@ -68,9 +68,15 @@
     .mobileBody {
         display: none;
     }
+    app-double-custom-tabs {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
+    app-custom-tabs {
+        display: none;
+    }
 
     .PcBody {
         display: none;

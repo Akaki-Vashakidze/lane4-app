@@ -5,17 +5,19 @@ import { SharedService } from '../../services/shared.service';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 import { TimeComponent } from '../time/time.component';
 import { DoubleCustomTabsComponent } from '../double-custom-tabs/double-custom-tabs.component';
+import { CustomTabsComponent } from '../custom-tabs/custom-tabs.component';
 
 @Component({
   selector: 'app-records',
   standalone: true,
-  imports: [CommonModule, TranslateModule,DoubleCustomTabsComponent,LoaderSpinnerComponent,TimeComponent],
+  imports: [CommonModule, TranslateModule,DoubleCustomTabsComponent, CustomTabsComponent, LoaderSpinnerComponent,TimeComponent],
   templateUrl: './records.component.html',
   styleUrl: './records.component.scss'
 })
 export class RecordsComponent {
   tabs1 = ["Long_Course","Short_Course"]
   tabs2 = ["Men","Women"]
+  tabs = ['25m Men','50m Men','25m Women','50m Women']
   chosenRecords = signal<any>([])
   chosenRecordsMobile = signal<any>([])
   constructor(public _sharedService:SharedService){
@@ -133,6 +135,25 @@ export class RecordsComponent {
     } else if(this.tab1Index == 1 && this.tab2Index == 1){
       this.chosenRecords.set(this.array[2])
       this.chosenRecordsMobile.set(this.arrayMobile[2])
+    }
+  }
+
+  onTabChange(index:number){
+    switch (index) {
+      case 0:
+        this.chosenRecords.set(this.array[0])
+        break;
+      case 1:
+        this.chosenRecords.set(this.array[1])
+        break;
+      case 2:
+        this.chosenRecords.set(this.array[2])
+        break;
+      case 3:
+        this.chosenRecords.set(this.array[3])
+        break;
+      default:
+        break;
     }
   }
 

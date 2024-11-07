@@ -83,6 +83,10 @@
 
 @media (max-width:768px){
     .contactUsCard {
-        padding: 0;
+        padding: 10px;
+    }
+    .names {
+        flex-direction: column;
+        gap: 0px;
     }
 }

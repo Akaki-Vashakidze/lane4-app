@@ -1,0 +1,61 @@
+.tabs {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:auto;
+    background-color: var(--blue2);
+}
+
+.tab {
+    width: 100%;
+    text-align: center;
+    padding: 7px 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.activeTab {
+    background-color: #fff;
+    border-radius: 10px;
+    color: var(--text-color);
+}
+
+.header {
+    width: 100%;
+    padding:10px 20px;
+    background-color: var(--dark-blue4);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerText {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.info {
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.infoTitle {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.infoText {
+    color: var(--font-Blue);
+    opacity: 0.6;
+}
+
+.tabsCont2 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

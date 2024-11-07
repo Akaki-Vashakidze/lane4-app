@@ -6,7 +6,7 @@
         <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
     </div>
     <div class="recordsInfo shadow1">  
-        <app-custom-tabs (tabChanged)="onTabChange($event)" tabsWidth="400px" [tabs]="tabs" infoTitle="ცურვა, საქართველოს ეროვნული რეკორდები" infoText="საქართველოს რეკორდები ყველა დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემზე">
+        <app-double-custom-tabs (tabChanged1)="on1TabChange($event)" (tabChanged2)="on2TabChange($event)" [tabs1]="tabs1" [tabs2]="tabs2" infoTitle="ცურვა, საქართველოს ეროვნული რეკორდები" infoText="საქართველოს რეკორდები ყველა დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემზე">
             <div class="body">
                 <div class="tableHeader">
                     <div>{{'Event' | translate}}</div>
@@ -30,6 +30,6 @@
                     </div>
                 </div>
             </div>
-        </app-custom-tabs>
+        </app-double-custom-tabs>
     </div>
 </div>

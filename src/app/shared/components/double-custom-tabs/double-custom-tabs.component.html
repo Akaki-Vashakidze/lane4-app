@@ -1,0 +1,20 @@
+<div class="header">
+    <div *ngIf="header" class="headerText headerFont">{{header}}</div>
+    <div class="tabsCont2">
+        <div [style.width]="tabsWidth" class="tabs">
+            <div class="tab" *ngFor="let tab of tabs1; let i = index" (click)="tabChange1(i)"
+                [ngClass]="{'activeTab': i === active1TabIndex}">{{tab | translate}}</div>
+        </div>
+        <div [style.width]="tabsWidth" class="tabs">
+            <div class="tab" *ngFor="let tab of tabs2; let i = index" (click)="tabChange2(i)"
+                [ngClass]="{'activeTab': i === active2TabIndex}">{{tab | translate}}</div>
+        </div>
+    </div>
+</div>
+<div *ngIf="infoTitle || infoText" class="info">
+    <div *ngIf="infoTitle" class="infoTitle headerFont">{{infoTitle}}</div>
+    <div *ngIf="infoText" class="infoText">{{infoText}}</div>
+</div>
+<div class="body">
+    <ng-content select=".body" class="sss"></ng-content>
+</div>

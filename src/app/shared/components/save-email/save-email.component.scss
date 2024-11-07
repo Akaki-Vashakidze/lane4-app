@@ -1,14 +1,7 @@
-.saveEmailSection {
-    background-image: url('/assets/imgs/Rectangle235.svg');
-    background-size: contain; /* Ensures the whole image is visible while maintaining aspect ratio */
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    min-height: 100vh; /* Takes up the full height of the viewport */
+.header {
+    color: #fff;
+    font-size: 32px;
+    line-height: 1.6;
 }
 
 .emailInput {
@@ -20,4 +13,48 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@media (min-width: 768px) {
+    .saveEmailSection {
+        background-image: url(/assets/imgs/Rectangle235.svg);
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 80vh;
+    }
+
+    .hideOnPC {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hideOnMobile {
+        display: none;
+    }
+
+    .saveEmailSection {
+        background-image: url(/assets/imgs/Rectangle235.svg);
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 40vh;
+    }
+
+    .header {
+        font-size: 19px;
+        width: 80%;
+    }
 }

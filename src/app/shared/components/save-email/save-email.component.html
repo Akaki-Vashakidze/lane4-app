@@ -1,6 +1,8 @@
 <div class="saveEmailSection">
     <div class="emailInput">
-       <h1 style="color:#fff; font-size: 32px; line-height: 1.6;">ჩვენ შეგატყობინებთ ბოლო განახლების შესახებ</h1>
-       <app-input [email]="true" (onSubmit)="onSubmit($event)" height="50px" width="402px" buttonText="subscribe"  inputText="Enter_your_email"></app-input>
+       <h1 class="header">ჩვენ შეგატყობინებთ ბოლო განახლების შესახებ</h1>
+       <app-input style="font-size: 16px;"  class="hideOnMobile" [email]="true" (onSubmit)="onSubmit($event)" height="50px" width="402px" buttonText="subscribe"  inputText="Enter_your_email"></app-input>
+       <app-input style="font-size: 14px;" class="hideOnPC" [email]="true" (onSubmit)="onSubmit($event)" height="40px" width="250px" buttonText="subscribe"  inputText="email"></app-input>
+
     </div>
 </div>

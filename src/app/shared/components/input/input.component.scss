@@ -19,7 +19,6 @@
     width: 100%;
     border: none;
     padding: 5px 20px; 
-    font-size: 16px;
 }
 
 .customInput {
@@ -28,10 +27,11 @@
 
 .actionInput::placeholder {
     color: #aaa; 
-    font-size: 16px; 
+    font-size: 14px; 
 }
 
 .invalid {
     padding-top: 10px;
     color: red;
+    font-size: 13px;
 }

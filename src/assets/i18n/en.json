@@ -56,5 +56,6 @@
   "name":"Name",
   "Birth_date":"Birth Date",
   "result":"Records",
-  "points":"Points"
+  "points":"Points",
+  "email":"Email"
 }

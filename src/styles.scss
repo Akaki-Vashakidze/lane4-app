@@ -1,4 +1,5 @@
 @import "./fonts.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -25,7 +26,7 @@ body {
   font-weight: bold;
 }
 
-.EngFont .normalFont{
+.EngFont .normalFont {
   font-family: "Arial" !important;
   font-weight: normal;
 }
@@ -43,88 +44,102 @@ body {
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 :root {
-    --banner-text-color-dark: #37557f;
-    --p-card-color: linear-gradient(#ddf4ff, #DCF5FF, #ddf5ff);
-    --accent-color: #e74c3c;
-    --background-color: #f5f5f5;
-    --text-color: #333;
+  --banner-text-color-dark: #37557f;
+  --p-card-color: linear-gradient(#ddf4ff, #DCF5FF, #ddf5ff);
+  --accent-color: #e74c3c;
+  --background-color: #f5f5f5;
+  --text-color: #333;
 
-    --dark-blue1:#002155;
-    --dark-blue2:#0A3069;
-    --dark-blue3:#033D8B;
-    --dark-blue4:#0550AE;
+  --dark-blue1: #002155;
+  --dark-blue2: #0A3069;
+  --dark-blue3: #033D8B;
+  --dark-blue4: #0550AE;
 
-    --blue1:#0969DA;
-    --blue2:#218BFF;
-    --blue3:#54AEFF;
-    --blue4:#80CCFF;
+  --blue1: #0969DA;
+  --blue2: #218BFF;
+  --blue3: #54AEFF;
+  --blue4: #80CCFF;
 
-    --light-blue1:#B6E3FF;
-    --light-blue2:#DDF4FF;
-    --light-blue3:#F2F8FA;
+  --light-blue1: #B6E3FF;
+  --light-blue2: #DDF4FF;
+  --light-blue3: #F2F8FA;
 
-    --font-Blue:#002155;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  .displayFlex {
-    display: flex;
-  }
-
-  .displayBlock{
-    display: block;
-  }
-
-  .owl-dot span {
-    background: #007bff !important; 
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    opacity: 0.5; 
-  }
-
-  .owl-dot.active span {
-    background: #ff5733; 
-    opacity: 1; 
-    transform: scale(1.2); 
-  }
-
-  .MaskBlureImgCont {
-    position: absolute;
-    width: 100%;
-    max-width: 1440px;
-    left: 50%;
-    top: 0px;
-    transform: translateX(-50%);
-    z-index: -1;
+  --font-Blue: #002155;
 }
+
+.hide {
+  display: none;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.owl-dot span {
+  background: #007bff !important;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.owl-dot.active span {
+  background: #ff5733;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.MaskBlureImgCont {
+  position: absolute;
+  width: 100%;
+  max-width: 1440px;
+  left: 50%;
+  top: 0px;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
 .musk_blure_img {
   width: 100%;
 }
+
 .shadow1 {
   box-shadow: #218bff 0px 0px 40px -12px, #218bff 0px 0px 40px -12px;
 }
 
 .custom-input1 {
-  width: 100%; /* Adjust as needed */
+  width: 100%;
+  /* Adjust as needed */
   padding: 15px 20px;
   font-size: 16px;
-  color: #9EA4B0; /* Light gray color for the placeholder text */
+  color: #9EA4B0;
+  /* Light gray color for the placeholder text */
   background-color: #FFFFFF;
   border: none;
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.05); /* Soft shadow effect */
-  outline: none; /* Removes default outline on focus */
+  border-radius: 12px;
+  /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.05);
+  /* Soft shadow effect */
+  outline: none;
+  /* Removes default outline on focus */
 }
 
 .custom-input1::placeholder {
-  color: #9EA4B0; /* Placeholder color */
+  color: #9EA4B0;
+  /* Placeholder color */
 }
 
-a{
+a {
   text-decoration: none;
-  color: #fff;;
+  color: #fff;
+  ;
+}
+
+
+
+@media (max-width: 768px) {
 }

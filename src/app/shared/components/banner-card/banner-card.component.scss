@@ -33,3 +33,20 @@
     height: 100%;
     object-fit: cover; 
 }
+
+@media (min-width: 768px) {
+
+}
+
+@media (max-width: 768px) {
+    .banner_card_cont {
+        display: flex;
+        flex-direction: column;
+    }
+    .bannerImg {
+        padding: 0px 40px;
+    }
+    .leftBanner {
+        padding-bottom: 0px;
+    }
+}

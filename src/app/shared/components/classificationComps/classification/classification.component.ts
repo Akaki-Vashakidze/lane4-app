@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { CustomTabsComponent } from '../custom-tabs/custom-tabs.component';
-import { SharedService } from '../../services/shared.service';
-import { TransformedRankData } from '../../interfaces/interfaces';
-import { TimeComponent } from '../time/time.component';
+import { CustomTabsComponent } from '../../custom-tabs/custom-tabs.component';
+import { SharedService } from '../../../services/shared.service';
+import { TransformedRankData } from '../../../interfaces/interfaces';
+import { TimeComponent } from '../../time/time.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { LoaderSpinnerComponent } from "../loader-spinner/loader-spinner.component";
+import { LoaderSpinnerComponent } from '../../loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-classification',

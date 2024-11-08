@@ -1,0 +1,11 @@
+@media (min-width:768px){
+    app-classification-mobile {
+        display: none;
+    }
+}
+
+@media (max-width:768px){
+    app-classification {
+        display: none;
+    }
+}

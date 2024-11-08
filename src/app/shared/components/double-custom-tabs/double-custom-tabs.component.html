@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" [ngClass]="headerTopRadius ? 'top-radius-25' : ''">
     <div *ngIf="header" class="headerText headerFont">{{header}}</div>
     <div class="tabsCont2">
         <div [style.width]="tabsWidth" class="tabs">

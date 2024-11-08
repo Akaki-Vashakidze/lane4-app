@@ -13,6 +13,7 @@ export class DoubleCustomTabsComponent {
   @Input() tabs1:string[] = ['tab1','tab2'];
   @Input() tabs2:string[] = ['tab3','tab4'];
   @Input() header!:string;
+  @Input() headerTopRadius:boolean = true;
   @Input() tabsWidth:string = '94%';
   @Input() infoTitle!:string;
   @Input() infoText!:string;

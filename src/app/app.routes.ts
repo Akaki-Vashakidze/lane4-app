@@ -3,10 +3,10 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { CompetitionsListComponent } from './shared/components/competitions-list/competitions-list.component';
 import { CompetitionResultsComponent } from './features/competitions/components/competition-results/competition-results.component';
 import { RecordsComponent } from './shared/components/records/records.component';
-import { ClassificationComponent } from './shared/components/classification/classification.component';
 import { ContactComponent } from './shared/components/contact/contact.component';
 import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
 import { AbousUsComponent } from './shared/components/abous-us/abous-us.component';
+import { ClassificationContainerComponent } from './shared/components/classificationComps/classification-container/classification-container.component';
 
 export const routes: Routes = [
     {
@@ -37,7 +37,7 @@ export const routes: Routes = [
         },
         {
           path: 'classification',
-          component: ClassificationComponent,
+          component: ClassificationContainerComponent,
         },
         {
           path: 'competitions',

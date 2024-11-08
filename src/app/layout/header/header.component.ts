@@ -15,6 +15,7 @@ export class HeaderComponent {
   public language : string = 'English'
   public dropdownOpen : boolean = false;
   menuDropdownOpen:boolean = false;
+  chosenItem!:string;
   @Input() footerHeaders:  {title:string, route:string}[] = [];
   @Input() navLeftItems:  {title:string, route:string}[] = [];
   @Input() navRightItems:  {title:string, route:string}[] = [];

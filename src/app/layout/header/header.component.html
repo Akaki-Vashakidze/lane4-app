@@ -33,6 +33,7 @@
 
 <div class="headerMobile">
   <a routerLink="/dashboard"><img src="assets/imgs/lane4logo.png" class="logo-default-mobile" /></a>
+  <div style="color: #fff; font-size: 18px;" class="headerFont">{{chosenItem | translate}}</div>
   <img src="assets/imgs/menuIcon.svg" *ngIf="!menuDropdownOpen" (click)="menuDropdownOpen = !menuDropdownOpen" class="menuIcon" />
   <img src="assets/imgs/X.svg" *ngIf="menuDropdownOpen" (click)="menuDropdownOpen = !menuDropdownOpen" class="menuIcon" />
 </div>
@@ -40,7 +41,7 @@
 <div *ngIf="menuDropdownOpen" class="headerDropDownTitles headerFont">
   <div class="headerTitlesMobile">
     <div *ngFor="let header of footerHeaders" (click)="menuDropdownOpen = false;">
-      <a [routerLink]="header.route">{{header.title | translate}}</a>
+      <a [routerLink]="header.route" (click)="chosenItem = header.title">{{header.title | translate}}</a>
     </div>
   </div>
   <div class="translate">

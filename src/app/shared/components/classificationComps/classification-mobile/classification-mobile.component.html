@@ -1,9 +1,12 @@
-<div class="MaskBlureImgCont" *ngIf="chosenRanksData" >
-    <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
+<div class="MaskBlureImgCont" *ngIf="chosenRanksData">
+    <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
 </div>
 
 <div class="classificationContainer shadow1">
-    <app-double-custom-tabs [headerTopRadius]="false" (tabChanged1)="on1TabChange($event)" (tabChanged2)="on2TabChange($event)" infoTitle="ცურვა, ერთიანი ეროვნული კლასიფიკაცია" infoText='საერთაშორისო კლასის სპორტის ოსტატის ნორმატივი (მსოფლიო ჩემპიონატის "B" სტანდარტი) ნებისმიერ დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემაზე. სპორტის ოსტატის ნორმატივი -50 მეტრიან დისტანციაზე ფიქსირდება მხოლოდ ელექტროლულ სისტემაზე.' [tabs1]="tabs1" [tabs2]="tabs2" (tabChange1)="on1TabChange($event)" (tabChange2)="on2TabChange($event)">
+    <app-double-custom-tabs [headerTopRadius]="false" (tabChanged1)="on1TabChange($event)"
+        (tabChanged2)="on2TabChange($event)" infoTitle="ცურვა, ერთიანი ეროვნული კლასიფიკაცია"
+        infoText='საერთაშორისო კლასის სპორტის ოსტატის ნორმატივი (მსოფლიო ჩემპიონატის "B" სტანდარტი) ნებისმიერ დისტანციაზე ფიქსირდება მხოლოდ ელექტრონულ სისტემაზე. სპორტის ოსტატის ნორმატივი -50 მეტრიან დისტანციაზე ფიქსირდება მხოლოდ ელექტროლულ სისტემაზე.'
+        [tabs1]="tabs1" [tabs2]="tabs2" (tabChange1)="on1TabChange($event)" (tabChange2)="on2TabChange($event)">
         <div class="body">
             <app-loader-spinner *ngIf="!chosenRanksData" color="black" height="500px"></app-loader-spinner>
             <div *ngIf="chosenRanksData" class="mobileBody">
@@ -11,17 +14,26 @@
                     <div *ngFor="let row of row3" class="row3">
                         <div *ngIf="!row.distance" class="MbRow headerMob">
                             <div class="rowPart firstPartRow">{{row.style + '_Short' | translate}}</div>
-                            <div class="rowPart">{{'Mst1' | translate}}</div>
-                            <div class="rowPart">{{'Mst' | translate}}</div>
-                            <div class="rowPart">{{'Candt' | translate}}</div>
+                            <div class="rowPart">{{'MasterOfSports1' | translate}}</div>
+                            <div class="rowPart">{{'MasterOfSports2' | translate}}</div>
+                            <div class="rowPart">{{'Candidate' | translate}}</div>
+                            <div class="rowPart">{{'First Level' | translate}}</div>
+                            <div class="rowPart">{{'Second Level' | translate}}</div>
+                            <div class="rowPart">{{'Third Level' | translate}}</div>
                         </div>
                         <div *ngIf="row.distance" class="MbRow">
                             <div class="rowPart firstPartRow">{{row.distance}}</div>
                             <app-time class="rowPart"
                                 [timeObj]="row?.ranks?.['INTERNATIONAL_MASTER']?.time.seconds ? row?.ranks?.['INTERNATIONAL_MASTER']?.time : ''"></app-time>
-                                <app-time class="rowPart"
+                            <app-time class="rowPart"
                                 [timeObj]="row?.ranks?.['MASTER']?.time.seconds ? row?.ranks?.['MASTER']?.time : ''"></app-time>
-                                <app-time class="rowPart"
+                            <app-time class="rowPart"
+                                [timeObj]="row?.ranks?.['CANDIDATE']?.time.seconds ? row?.ranks?.['CANDIDATE']?.time : ''"></app-time>
+                            <app-time class="rowPart"
+                                [timeObj]="row?.ranks?.['INTERNATIONAL_MASTER']?.time.seconds ? row?.ranks?.['INTERNATIONAL_MASTER']?.time : ''"></app-time>
+                            <app-time class="rowPart"
+                                [timeObj]="row?.ranks?.['MASTER']?.time.seconds ? row?.ranks?.['MASTER']?.time : ''"></app-time>
+                            <app-time class="rowPart"
                                 [timeObj]="row?.ranks?.['CANDIDATE']?.time.seconds ? row?.ranks?.['CANDIDATE']?.time : ''"></app-time>
                         </div>
                     </div>

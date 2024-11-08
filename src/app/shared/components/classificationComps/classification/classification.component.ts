@@ -22,7 +22,6 @@ export class ClassificationComponent {
   constructor(_sharedService:SharedService){
     _sharedService.getRankings().subscribe(item => {
      this.transformedRankData.set(this.transformRanksToArray(item.rankData))
-     console.log(this.transformedRankData())
      this.chosenRanksData = this.transformedRankData()[0]
     })
   }

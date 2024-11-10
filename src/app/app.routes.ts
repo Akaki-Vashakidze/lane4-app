@@ -7,6 +7,7 @@ import { ContactComponent } from './shared/components/contact/contact.component'
 import { AboutUsSectionComponent } from './shared/components/about-us-section/about-us-section.component';
 import { AbousUsComponent } from './shared/components/abous-us/abous-us.component';
 import { ClassificationContainerComponent } from './shared/components/classificationComps/classification-container/classification-container.component';
+import { AthleteResultsComponent } from './shared/components/athlete-results/athlete-results.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
         {
           path: 'records',
           component: RecordsComponent,
+        },
+        {
+          path: 'athlete',
+          component: AthleteResultsComponent,
         },
         {
           path: 'contact',

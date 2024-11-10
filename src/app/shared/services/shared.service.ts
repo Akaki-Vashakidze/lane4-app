@@ -40,4 +40,8 @@ export class SharedService {
   addMailForSubscr(body : {email : string}){
     return this.httpClient.post<any>('/consoleApi/contact/mail',{data:body})
   }
+
+  getAthleteResults(athleteId:string){
+    return this.httpClient.get<any>('/consoleApi/athlete/results/' + athleteId)
+  }
 }

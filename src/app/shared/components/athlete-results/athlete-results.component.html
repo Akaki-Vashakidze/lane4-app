@@ -1,1 +1,29 @@
-<p>athlete-results works!</p>
+<div class="athleteCont">
+    <div class="header">
+            <label for="search-input">Search athlete</label>
+            <div class="input-wrapper">
+              <span class="icon"><mat-icon>search</mat-icon></span> 
+              <input type="text" id="search-input" placeholder="Search">
+            </div>
+    </div>
+    <div class="athleteBio">
+        <img width="100px" src="/assets/imgs/profile-simple.svg"/>
+        <div class="bio">
+            <div class="name">Pantskhava Noe</div>
+            <div class="bornYear">2006</div>
+        </div>
+    </div>
+    <div class="filters">
+        <div class="filter">
+            <div class="filterLabel">From</div>
+            <app-select (itemSelected)="onSelect1($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
+        </div>
+        <div class="filter">
+            <div class="filterLabel">To</div>
+            <app-select (itemSelected)="onSelect2($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
+        </div>
+    </div>
+    <div class="results">
+        
+    </div>
+</div>

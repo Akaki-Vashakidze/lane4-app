@@ -15,15 +15,40 @@
     </div>
     <div class="filters">
         <div class="filter">
+            <div class="filterLabel">Course</div>
+            <app-select selectedOption="50m" (itemSelected)="onSelect3($event)" [options]="['25m','50m']" width="100px"></app-select>
+        </div>
+        <div class="filter">
             <div class="filterLabel">From</div>
-            <app-select (itemSelected)="onSelect1($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
+            <app-select selectedOption="Alltime"  (itemSelected)="onSelect1($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
         </div>
         <div class="filter">
             <div class="filterLabel">To</div>
-            <app-select (itemSelected)="onSelect2($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
+            <app-select selectedOption="Alltime"  (itemSelected)="onSelect2($event)" [options]="yearsForSelect" height="300px" width="120px"></app-select>
         </div>
     </div>
     <div class="results">
-        
+        <div class="resHeader">
+            <div class="row">Event</div>
+            <div class="row">Course</div>
+            <div class="row">Time</div>
+            <div class="row">pts.</div>
+            <div class="row">date</div>
+            <div class="row">meet</div>
+        </div>
+        <div class="resRows">
+            <div class="resRowsStyles" *ngIf="resultsForTable['BUTTERFLY']">
+                <div class="resRow">{{resultsForTable['FREESTYLE']['50'][0].race.distance + ' '}}{{resultsForTable['BUTTERFLY']['50'][0].race.style | translate}}</div>
+                <div class="resRow">{{'50m'}}</div>
+                <div class="resRow">
+                    <span>{{resultsForTable['BUTTERFLY']['50'][0].result.minute ? resultsForTable['BUTTERFLY']['50'][0].result.minute : '00'}}:</span>
+                    <span>{{resultsForTable['BUTTERFLY']['50'][0].result.seconds ? resultsForTable['BUTTERFLY']['50'][0].result.seconds : '00'}}.</span>
+                    <span>{{resultsForTable['BUTTERFLY']['50'][0].result.milliseconds ? resultsForTable['BUTTERFLY']['50'][0].result.milliseconds : '00'}}</span>
+                </div>
+                <div class="resRow">{{resultsForTable['BUTTERFLY']['50'][0].resultPoint }}</div>
+                <div class="resRow">{{resultsForTable['BUTTERFLY']['50'][0].event.startDate | date:'yyyy MMMM d' }}</div>
+                <div class="resRow">{{resultsForTable['BUTTERFLY']['50'][0].event.title }}</div>
+            </div>
+        </div>
     </div>
 </div>

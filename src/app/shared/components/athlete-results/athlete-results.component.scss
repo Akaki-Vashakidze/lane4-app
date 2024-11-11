@@ -89,3 +89,29 @@
     align-items: center;
     gap: 10px;
   }
+
+  .resHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+    padding: 10px;
+    background-color: var(--light-blue1);
+  }
+
+  .resRowsStyles {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+  }
+
+  .resRowsStyles:nth-child(even){
+    background-color: #fff;
+  }
+
+  .resRowsStyles:nth-child(odd){
+    background-color: var(--light-blue2);
+  }
+
+  .resRow {
+    display: flex;
+    align-items: center;
+  }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Time } from '../../interfaces/interfaces';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './time.component.html',
   styleUrl: './time.component.scss'
 })
-export class TimeComponent {
+export class TimeComponent implements OnInit{
 @Input() timeObj !: Time;
+ngOnInit(): void {
+  console.log(this.timeObj)
+}
 }

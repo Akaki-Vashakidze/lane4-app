@@ -171,6 +171,7 @@ export interface EventDetails {
           minutes: any
           seconds: any
           milliseconds: any
+          totalMilliseconds: any
     }
 
     export interface RankInfo {

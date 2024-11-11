@@ -29,7 +29,7 @@ export const routes: Routes = [
           component: RecordsComponent,
         },
         {
-          path: 'athlete',
+          path: 'athletes',
           component: AthleteResultsComponent,
         },
         {

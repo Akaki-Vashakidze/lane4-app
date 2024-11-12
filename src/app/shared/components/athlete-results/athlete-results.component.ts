@@ -17,6 +17,8 @@ export class AthleteResultsComponent {
   currentYear: number;
   yearsForSelect: any[] = []
   resultsForTable: any = [];
+  courseSelect: string = 'All';
+  filteredArr!: any[];
   map1 = {
     '50BUTTERFLY': {},
     '100BUTTERFLY': {},
@@ -50,24 +52,36 @@ export class AthleteResultsComponent {
       })
 
       this.resultsForTable = data;
-      console.log(this.resultsForTable)
+      this.filteredArr = data;
     })
   }
 
   onSelect1(event: any) {
-    console.log(event)
+    this.filteredArr = this.resultsForTable
+    .map((item: any) => {
+      let filteredItem = { ...item };
+      Object.keys(filteredItem).forEach(poolLength => {
+        filteredItem[poolLength] = filteredItem[poolLength].filter((res: any) => {
+          let eventYear = new Date(res.event.startDate).getFullYear();
+          return eventYear === event; 
+        });
+      });
+      return filteredItem;
+    })
+    .filter((item: any) => {
+      return Object.keys(item).some(poolLength => item[poolLength].length > 0);
+    });
+  
+  console.log(this.filteredArr);
   }
 
-  onSelect2(event: any) {
-    console.log(event)
-  }
-
-  onSelect3(event: any) {
-    console.log(event)
+  onSelect3(course: string) {
+    console.log(course)
+    this.courseSelect = course;
   }
 
   populateYearsForSelect() {
-    for (let year = 2005; year <= this.currentYear; year++) {
+    for (let year = 2022; year <= this.currentYear; year++) {
       this.yearsForSelect.push(year);
     }
   }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { ContactMessage, GetRanksData, LiveEvent, WRTsData } from '../interfaces/interfaces';
+import { ContactMessage, GetRanksData, LiveEvent, SearchAthletePayload, WRTsData } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +43,9 @@ export class SharedService {
 
   getAthleteResults(athleteId:string){
     return this.httpClient.get<any>('/consoleApi/athlete/results/' + athleteId)
+  }
+
+  getAthletes(data:SearchAthletePayload){
+    return this.httpClient.post<any>('/consoleApi/athlete/search',data)
   }
 }

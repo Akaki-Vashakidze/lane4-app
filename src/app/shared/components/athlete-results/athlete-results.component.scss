@@ -16,35 +16,6 @@
     display: block;
   }
   
-  .input-wrapper {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #d0d4e1;
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    width: 250px;
-    display: flex;
-  }
-  
-  .input-wrapper .icon {
-    color: #d0d4e1; 
-    font-size: 1rem;
-    margin-right: 0.5rem;
-    display: flex;
-  }
-  
-  .input-wrapper input {
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    width: 100%;
-  }
-  
-  .input-wrapper input::placeholder {
-    color: #d0d4e1;
-  }
-  
   .header {
     display: flex;
     flex-direction: row;
@@ -133,4 +104,16 @@
 
   .resultsForTableR {
     min-height: 20px;
+  }
+
+  .resRows {
+    min-height: 50px;
+    background-color: var(--light-blue2);
+  }
+
+  .noData {
+    width: 100px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
   }

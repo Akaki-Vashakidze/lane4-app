@@ -1,0 +1,52 @@
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #d0d4e1;
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    width: 250px;
+  }
+  
+  .input-wrapper .icon {
+    color: #d0d4e1;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    display: flex;
+  }
+  
+  .input-wrapper input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .input-wrapper input::placeholder {
+    color: #d0d4e1;
+  }
+  
+  .suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    border: 1px solid #d0d4e1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 250px;
+    position: absolute;
+    z-index: 1000;
+    color: black;
+  }
+  
+  .suggestions-list li {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .suggestions-list li:hover {
+    background-color: #f0f0f0;
+  }
+  

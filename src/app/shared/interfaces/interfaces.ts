@@ -1,3 +1,5 @@
+import { Paging } from "../classes/classes";
+
 export interface CostumerComment {
     name:string,
     comment:string,
@@ -246,4 +248,9 @@ export interface WRTsData {
 export interface BaseTimeWR {
   BASE_TIME:Time;
   WR:Time;
+}
+
+export interface SearchAthletePayload {
+  data:{userType:string,searchQuery:string};
+  paging: Paging;
 }

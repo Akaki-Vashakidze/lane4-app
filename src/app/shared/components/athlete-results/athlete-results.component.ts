@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { SelectComponent } from '../select/select.component';
 import { TimeComponent } from '../time/time.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { Paging } from '../../classes/classes';
+import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
 
 @Component({
   selector: 'app-athlete-results',
   standalone: true,
-  imports: [CommonModule, MatIconModule, SelectComponent, TranslateModule, TimeComponent],
+  imports: [CommonModule, MatIconModule, SelectComponent, TranslateModule, TimeComponent, CustomAutocompleteComponent],
   templateUrl: './athlete-results.component.html',
   styleUrl: './athlete-results.component.scss'
 })
@@ -19,6 +21,8 @@ export class AthleteResultsComponent {
   resultsForTable: any = [];
   courseSelect: string = 'All';
   filteredArr!: any[];
+  selectedAthlete!:any;
+  allAthletes = signal<any>([])
   map1 = {
     '50BUTTERFLY': {},
     '100BUTTERFLY': {},
@@ -40,9 +44,16 @@ export class AthleteResultsComponent {
     '400MEDLEY': {},
   };
   constructor(public _sharedService: SharedService) {
+    _sharedService.getAthletes({data:{userType:'',searchQuery:''}, paging: new Paging(0,10000)}).subscribe(item => {
+      console.log(item)
+      this.allAthletes.set(item.docs)
+    })
     this.currentYear = new Date().getFullYear();
     this.populateYearsForSelect();
-    _sharedService.getAthleteResults('666b3c0bcdd10df634af8070').subscribe(item => {
+  }
+
+  getAthleteResults(athlete:any){
+    this._sharedService.getAthleteResults(athlete._id).subscribe(item => {
       console.log(item)
       let data: any = [];
       Object.keys(this.map1).forEach(event => {
@@ -88,5 +99,11 @@ export class AthleteResultsComponent {
 
   showMoreResults(item:any){
     console.log(item)
+  }
+
+  onSelect(event:any){
+    this.getAthleteResults(event)
+    this.selectedAthlete = event;
+    console.log(event)
   }
 }

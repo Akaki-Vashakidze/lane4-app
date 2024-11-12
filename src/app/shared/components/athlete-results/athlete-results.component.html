@@ -1,25 +1,22 @@
 <div class="athleteCont">
     <div class="header">
             <label for="search-input">Search athlete</label>
-            <div class="input-wrapper">
-              <span class="icon"><mat-icon>search</mat-icon></span> 
-              <input type="text" id="search-input" placeholder="Search">
-            </div>
+            <app-custom-autocomplete (onSelect)="onSelect($event)" [data]="allAthletes()"></app-custom-autocomplete>
     </div>
     <div class="athleteBio">
         <img width="100px" src="/assets/imgs/men.svg"/>
         <div class="bio">
-            <div class="name">Pantskhava Noe</div>
-            <div class="bornYear">2006</div>
+            <div class="name">{{selectedAthlete ? selectedAthlete?.lastName + ' ' + selectedAthlete?.firstName : 'PleaseSearchAthlete' | translate}}</div>
+            <div class="bornYear">{{selectedAthlete?.birthDate | date:'yyyy'}}</div>
         </div>
     </div>
     <div class="filters">
         <div class="filter">
-            <div class="filterLabel">Course</div>
+            <div class="filterLabel">{{'course' | translate}}</div>
             <app-select selectedOption="All" (itemSelected)="onSelect3($event)" [options]="['All','25m','50m']" width="100px"></app-select>
         </div>
         <div class="filter">
-            <div class="filterLabel">Date</div>
+            <div class="filterLabel">{{'date' | translate}}</div>
             <app-select selectedOption="Alltime"  (itemSelected)="onSelect1($event)" [options]="yearsForSelect" width="120px"></app-select>
         </div>
     </div>
@@ -33,6 +30,7 @@
             <div class="row">{{'meet' | translate}}</div>
         </div>
         <div class="resRows">
+            <div class="noData" *ngIf="!filteredArr">No data</div>
             <div class="resRowsStyles" *ngIf="filteredArr">
                 <div class="resultsForTableR" *ngFor="let item of filteredArr">
                     <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m')" >

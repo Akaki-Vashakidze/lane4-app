@@ -9,9 +9,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './time.component.html',
   styleUrl: './time.component.scss'
 })
-export class TimeComponent implements OnInit{
-@Input() timeObj !: Time;
-ngOnInit(): void {
-  console.log(this.timeObj)
-}
+export class TimeComponent implements OnInit {
+  @Input() timeObj !: Time;
+
+  ngOnInit(): void {
+    this.timeObj = this.convertToNumbers(this.timeObj)
+  }
+  convertToNumbers(obj: Time) {
+    return {
+      hours: Number(obj?.hours),
+      minutes: Number(obj?.minutes),
+      seconds: Number(obj?.seconds),
+      milliseconds: Number(obj?.milliseconds),
+      totalMilliseconds: Number(obj?.totalMilliseconds)
+    };
+  }
 }

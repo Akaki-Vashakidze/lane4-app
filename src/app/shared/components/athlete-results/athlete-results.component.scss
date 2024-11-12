@@ -68,6 +68,7 @@
   .athleteBio {
     display: flex;
     flex-direction: row;
+    gap: 10px;
   }
 
   .filters {
@@ -97,7 +98,7 @@
     background-color: var(--light-blue1);
   }
 
-  .resRowsStyles {
+  .longShortRows {
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
@@ -111,7 +112,21 @@
     background-color: var(--light-blue2);
   }
 
-  .resRow {
+  // .resRow {
+  //   display: flex;
+  //   align-items: center;
+  // }
+
+  .rows {
     display: flex;
     align-items: center;
+  }
+
+  .newRows {
+    border-bottom: 1px solid rgb(176, 175, 175);
+  }
+
+  .showMoreResults {
+    cursor: pointer;
+    text-decoration: underline;
   }

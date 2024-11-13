@@ -1,6 +1,6 @@
 <div class="athleteCont">
     <div class="header">
-            <label for="search-input">Search athlete</label>
+            <label for="search-input">{{'Search athlete' | translate}}</label>
             <app-custom-autocomplete (onSelect)="onSelect($event)" [data]="allAthletes()"></app-custom-autocomplete>
     </div>
     <div class="athleteBio">

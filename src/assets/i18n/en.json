@@ -71,5 +71,6 @@
   "PleaseSearchAthlete":"Please start typing athlete firstname or lastname.",
   "course":"Course",
   "date":"Date",
-  "meet":"Meet"
+  "meet":"Meet",
+  "Search athlete":"Search Athlete"
 }

@@ -117,3 +117,11 @@
     padding: 20px;
     text-align: center;
   }
+
+  @media (max-width:768px){
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

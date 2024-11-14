@@ -13,14 +13,16 @@
     <div class="filters">
         <div class="filter">
             <div class="filterLabel">{{'course' | translate}}</div>
-            <app-select selectedOption="All" (itemSelected)="onSelect3($event)" [options]="['All','25m','50m']" width="100px"></app-select>
+            <app-select class="hideMobile" selectedOption="All" (itemSelected)="onSelect3($event)" [options]="['All','25m','50m']" width="100px"></app-select>
+            <app-select class="hidePC" selectedOption="All" (itemSelected)="onSelect3($event)" [options]="['All','25m','50m']"></app-select>
         </div>
         <div class="filter">
             <div class="filterLabel">{{'date' | translate}}</div>
-            <app-select selectedOption="Alltime"  (itemSelected)="onSelect1($event)" [options]="yearsForSelect" width="120px"></app-select>
+            <app-select selectedOption="Alltime" class="hideMobile" (itemSelected)="onSelect1($event)" [options]="yearsForSelect" width="120px"></app-select>
+            <app-select selectedOption="Alltime" class="hidePC" (itemSelected)="onSelect1($event)" [options]="yearsForSelect"></app-select>
         </div>
     </div>
-    <div class="results">
+    <div class="results hideMobile">
         <div class="resHeader">
             <div class="row">{{'Event' | translate}}</div>
             <div class="row">{{'course' | translate}}</div>
@@ -51,6 +53,54 @@
                             <div class="rows">{{item['SHORT'][0].resultPoint}}</div>
                             <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div class="rows">{{item['SHORT'][0].event.title}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="results hidePC">
+        <div class="resHeader">
+            <div class="row">{{'Event' | translate}}</div>
+            <div class="row">{{'course' | translate}}</div>
+            <div class="row">{{'result' | translate}}</div>
+            <div></div>
+        </div>
+        <div class="resRows">
+            <div class="noData" *ngIf="!filteredArr">No data</div>
+            <div class="resRowsStyles" *ngIf="filteredArr">
+                <div class="resultsForTableR" *ngFor="let item of filteredArr; let i = index">
+                    <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m')" >
+                        <div class="longShortRows">
+                            <div class="rows showMoreResults" (click)="showMoreResults(item['LONG'])">{{item['LONG'][0].race.distance + ' '}}{{item['LONG'][0].race.style + '_Short' | translate}}</div>
+                            <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
+                            <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'])" [timeObj]="item['LONG'][0].result"></app-time>
+                            <div (click)="openResInfo(i , 'LONG')"><mat-icon>keyboard_arrow_down</mat-icon></div>
+                        </div>
+                        <div class="resultsExpand" *ngIf="resInfoIndex == 'LONG' + i">
+                            <div class="rows">{{item['LONG'][0].event.title}}</div>
+                            <div class="rows">{{item['LONG'][0].resultPoint + ' '}}{{'points' | translate}}</div>
+                            <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                    <div class="newRows" *ngIf="item['SHORT'] && (courseSelect == 'All' || courseSelect == '25m')">
+                        <div class="longShortRows">
+                            <div class="rows showMoreResults" (click)="showMoreResults(item['SHORT'])">{{item['SHORT'][0].race.distance + ' '}}{{item['SHORT'][0].race.style + '_Short' | translate}}</div>
+                            <div class="rows">{{item['SHORT'][0].partition.poolLength == 'SHORT'? '50m' : '25m'}}</div>
+                            <app-time class="rows showMoreResults" (click)="showMoreResults(item['SHORT'])" [timeObj]="item['SHORT'][0].result"></app-time>
+                            <div (click)="openResInfo(i , 'SHORT')"><mat-icon>keyboard_arrow_down</mat-icon></div>
+                        </div>
+                        <div class="resultsExpand" *ngIf="resInfoIndex == 'SHORT' + i">
+                            <div class="rows">{{item['SHORT'][0].event.title}}</div>
+                            <div class="rows">{{item['SHORT'][0].resultPoint + ' '}}{{'points' | translate}}</div>
+                            <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
+                            <div></div>
                         </div>
                     </div>
                 </div>

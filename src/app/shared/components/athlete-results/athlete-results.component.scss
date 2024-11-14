@@ -118,10 +118,41 @@
     text-align: center;
   }
 
+  @media (min-width:768px){
+    .hidePC {
+      display: none;
+    }
+  }
+
   @media (max-width:768px){
     .header {
       display: flex;
       flex-direction: column;
+      gap: 10px;
+    }
+
+    .hideMobile {
+      display: none;
+    }
+
+    .resHeader {
+      grid-template-columns: 3fr 2fr 3fr 1fr;
+      gap: 10px;
+    }
+
+    .longShortRows {
+      grid-template-columns: 3fr 2fr 3fr 1fr;
+      gap: 10px;
+    }
+
+    .resultsExpand {
+      background-color: var(--light-blue3);
+      padding: 10px;
+    }
+
+    .resultsExpand {
+      display: grid;
+      grid-template-columns: 3fr 2fr 3fr 1fr;
       gap: 10px;
     }
   }

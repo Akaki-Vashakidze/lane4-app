@@ -12,7 +12,7 @@ export class SelectComponent {
   @Input() options: string[] = ['Alltime', 'Today', 'This Week', 'This Month'];
   @Input() selectedOption: string = '';
   isDropdownOpen: boolean = false;
-  @Input() width:string = '120px'
+  @Input() width:string = ''
   @Input() height:string = ''
   @Output() itemSelected = new EventEmitter<string>();
 

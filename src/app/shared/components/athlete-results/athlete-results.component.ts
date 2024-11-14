@@ -22,6 +22,7 @@ export class AthleteResultsComponent {
   courseSelect: string = 'All';
   filteredArr!: any[];
   selectedAthlete!:any;
+  resInfoIndex !: string;
   allAthletes = signal<any>([])
   map1 = {
     '50BUTTERFLY': {},
@@ -104,6 +105,14 @@ export class AthleteResultsComponent {
   onSelect(event:any){
     this.getAthleteResults(event)
     this.selectedAthlete = event;
-    console.log(event)
+  }
+
+  openResInfo(index:number, course:string){
+    console.log(index,course)
+    if(course + index != this.resInfoIndex) {
+      this.resInfoIndex = course + index;
+    } else {
+      this.resInfoIndex = ''
+    }
   }
 }

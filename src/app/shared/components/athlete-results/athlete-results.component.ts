@@ -7,6 +7,7 @@ import { TimeComponent } from '../time/time.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Paging } from '../../classes/classes';
 import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-athlete-results',
@@ -22,6 +23,7 @@ export class AthleteResultsComponent {
   courseSelect: string = 'All';
   filteredArr!: any[];
   selectedAthlete!:any;
+  athleteId!:string;
   resInfoIndex !: string;
   allAthletes = signal<any>([])
   map1 = {
@@ -44,9 +46,8 @@ export class AthleteResultsComponent {
     '200MEDLEY': {},
     '400MEDLEY': {},
   };
-  constructor(public _sharedService: SharedService) {
+  constructor(public _sharedService: SharedService, public _router:Router) {
     _sharedService.getAthletes({data:{userType:'',searchQuery:''}, paging: new Paging(0,10000)}).subscribe(item => {
-      console.log(item)
       this.allAthletes.set(item.docs)
     })
     this.currentYear = new Date().getFullYear();
@@ -65,7 +66,6 @@ export class AthleteResultsComponent {
 
       this.resultsForTable = data;
       this.filteredArr = data;
-      console.log(this.filteredArr)
     })
   }
 
@@ -99,17 +99,18 @@ export class AthleteResultsComponent {
     }
   }
 
-  showMoreResults(item:any){
-    console.log(item)
+  showMoreResults(distance:string, style:string, poolLength:any){
+    console.log(distance,style,this.athleteId,poolLength)
+    this._router.navigate([`athlete/${style}/${distance}/${this.athleteId}/${poolLength}`])
   }
 
   onSelect(event:any){
     this.getAthleteResults(event)
     this.selectedAthlete = event;
+    this.athleteId = event._id
   }
 
   openResInfo(index:number, course:string){
-    console.log(index,course)
     if(course + index != this.resInfoIndex) {
       this.resInfoIndex = course + index;
     } else {

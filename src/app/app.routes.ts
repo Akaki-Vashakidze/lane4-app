@@ -8,6 +8,7 @@ import { AboutUsSectionComponent } from './shared/components/about-us-section/ab
 import { AbousUsComponent } from './shared/components/abous-us/abous-us.component';
 import { ClassificationContainerComponent } from './shared/components/classificationComps/classification-container/classification-container.component';
 import { AthleteResultsComponent } from './shared/components/athlete-results/athlete-results.component';
+import { AthleteStyleResultsComponent } from './shared/components/athlete-style-results/athlete-style-results.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,10 @@ export const routes: Routes = [
         {
           path: 'athletes',
           component: AthleteResultsComponent,
+        },
+        {
+          path: 'athlete/:stroke/:distance/:id/:poolLength',
+          component: AthleteStyleResultsComponent,
         },
         {
           path: 'contact',

@@ -65,6 +65,7 @@ export class AthleteResultsComponent {
 
       this.resultsForTable = data;
       this.filteredArr = data;
+      console.log(this.filteredArr)
     })
   }
 

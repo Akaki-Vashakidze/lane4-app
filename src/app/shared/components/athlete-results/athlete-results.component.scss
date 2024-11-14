@@ -73,6 +73,7 @@
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+    height: 55px;
   }
 
   .resRowsStyles:nth-child(even){
@@ -100,10 +101,6 @@
   .showMoreResults {
     cursor: pointer;
     text-decoration: underline;
-  }
-
-  .resultsForTableR {
-    min-height: 20px;
   }
 
   .resRows {
@@ -154,5 +151,9 @@
       display: grid;
       grid-template-columns: 3fr 2fr 3fr 1fr;
       gap: 10px;
+    }
+
+    .longShortRows {
+      height: auto;
     }
   }

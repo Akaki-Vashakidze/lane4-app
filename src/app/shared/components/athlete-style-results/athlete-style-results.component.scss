@@ -95,3 +95,10 @@
       gap: 10px;
     }
   }
+
+  .resHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+    padding: 10px;
+    background-color: var(--light-blue1);
+  }

@@ -7,7 +7,25 @@
             <div class="stroke">{{athleteStrokeData[0]?.race?.distance + ' '}}{{athleteStrokeData[0]?.race?.style | translate}}</div>
         </div>
     </div>
-    <div class="filters">
+    <div class="results">
+        <div class="resHeader">
+            <div class="row">{{'Event' | translate}}</div>
+            <div class="row">{{'course' | translate}}</div>
+            <div class="row">{{'result' | translate}}</div>
+            <div class="row">{{'points' | translate}}</div>
+            <div class="row">{{'date' | translate}}</div>
+            <div class="row">{{'meet' | translate}}</div>
+        </div>
+        <div class="result" *ngFor="let res of athleteStrokeData">
+            <!-- <div class="rowsPC">
+                <div class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)">{{item['LONG'][0].race.distance + ' '}}{{item['LONG'][0].race.style + '_Short' | translate}}</div>
+                <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
+                <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)" [timeObj]="item['LONG'][0].result"></app-time>
+                <div class="rows">{{item['LONG'][0].resultPoint}}</div>
+                <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
+                <div class="rows">{{item['LONG'][0].event.title}}</div>
+            </div> -->
+        </div>
     </div>
 
 </div>

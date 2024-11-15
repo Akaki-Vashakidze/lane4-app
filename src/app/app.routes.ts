@@ -34,7 +34,7 @@ export const routes: Routes = [
           component: AthleteResultsComponent,
         },
         {
-          path: 'athlete/:stroke/:distance/:id/:poolLength',
+          path: 'athlete/:stroke/:distance/:athleteId/:poolLength',
           component: AthleteStyleResultsComponent,
         },
         {

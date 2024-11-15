@@ -1,1 +1,13 @@
-<p>will be ready soon</p>
+<div class="athleteCont">
+    <div class="athleteBio">
+        <img width="100px" src="/assets/imgs/men.svg"/>
+        <div class="bio" *ngIf="athleteStrokeData">
+            <div class="name">{{athlete?.lastName + ' ' + athlete?.firstName}}</div>
+            <div class="bornYear">{{athlete?.birthDate | date:'yyyy'}}</div>
+            <div class="stroke">{{athleteStrokeData[0]?.race?.distance + ' '}}{{athleteStrokeData[0]?.race?.style | translate}}</div>
+        </div>
+    </div>
+    <div class="filters">
+    </div>
+
+</div>

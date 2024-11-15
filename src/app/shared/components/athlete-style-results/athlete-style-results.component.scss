@@ -1,0 +1,97 @@
+.athleteCont {
+    width: 1160px;
+    margin: auto;
+    max-width: 80%;
+}
+
+.search-container {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+  }
+  
+  .search-container label {
+    font-size: 0.9rem; 
+    color: #1a3ba6; 
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+  
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--dark-blue4);
+    gap: 15px;
+    color: #fff;
+  }
+
+  .athleteCont {
+    border-radius: 15px;
+    overflow: hidden; 
+  }
+
+  .athleteBio {
+    padding: 10px;
+    background-color: var(--light-blue3);
+  }
+
+  .athleteBio {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: var(--dark-blue4);
+    color: #fff;
+    gap: 20px;
+  }
+
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .rows {
+    display: flex;
+    align-items: center;
+  }
+
+  .resRows {
+    min-height: 50px;
+    background-color: var(--light-blue2);
+  }
+
+  @media (min-width:768px){
+    .hidePC {
+      display: none;
+    }
+  }
+
+  @media (max-width:768px){
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hideMobile {
+      display: none;
+    }
+
+    .resultsExpand {
+      background-color: var(--light-blue3);
+      padding: 10px;
+    }
+
+    .resultsExpand {
+      display: grid;
+      grid-template-columns: 3fr 2fr 3fr 1fr;
+      gap: 10px;
+    }
+  }

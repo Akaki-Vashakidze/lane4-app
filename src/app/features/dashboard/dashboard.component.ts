@@ -14,7 +14,7 @@ import { FooterComponent } from '../../layout/footer/footer.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet, MatIconModule, MatButtonModule, HeaderComponent,CostumerCommentsComponent, SaveEmailComponent, BannerCardComponent, OurServicesComponent, CompetitionsListComponent, AboutUsSectionComponent, FooterComponent],
+  imports: [MatIconModule, MatButtonModule, SaveEmailComponent, BannerCardComponent, CompetitionsListComponent, AboutUsSectionComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

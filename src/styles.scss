@@ -9,6 +9,7 @@
 html,
 body {
   height: 100%;
+  color: var(--dark-blue2)
   // font-family: "Georgian Lowercase Normal" !important;
 }
 
@@ -108,7 +109,7 @@ body {
 }
 
 .shadow1 {
-  box-shadow: #218bff 0px 0px 40px -12px, #218bff 0px 0px 40px -12px;
+  box-shadow: rgba(33, 139, 255, 0.4) 0px 0px 30px -12px, rgba(33, 139, 255, 0.4) 0px 0px 30px -12px;
 }
 
 .custom-input1 {
@@ -136,10 +137,12 @@ body {
 a {
   text-decoration: none;
   color: #fff;
-  ;
 }
 
-
+.mainFontColor {
+ color: var(--dark-blue2)
+}
 
 @media (max-width: 768px) {
+
 }

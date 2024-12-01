@@ -34,7 +34,8 @@ mat-tab-group {
 
 .resultsContainer{
     border: 2px solid var(--dark-blue4);
-    border-radius: 25px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .resBody {
@@ -169,6 +170,7 @@ mat-tab-group {
     .resLine {
         height: 50px;
         font-size: 15px;
+        padding: 0px 20px 0px 10px;
     }
 
     .logo {
@@ -179,7 +181,7 @@ mat-tab-group {
 
     .icon {
         img {
-            height: 35px;
+            height: 28px;
         }
     }
 }

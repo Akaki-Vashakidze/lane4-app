@@ -15,9 +15,11 @@ import { CustomTabsComponent } from '../custom-tabs/custom-tabs.component';
   styleUrl: './records.component.scss'
 })
 export class RecordsComponent {
-  tabs1 = ["Long_Course","Short_Course"]
+  // tabs1 = ["Long_Course","Short_Course"]
+  tabs1 = ["Long_Course"]
   tabs2 = ["Men","Women"]
-  tabs = ['25m Men','50m Men','25m Women','50m Women']
+  // tabs = ['25m Men','50m Men','25m Women','50m Women']
+  tabs = ['50m Men','50m Women']
   chosenRecords = signal<any>([])
   chosenRecordsMobile = signal<any>([])
   constructor(public _sharedService:SharedService){
@@ -141,17 +143,17 @@ export class RecordsComponent {
   onTabChange(index:number){
     switch (index) {
       case 0:
-        this.chosenRecords.set(this.array[0])
-        break;
-      case 1:
         this.chosenRecords.set(this.array[1])
         break;
-      case 2:
-        this.chosenRecords.set(this.array[2])
-        break;
-      case 3:
+      case 1:
         this.chosenRecords.set(this.array[3])
         break;
+      // case 2:
+      //   this.chosenRecords.set(this.array[2])
+      //   break;
+      // case 3:
+      //   this.chosenRecords.set(this.array[3])
+      //   break;
       default:
         break;
     }

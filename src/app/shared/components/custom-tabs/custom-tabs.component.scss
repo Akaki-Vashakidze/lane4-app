@@ -18,15 +18,13 @@
 .activeTab {
     background-color: #fff;
     border-radius: 10px;
-    color: var(--text-color);
+    color: var(--dark-blue2);
 }
 
 .header {
     width: 100%;
     padding:10px 20px;
     background-color: var(--dark-blue4);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
     display: flex;
     flex-direction: column;
 }

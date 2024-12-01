@@ -30,18 +30,7 @@
     .lane4LogoFooter img {
         cursor: pointer;
     }
-    
-    .logo-hover {
-        display: none;
-    }
-    
-    .lane4LogoFooter:hover .logo-hover {
-        display: flex;
-    }
-    
-    .lane4LogoFooter:hover .logo-default {
-        display: none;
-    }
+
     
     .headers {
         width: 100%;
@@ -105,13 +94,6 @@
 }
 
 @media (max-width: 768px) {
-    .logo-hover {
-        display: none;
-    }
-
-    .logo-default, .emailInput  {
-        display: flex;
-    }
 
     .footerContainer {
         width: 100%;
@@ -178,10 +160,6 @@
 
     .term a{
         text-decoration: underline;
-    }
-
-    .logo-default {
-        width: 60px;
     }
 
     .footerHeaders {

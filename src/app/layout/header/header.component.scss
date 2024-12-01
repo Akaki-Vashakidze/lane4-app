@@ -87,17 +87,6 @@
     display: inline-block;
   }
 
-  .logo-hover {
-    display: none;
-  }
-
-  .logo:hover .logo-hover {
-    display: flex;
-  }
-
-  .logo:hover .logo-default {
-    display: none;
-  }
 
   .headerMobile {
     display: none;
@@ -138,12 +127,13 @@
     justify-content: space-between;
     position: relative;
     top: -2px;
+    padding-bottom: 40px;
   }
 
   .headerTitlesMobile {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 18px;
   }
 
   .headerTitlesMobile a{

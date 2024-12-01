@@ -26,7 +26,7 @@ export class ClassificationMobileComponent {
     _sharedService.getRankings().subscribe(item => {
      this.transformedRankData.set(this.transformRanksToArrayMobile(item.rankData))
      console.log(this.transformedRankData())
-     this.chosenRanksData = this.transformedRankData()[0]
+     this.chosenRanksData = this.transformedRankData()[1]
     })
   }
 
@@ -99,13 +99,13 @@ export class ClassificationMobileComponent {
 
   chooseClassificationArray(){
     if(this.tab1Index == 0 && this.tab2Index == 0){
-      this.chosenRanksData = this.arrayMobile[0]
-    } else if(this.tab1Index == 1 && this.tab2Index == 0){
       this.chosenRanksData = this.arrayMobile[1]
+    } else if(this.tab1Index == 1 && this.tab2Index == 0){
+      this.chosenRanksData = this.arrayMobile[0]
     } else if(this.tab1Index == 0 && this.tab2Index == 1){
-      this.chosenRanksData = this.arrayMobile[2]
-    } else if(this.tab1Index == 1 && this.tab2Index == 1){
       this.chosenRanksData = this.arrayMobile[3]
+    } else if(this.tab1Index == 1 && this.tab2Index == 1){
+      this.chosenRanksData = this.arrayMobile[2]
     }
     console.log(this.chosenRanksData)
   }

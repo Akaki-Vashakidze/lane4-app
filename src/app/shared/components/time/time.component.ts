@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './time.component.scss'
 })
 export class TimeComponent implements OnInit {
-  @Input() timeObj !: Time;
+  @Input() timeObj !: Time | any;
 
   ngOnInit(): void {
     this.timeObj = this.convertToNumbers(this.timeObj)

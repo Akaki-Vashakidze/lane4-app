@@ -86,7 +86,7 @@
                             <div *ngIf="row.distance" class="MbRow">
                                 <div class="rowPart firstPartRow">{{row.distance}}</div>
                                 <app-time class="rowPart"
-                                    [timeObj]="row?.ranks?.['GR']?.time.seconds ? row?.ranks?.['GR']?.time : ''"></app-time>
+                                    [timeObj]="row?.ranks?.['GR']?.time"></app-time>
                                 <div class="rowPart">{{row?.ranks?.['GR']?.athleteName}}</div>
                             </div>
                         </div>

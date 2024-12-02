@@ -117,8 +117,8 @@ export class AthleteResultsComponent implements OnInit{
   }
 
   showMoreResults(distance:string, style:string, poolLength:any){
-    console.log(distance,style,this.athleteId,poolLength)
-    this._router.navigate([`athlete/${style}/${distance}/${this.athleteId}/${poolLength}`])
+    console.log(distance,style,this.selectedAthlete._id,poolLength)
+    this._router.navigate([`athlete/${style}/${distance}/${this.selectedAthlete._id}/${poolLength}`])
   }
 
   onSelect(event:any){

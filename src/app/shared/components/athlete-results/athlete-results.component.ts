@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,7 +7,7 @@ import { TimeComponent } from '../time/time.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Paging } from '../../classes/classes';
 import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-athlete-results',
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   templateUrl: './athlete-results.component.html',
   styleUrl: './athlete-results.component.scss'
 })
-export class AthleteResultsComponent {
+export class AthleteResultsComponent implements OnInit{
   currentYear: number;
   yearsForSelect: any[] = []
   resultsForTable: any = [];
@@ -46,7 +46,7 @@ export class AthleteResultsComponent {
     '200MEDLEY': {},
     '400MEDLEY': {},
   };
-  constructor(public _sharedService: SharedService, public _router:Router) {
+  constructor(public activatedRoute:ActivatedRoute,public _sharedService: SharedService, public _router:Router) {
     _sharedService.getAthletes({data:{userType:'',searchQuery:''}, paging: new Paging(0,10000)}).subscribe(item => {
       this.allAthletes.set(item.docs)
     })
@@ -54,19 +54,36 @@ export class AthleteResultsComponent {
     this.populateYearsForSelect();
   }
 
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      console.log(params['athlete']); 
+      if(params['athlete']) {
+        this.getAthleteResults(params['athlete'])
+      }
+    });
+  }
+
   getAthleteResults(athlete:any){
-    this._sharedService.getAthleteResults(athlete._id).subscribe(item => {
+    this._sharedService.getAthleteResults(athlete).subscribe(item => {
       console.log(item)
+      this.selectedAthlete = item.data.athlete;
       let data: any = [];
+      console.log(this.map1)
       Object.keys(this.map1).forEach(event => {
-        if(item.data[event]) {
-          data.push(item.data[event])
+        if(item.data.results[event]) {
+          data.push(item.data.results[event])
         }
       })
-
       this.resultsForTable = data;
       this.filteredArr = data;
     })
+  }
+
+  changeQueryParams(newParams: { [key: string]: any }) {
+    this._router.navigate([], {
+      queryParams: newParams,
+      queryParamsHandling: 'merge',
+    });
   }
 
   onSelect1(event: any) {
@@ -105,9 +122,9 @@ export class AthleteResultsComponent {
   }
 
   onSelect(event:any){
-    this.getAthleteResults(event)
-    this.selectedAthlete = event;
+    // this.selectedAthlete = event;
     this.athleteId = event._id
+    this.changeQueryParams({'athlete':[event._id]})
   }
 
   openResInfo(index:number, course:string){

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
-const STORAGE_KEY = 'language';
+const STORAGE_KEY = 'lane4language';
 
 @Injectable()
 export class I18nService {
@@ -20,7 +20,7 @@ export class I18nService {
       const preferredLang = defaultLang ? browserLang : 'en';
       currentLanguage = preferredLang;
     }
-
+    
     this.translateService.setDefaultLang(currentLanguage);
     this.translateService.use(currentLanguage);
   }

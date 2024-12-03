@@ -5,9 +5,9 @@
 <div class="CompetitionsListSection" [ngClass]="BackgroundImg && backgroundColor ? 'stylesForCompetitionsPage backgroundColorTrue shadow1' : 'hideOnMobile'" 
   *ngIf="competitions.length > 0">
   <div class="competitionsList">
-    <div class="header headerFont" *ngIf="!BackgroundImg">
+    <div class="header headerFont" [style]="BackgroundImg ? 'justify-content:center' : ''">
       <div class="title textShadow1">{{'Competitions' | translate}}</div>
-      <app-button style="border-radius: 20px;" class="shadow1" text="all Copetitions" height="45px"></app-button>
+      <app-button *ngIf="!BackgroundImg" style="border-radius: 20px;" class="shadow1" text="all Copetitions" height="45px"></app-button>
     </div>
     <div class="body">
       <app-competition-card paddingBottom="20px" class="shadow1 borderRadius20" *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"
@@ -43,7 +43,7 @@
         width="300px" 
         height="300px">
       </app-costumer-card> -->
-            <app-competition-card [title]="content.event.title" [text]="content.event.description"
+            <app-competition-card paddingBottom="17px" [title]="content.event.title" [text]="content.event.description"
               [EventId]="content.event._id" [date]="content.event.startDate">
             </app-competition-card>
           </div>

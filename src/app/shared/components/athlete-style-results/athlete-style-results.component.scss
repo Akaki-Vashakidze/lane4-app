@@ -98,7 +98,25 @@
 
   .resHeader {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
     padding: 10px;
     background-color: var(--light-blue1);
   }
+
+  .rowsPC {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    padding: 10px;
+  }
+
+  .result:nth-child(odd) {
+    background-color: #fff;
+    color: var(--font-Blue);
+}
+
+.result:nth-child(even) {
+    background-color: var(--light-blue2);
+    color: var(--font-Blue);
+}
+
+  

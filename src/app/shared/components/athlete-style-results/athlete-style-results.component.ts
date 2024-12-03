@@ -4,31 +4,37 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { TimeComponent } from '../time/time.component';
+import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-athlete-style-results',
   standalone: true,
-  imports: [CommonModule, TranslateModule, TimeComponent],
+  imports: [CommonModule, TranslateModule, TimeComponent, LoaderSpinnerComponent],
   templateUrl: './athlete-style-results.component.html',
-  styleUrl: './athlete-style-results.component.scss'
+  styleUrls: ['./athlete-style-results.component.scss']
 })
 export class AthleteStyleResultsComponent {
-  athleteId!:any;
-  poolLength!:any;
-  distance!:any;
-  stroke!:any;
-  athlete!:any;
+  athleteId!: any;
+  poolLength!: any;
+  distance!: any;
+  stroke!: any;
+  isLoading!:boolean;
+  athlete!: any;
   athleteStrokeData = signal<any>(null);
-  constructor(public _sharedService:SharedService,private route: ActivatedRoute){
+
+  constructor(public _sharedService: SharedService, private route: ActivatedRoute) {
     this.athleteId = this.route.snapshot.paramMap.get('athleteId');
     this.poolLength = this.route.snapshot.paramMap.get('poolLength');
     this.distance = this.route.snapshot.paramMap.get('distance');
     this.stroke = this.route.snapshot.paramMap.get('stroke');
-    
-    _sharedService.getAthleteStrokeRes(this.athleteId,this.poolLength,this.distance,this.stroke).subscribe(item =>{
-      console.log(item)
-      this.athleteStrokeData.set(item.data)
-      this.athlete = this.athleteStrokeData()[0].athlete
-    })
+    this.isLoading = true;
+    _sharedService.getAthleteStrokeRes(this.athleteId, this.poolLength, this.distance, this.stroke).subscribe(item => {
+      this.isLoading = false;
+      const sortedData = item.data.sort((a: any, b: any) => a.result.totalMilliseconds - b.result.totalMilliseconds);
+      
+      this.athleteStrokeData.set(sortedData);
+      
+      this.athlete = this.athleteStrokeData()[0].athlete;
+    });
   }
 }

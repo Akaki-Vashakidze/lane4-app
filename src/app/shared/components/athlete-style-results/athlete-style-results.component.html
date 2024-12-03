@@ -1,29 +1,30 @@
-<div class="athleteCont">
+<app-loader-spinner *ngIf="isLoading" color="black" height="300px"></app-loader-spinner>
+
+<div *ngIf="!isLoading" class="athleteCont shadow1">
     <div class="athleteBio">
         <img width="100px" src="/assets/imgs/men.svg"/>
         <div class="bio" *ngIf="athleteStrokeData()">
             <div class="name">{{athlete?.lastName + ' ' + athlete?.firstName}}</div>
             <div class="bornYear">{{athlete?.birthDate | date:'yyyy'}}</div>
             <div class="stroke">{{athleteStrokeData()[0]?.race?.distance + ' '}}{{athleteStrokeData()[0]?.race?.style | translate}}</div>
+            <div class="stroke">{{athleteStrokeData()[0]?.partition?.poolLength}}</div>
         </div>
     </div>
     <div class="results">
         <div class="resHeader">
-            <div class="row">{{'Event' | translate}}</div>
-            <div class="row">{{'course' | translate}}</div>
-            <div class="row">{{'result' | translate}}</div>
+            <div class="row">{{'results' | translate}}</div>
             <div class="row">{{'points' | translate}}</div>
             <div class="row">{{'date' | translate}}</div>
             <div class="row">{{'meet' | translate}}</div>
         </div>
-        <div class="result" *ngFor="let res of athleteStrokeData()">
-            <div class="rowsPC">
-                <div class="rows showMoreResults">{{res['LONG'][0].race.distance + ' '}}{{res['LONG'][0].race.style + '_Short' | translate}}</div>
-                <div class="rows">{{res['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
-                <app-time class="rows showMoreResults" [timeObj]="res['LONG'][0].result"></app-time>
-                <div class="rows">{{res['LONG'][0].resultPoint}}</div>
-                <div class="rows">{{res['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
-                <div class="rows">{{res['LONG'][0].event.title}}</div>
+        <div class="resCont2">
+            <div class="result" *ngFor="let res of athleteStrokeData()">
+                <div class="rowsPC">
+                    <app-time class="rows showMoreResults" [timeObj]="res.result"></app-time>
+                    <div class="rows">{{res.resultPoint}}</div>
+                    <div class="rows">{{res.partition.startDate | date:'yyyy MMMM d' }}</div>
+                    <div class="rows">{{res.event.title}}</div>
+                </div>
             </div>
         </div>
     </div>

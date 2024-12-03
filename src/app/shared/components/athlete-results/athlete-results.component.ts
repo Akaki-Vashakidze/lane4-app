@@ -8,11 +8,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Paging } from '../../classes/classes';
 import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 
 @Component({
   selector: 'app-athlete-results',
   standalone: true,
-  imports: [CommonModule, MatIconModule, SelectComponent, TranslateModule, TimeComponent, CustomAutocompleteComponent],
+  imports: [CommonModule, MatIconModule, SelectComponent,LoaderSpinnerComponent, TranslateModule, TimeComponent, CustomAutocompleteComponent],
   templateUrl: './athlete-results.component.html',
   styleUrl: './athlete-results.component.scss'
 })
@@ -23,6 +24,7 @@ export class AthleteResultsComponent implements OnInit{
   courseSelect: string = 'All';
   filteredArr!: any[];
   selectedAthlete!:any;
+  isLoading!:boolean;
   athleteId!:string;
   resInfoIndex !: string;
   allAthletes = signal<any>([])
@@ -59,18 +61,22 @@ export class AthleteResultsComponent implements OnInit{
       console.log(params['athlete']); 
       if(params['athlete']) {
         this.getAthleteResults(params['athlete'])
+      } else {
+        this.isLoading = false;
       }
     });
   }
 
   getAthleteResults(athlete:any){
+    this.isLoading = true;
     this._sharedService.getAthleteResults(athlete).subscribe(item => {
+      this.isLoading = false;
       console.log(item)
       this.selectedAthlete = item.data.athlete;
       let data: any = [];
       console.log(this.map1)
       Object.keys(this.map1).forEach(event => {
-        if(item.data.results[event]) {
+        if(item?.data?.results[event]) {
           data.push(item.data.results[event])
         }
       })

@@ -12,7 +12,8 @@ import { RouterModule } from '@angular/router';
 export class ButtonComponent {
   @Input() text: string = 'Click';
   @Input() height: string = '30px';
-  @Input() width: string = '100px';
+  @Input() padding: string = '10px 20px';
+  @Input() width: string = '100%';
   @Input() fontSize: string = '12px';
   @Input() borderRadius: string = '50px';
 }

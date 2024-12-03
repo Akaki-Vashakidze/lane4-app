@@ -1,15 +1,16 @@
-<div class="MaskBlureImgCont" *ngIf=" BackgroundImg">
+<div class="MaskBlureImgCont" *ngIf="BackgroundImg">
   <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
 </div>
 
-<div class="CompetitionsListSection" [ngClass]="BackgroundImg ? 'stylesForCompetitionsPage shadow1' : 'hideOnMobile'"
+<div class="CompetitionsListSection" [ngClass]="BackgroundImg && backgroundColor ? 'stylesForCompetitionsPage backgroundColorTrue shadow1' : 'hideOnMobile'" 
   *ngIf="competitions.length > 0">
   <div class="competitionsList">
-    <div class="header headerFont">
-      <div class="title">{{'Competitions' | translate}}</div>
+    <div class="header headerFont" *ngIf="!BackgroundImg">
+      <div class="title textShadow1">{{'Competitions' | translate}}</div>
+      <app-button style="border-radius: 20px;" class="shadow1" text="all Copetitions" height="45px"></app-button>
     </div>
     <div class="body">
-      <app-competition-card *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"
+      <app-competition-card paddingBottom="20px" class="shadow1 borderRadius20" *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"
         [text]="comp.event.description" [EventId]="comp.event._id" [date]="comp.event.startDate">
       </app-competition-card>
     </div>

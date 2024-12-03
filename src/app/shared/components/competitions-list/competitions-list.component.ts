@@ -14,13 +14,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-competitions-list',
   standalone: true,
-  imports: [CommonModule,CompetitionCardComponent,ButtonComponent, LoaderSpinnerComponent, TranslateModule,CostumerCardComponent,CarouselModule],
+  imports: [CommonModule,CompetitionCardComponent, ButtonComponent ,ButtonComponent, LoaderSpinnerComponent, TranslateModule,CostumerCardComponent,CarouselModule],
   templateUrl: './competitions-list.component.html',
   styleUrl: './competitions-list.component.scss'
 })
 export class CompetitionsListComponent {
   @ViewChild('customOwl', { static: false }) customOwl!: any;
   @Input() BackgroundImg: boolean = true;
+  @Input() backgroundColor: boolean = true;
   constructor(private sharedService:SharedService, public _router:Router){
     sharedService.getCompetitions().subscribe(item => {
       this.competitions = [...item];

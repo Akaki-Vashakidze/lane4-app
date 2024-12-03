@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ export class AthleteStyleResultsComponent {
   distance!:any;
   stroke!:any;
   athlete!:any;
-  athleteStrokeData!:any;
+  athleteStrokeData = signal<any>(null);
   constructor(public _sharedService:SharedService,private route: ActivatedRoute){
     this.athleteId = this.route.snapshot.paramMap.get('athleteId');
     this.poolLength = this.route.snapshot.paramMap.get('poolLength');
@@ -27,8 +27,8 @@ export class AthleteStyleResultsComponent {
     
     _sharedService.getAthleteStrokeRes(this.athleteId,this.poolLength,this.distance,this.stroke).subscribe(item =>{
       console.log(item)
-      this.athleteStrokeData = item.data
-      this.athlete = this.athleteStrokeData[0].athlete
+      this.athleteStrokeData.set(item.data)
+      this.athlete = this.athleteStrokeData()[0].athlete
     })
   }
 }

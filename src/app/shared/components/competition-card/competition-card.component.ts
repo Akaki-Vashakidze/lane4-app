@@ -18,6 +18,7 @@ export class CompetitionCardComponent {
   @Input() EventId: string = '';
   @Input() date!:Date;
   @Input() height: string = '100%';
+  @Input() paddingBottom: string = '';
   @Input() width: string = '100%';
   @Input() fontSize: string = '12px';
 

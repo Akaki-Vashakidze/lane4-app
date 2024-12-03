@@ -1,12 +1,14 @@
-<div class="competitionCard" [style.height]="height">
-    <div class="title headerFont">{{title}}</div>
-    <div class="text">{{text}}</div>
-    <div class="buttons">
-        <app-button borderRadius="10px" class="headerFont" [text]="'Results' | translate" (click)="navigateToCompResults()"></app-button>
-        <app-button borderRadius="10px" class="headerFont" [text]="'PDF' | translate" (click)="getRankingsPdf()"></app-button>
-    </div>
-    <div class="date">
-        <div class="dates">{{date | date:'yyyy-MM-dd'}}</div>
-        <img style="cursor: pointer; width: fit-content;" src="assets/imgs/arrow.svg" alt="">
+<div class="competitionCard" [style.paddingBottom]="paddingBottom" [style.height]="height">
+    <div class="content">
+        <div class="title headerFont">{{title}}</div>
+        <div class="text">{{text}}</div>
+        <div class="buttons">
+            <app-button borderRadius="10px" class="headerFont" [text]="'Results' | translate" (click)="navigateToCompResults()"></app-button>
+            <app-button borderRadius="10px" class="headerFont" [text]="'PDF' | translate" (click)="getRankingsPdf()"></app-button>
+        </div>
+        <div class="date">
+            <div class="dates">{{date | date:'yyyy-MM-dd'}}</div>
+            <img style="cursor: pointer; width: fit-content;" src="assets/imgs/arrow.svg" alt="">
+        </div>
     </div>
 </div>

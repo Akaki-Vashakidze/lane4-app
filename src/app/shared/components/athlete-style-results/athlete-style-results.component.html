@@ -1,10 +1,10 @@
 <div class="athleteCont">
     <div class="athleteBio">
         <img width="100px" src="/assets/imgs/men.svg"/>
-        <div class="bio" *ngIf="athleteStrokeData">
+        <div class="bio" *ngIf="athleteStrokeData()">
             <div class="name">{{athlete?.lastName + ' ' + athlete?.firstName}}</div>
             <div class="bornYear">{{athlete?.birthDate | date:'yyyy'}}</div>
-            <div class="stroke">{{athleteStrokeData[0]?.race?.distance + ' '}}{{athleteStrokeData[0]?.race?.style | translate}}</div>
+            <div class="stroke">{{athleteStrokeData()[0]?.race?.distance + ' '}}{{athleteStrokeData()[0]?.race?.style | translate}}</div>
         </div>
     </div>
     <div class="results">
@@ -16,15 +16,15 @@
             <div class="row">{{'date' | translate}}</div>
             <div class="row">{{'meet' | translate}}</div>
         </div>
-        <div class="result" *ngFor="let res of athleteStrokeData">
-            <!-- <div class="rowsPC">
-                <div class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)">{{item['LONG'][0].race.distance + ' '}}{{item['LONG'][0].race.style + '_Short' | translate}}</div>
-                <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
-                <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)" [timeObj]="item['LONG'][0].result"></app-time>
-                <div class="rows">{{item['LONG'][0].resultPoint}}</div>
-                <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
-                <div class="rows">{{item['LONG'][0].event.title}}</div>
-            </div> -->
+        <div class="result" *ngFor="let res of athleteStrokeData()">
+            <div class="rowsPC">
+                <div class="rows showMoreResults">{{res['LONG'][0].race.distance + ' '}}{{res['LONG'][0].race.style + '_Short' | translate}}</div>
+                <div class="rows">{{res['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
+                <app-time class="rows showMoreResults" [timeObj]="res['LONG'][0].result"></app-time>
+                <div class="rows">{{res['LONG'][0].resultPoint}}</div>
+                <div class="rows">{{res['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
+                <div class="rows">{{res['LONG'][0].event.title}}</div>
+            </div>
         </div>
     </div>
 

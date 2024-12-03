@@ -29,9 +29,10 @@
     
     .lane4LogoFooter img {
         cursor: pointer;
+        position: relative;
+        top: -12px;
     }
 
-    
     .headers {
         width: 100%;
     }
@@ -79,10 +80,6 @@
         cursor: pointer;
     }
     
-    .footerHeaders a:hover {
-        color: var(--dark-blue3);
-    }
-
     .emailInput {
         display: none;
     }

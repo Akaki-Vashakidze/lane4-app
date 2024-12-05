@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //  apiUri: 'https://poolshark-api-bvtsv.ondigitalocean.app',
-  apiUri: 'https://plankton-app-gk36s.ondigitalocean.app',
+  apiUri: 'http://localhost:8080',
 };
 
 /*

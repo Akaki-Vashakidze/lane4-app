@@ -39,6 +39,19 @@ export class CompetitionResultsComponent {
         this.eventId = params.id
       }
     })
+    this.route.queryParams.subscribe(params => {
+      if (params['title']) {
+        this.title.setTitle(`${this.translate.instant("Results")}: ${params['title']}`);
+        // Add or update Open Graph tags
+        this.meta.addTags([
+          { property: 'og:title', content: `${params['title']}` },
+          // { property: 'og:description', content: `${this.event.description}` },
+          { property: 'og:image', content: 'https://lane4.ge/assets/imgs/AboutUsSection.svg' },
+          { property: 'og:url', content: location.href },
+          { property: 'og:type', content: 'https://lane4.ge' }
+        ]);
+      }
+    })
   }
   async ngOnInit() {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
@@ -55,10 +68,8 @@ export class CompetitionResultsComponent {
       this.event = res.event;
       this.partitions = res.partitions;
       this.partitionTitles = this.partitions.map(item => item.title)
-      console.log(this.partitionTitles)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      this._addMeta();
     })
 
 
@@ -90,18 +101,5 @@ export class CompetitionResultsComponent {
   onTabChanged(event: any) {
     this.resultsOpen = 999;
     this.chosenPartition.set(this.partitions[event.index])
-  }
-
-  private _addMeta() {
-    // Set the title of the page
-    this.title.setTitle(`${this.translate.instant("Results")}: ${this.event.title}`);
-    // Add or update Open Graph tags
-    this.meta.addTags([
-      { property: 'og:title', content: `${this.event.title}` },
-      { property: 'og:description', content: `${this.event.description}` },
-      { property: 'og:image', content: 'https://lane4.ge/assets/imgs/AboutUsSection.svg' },
-      { property: 'og:url', content: location.href },
-      { property: 'og:type', content: 'https://lane4.ge' }
-    ]);
   }
 }

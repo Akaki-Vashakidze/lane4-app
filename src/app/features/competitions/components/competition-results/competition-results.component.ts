@@ -29,27 +29,11 @@ export class CompetitionResultsComponent {
   allAthletesInHeatsArr: Lane[] = []
   constructor(
     private route: ActivatedRoute,
-    private _competitionService: CompetitionService,
-    private meta: Meta,
-    private title: Title,
-    private translate: TranslateService
+    private _competitionService: CompetitionService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.eventId = params.id
-      }
-    })
-    this.route.queryParams.subscribe(params => {
-      if (params['title']) {
-        this.title.setTitle(`${this.translate.instant("Results")}: ${params['title']}`);
-        // Add or update Open Graph tags
-        this.meta.addTags([
-          { property: 'og:title', content: `${params['title']}` },
-          // { property: 'og:description', content: `${this.event.description}` },
-          { property: 'og:image', content: 'https://lane4.ge/assets/imgs/AboutUsSection.svg' },
-          { property: 'og:url', content: location.href },
-          { property: 'og:type', content: 'https://lane4.ge' }
-        ]);
       }
     })
   }

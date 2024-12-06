@@ -1,0 +1,55 @@
+
+.CompetitionsListSection {
+    position: relative;
+    width: 85%;
+    margin: auto;
+    padding: 25px;
+    z-index: 100;
+    background-color: var(--light-blue2);
+    border-radius: 20px;
+}
+
+.expansionCompetitions {
+    margin-bottom: 10px;
+}
+
+::ng-deep .CompetitionsListSection .mat-expansion-panel {
+    border-radius: 10px!important;
+}
+
+.header-content {
+    width: 100%;
+    padding: 0px 10px;
+}
+
+.compTitle1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+::ng-deep .CompetitionsListSection .mat-expansion-panel-body {
+    padding: 5px 15px 15px 15px;
+}
+
+@media (max-width:768px){
+    ::ng-deep .CompetitionsListSection .mat-expansion-panel-header {
+        height: 70px;
+    }   
+
+    .compTitle1 {
+        display: grid;
+        grid-template-columns: 70% 30%;
+    }
+
+    .CompetitionsListSection{
+        padding:10px;
+        width: 95%;
+    }
+
+    ::ng-deep .CompetitionsListSection .mat-expansion-panel-header {
+        padding: 0px 10px;
+    }
+}

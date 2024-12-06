@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { EventDetails, Time } from '../../../shared/interfaces/interfaces';
+import { Event, EventDetails, Time } from '../../../shared/interfaces/interfaces';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class CompetitionService {
 
   getAllCompetitions() {
     return this.httpClient
-      .get<Event[]>(`/consoleApi/event/all`).pipe(
+      .get<Event[] | []>(`/consoleApi/event/all`).pipe(
         tap(item => console.log(item))
       )
   }

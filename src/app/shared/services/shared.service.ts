@@ -17,13 +17,6 @@ export class SharedService {
       );
   }
 
-  getAllCompetitions() {
-    return this.httpClient
-      .get<Event[]>(`/consoleApi/event/all`).pipe(
-        tap(item => console.log(item))
-      )
-  }
-
   getEventResultsPDF(eventId:string) {
     return this.httpClient.get('/consoleApi/event/eventPdf/' + eventId, { responseType: 'blob' }).pipe(
       map(res => {

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUri: 'https://poolshark-api-bvtsv.ondigitalocean.app',
+  apiUri: 'https://lobster-app-xx9ip.ondigitalocean.app/',
 };

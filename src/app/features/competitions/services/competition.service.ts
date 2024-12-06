@@ -22,6 +22,11 @@ export class CompetitionService {
     return this.httpClient.get<any[]>(`/consoleApi/event/planned`);
   }
 
+
+  getCompetitionStartList(id:string){
+    return this.httpClient.get<any>(`/consoleApi/event/${id}/participants`);
+  }
+
   getAllCompetitions() {
     return this.httpClient
       .get<Event[] | []>(`/consoleApi/event/all`).pipe(

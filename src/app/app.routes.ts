@@ -10,6 +10,7 @@ import { ClassificationContainerComponent } from './shared/components/classifica
 import { AthleteResultsComponent } from './shared/components/athlete-results/athlete-results.component';
 import { AthleteStyleResultsComponent } from './shared/components/athlete-style-results/athlete-style-results.component';
 import { NewCompetitionsPanelComponent } from './shared/new-competitions-panel/new-competitions-panel.component';
+import { StartListComponent } from './features/competitions/components/start-list/start-list.component';
 
 export const routes: Routes = [
     {
@@ -68,6 +69,15 @@ export const routes: Routes = [
                 {
                   path: '',
                   component: CompetitionResultsComponent,
+                },
+              ],
+            },
+            {
+              path: 'startList/:id',
+              children: [
+                {
+                  path: '',
+                  component: StartListComponent,
                 },
               ],
             },

@@ -31,7 +31,7 @@
 }
 
 ::ng-deep .CompetitionsListSection .mat-expansion-panel-body {
-    padding: 5px 15px 15px 15px;
+    padding: 5px 15px 15px 35px;
 }
 
 .labels {
@@ -41,7 +41,7 @@
 
 .actionsComp {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     gap: 10px;
 }
 

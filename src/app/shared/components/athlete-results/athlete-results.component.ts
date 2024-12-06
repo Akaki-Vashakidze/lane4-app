@@ -58,7 +58,6 @@ export class AthleteResultsComponent implements OnInit{
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
-      console.log(params['athlete']); 
       if(params['athlete']) {
         this.getAthleteResults(params['athlete'])
       } else {

@@ -1,5 +1,6 @@
 <div class="header">
     <div *ngIf="header" class="headerText headerFont">{{header}}</div>
+    <div *ngIf="header" class="headerText headerFont" style="font-size: 15px; padding-top: 0px;">{{subHeader}}</div>
     <div [style.width]="tabsWidth" class="tabs">
         <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)" [ngClass]="{'activeTab': i === activeTabIndex}">{{tab | translate}}</div>
     </div>

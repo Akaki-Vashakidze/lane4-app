@@ -7,13 +7,13 @@ import { LoaderSpinnerComponent } from '../components/loader-spinner/loader-spin
 import { TranslateModule } from '@ngx-translate/core';
 import { LabelComponent } from '../components/label/label.component';
 import { ButtonComponent } from "../components/button/button.component";
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-new-competitions-panel',
   standalone: true,
-  imports: [CommonModule, MatExpansionModule, LoaderSpinnerComponent, ButtonComponent,TranslateModule, LabelComponent, ButtonComponent],
+  imports: [CommonModule, RouterModule, MatExpansionModule, LoaderSpinnerComponent, ButtonComponent,TranslateModule, LabelComponent, ButtonComponent],
   templateUrl: './new-competitions-panel.component.html',
   styleUrl: './new-competitions-panel.component.scss'
 })

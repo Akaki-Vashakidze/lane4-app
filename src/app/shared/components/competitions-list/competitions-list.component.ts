@@ -24,7 +24,7 @@ export class CompetitionsListComponent {
   @Input() backgroundColor: boolean = true;
   constructor(private sharedService:SharedService, public _router:Router){
     sharedService.getCompetitions().subscribe(item => {
-      this.competitions = [...item];
+      this.competitions = item;
     })
   }
   public competitions:LiveEvent[] = [];

@@ -72,5 +72,8 @@
   "course":"Course",
   "date":"Date",
   "meet":"Meet",
-  "Search athlete":"Search Athlete"
+  "Search athlete":"Search Athlete",
+  "all_Ccmpetitions":"All competitions",
+  "swim_classification":"Swimming, georgian Classifications",
+  "classification_info":"The standard for an international class sports master (World Championship 'B' standard) is recorded only through an electronic system at any distance. The standard for a sports master is recorded only through an electronic system at a 50-meter distance."
 }

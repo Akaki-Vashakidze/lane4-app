@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ContactMessage, GetRanksData, LiveEvent, SearchAthletePayload, WRTsData } from '../interfaces/interfaces';
 
 @Injectable({

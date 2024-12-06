@@ -9,6 +9,7 @@ import { AbousUsComponent } from './shared/components/abous-us/abous-us.componen
 import { ClassificationContainerComponent } from './shared/components/classificationComps/classification-container/classification-container.component';
 import { AthleteResultsComponent } from './shared/components/athlete-results/athlete-results.component';
 import { AthleteStyleResultsComponent } from './shared/components/athlete-style-results/athlete-style-results.component';
+import { NewCompetitionsPanelComponent } from './shared/new-competitions-panel/new-competitions-panel.component';
 
 export const routes: Routes = [
     {
@@ -57,7 +58,7 @@ export const routes: Routes = [
               children: [
                 {
                   path: '',
-                  component: CompetitionsListComponent,
+                  component: NewCompetitionsPanelComponent,
                 },
               ],
             },

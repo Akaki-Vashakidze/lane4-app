@@ -32,6 +32,6 @@ export class CompetitionCardComponent {
   }
 
   navigateToCompResults() {
-    this._router.navigate(['/competitions/results/' + this.EventId], { queryParams: { title: this.title } })
+    this._router.navigate(['/competitions/results/' + this.EventId])
   }
 }

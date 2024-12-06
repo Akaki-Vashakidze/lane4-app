@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { ContactMessage, GetRanksData, LiveEvent, SearchAthletePayload, WRTsData } from '../interfaces/interfaces';
 
 @Injectable({
@@ -15,6 +15,13 @@ export class SharedService {
       .get<LiveEvent[]>(`/consoleApi/live/events`).pipe(
         map(events => events.filter(event => event.event))
       );
+  }
+
+  getAllCompetitions() {
+    return this.httpClient
+      .get<Event[]>(`/consoleApi/event/all`).pipe(
+        tap(item => console.log(item))
+      )
   }
 
   getEventResultsPDF(eventId:string) {

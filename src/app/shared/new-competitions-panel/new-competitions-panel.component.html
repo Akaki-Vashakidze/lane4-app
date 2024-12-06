@@ -9,6 +9,7 @@
     *ngIf="competitions().length > 0">
 
     <div class="compsContainer">
+        <div class="competitionsHeader headerFont">{{'competitions' | translate}}</div>
         <mat-accordion>
             <mat-expansion-panel class="expansionCompetitions" *ngFor="let competition of competitions()">
               <mat-expansion-panel-header>
@@ -20,7 +21,15 @@
                 </div>
               </mat-expansion-panel-header>
               <div class="panel-content">
-                <span class="header-subtitle">{{competition.address}}</span>
+                <div class="labels">
+                    <app-label [label]="'address' | translate" [value]="competition.address"></app-label>
+                    <app-label [label]="'description' | translate" [value]="competition.description"></app-label>
+                </div>
+                <div class="actionsComp">
+                    <app-button [text]="'startlist' | translate" width="100%"></app-button>
+                    <app-button (click)="navigateToCompResults(competition._id)" [text]="'results' | translate" width="100%"></app-button>
+                    <app-button (click)="getRankingsPdf(competition._id)" [text]="'pdf' | translate" results width="100%"></app-button>
+                </div>
               </div>
             </mat-expansion-panel>
         </mat-accordion>

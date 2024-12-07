@@ -1,14 +1,17 @@
 <div class="header_container">
-  <div class="language-selector">
-    <button class="dropdown-btn" (click)="toggleDropdown()">
-      <span class="icon"><img src="assets/imgs/Globe.svg" alt="Globe icon"></span> {{language}}
-      <span class="arrow">&#9660;</span>
+  <div class="language-selector gapLane">
+    <button mat-button [matMenuTriggerFor]="menuLang" class="dropdown-btn">
+      <span class="icon">
+        <img src="assets/imgs/Globe.svg" alt="Globe icon">
+      </span>
+      <span class="hideOnMobile">{{language}}</span>
+      <span class="arrow hideOnMobile">&#9660;</span>
     </button>
-
-    <ul class="dropdown-content" *ngIf="dropdownOpen">
-      <li (click)="switchLanguage('en')">English</li>
-      <li (click)="switchLanguage('ka')">ქართული</li>
-    </ul>
+  
+    <mat-menu #menuLang="matMenu">
+      <button mat-menu-item (click)="switchLanguage('en')">English</button>
+      <button mat-menu-item (click)="switchLanguage('ka')">ქართული</button>
+    </mat-menu>
   </div>
 
   <div class="header">
@@ -43,17 +46,18 @@
       <a [routerLink]="header.route" (click)="chosenItem = header.title">{{header.title | translate}}</a>
     </div>
   </div>
-  <div class="translate">
-    <div class="language-selector">
-      <button class="dropdown-btn" (click)="toggleDropdown()">
-        <span class="icon"><img src="assets/imgs/Globe.svg" alt="Globe icon"></span> {{language}}
-        <span class="arrow">&#9660;</span>
-      </button>
+  <div class="language-selector gapLane">
+    <button mat-button [matMenuTriggerFor]="menuLangMobile" class="dropdown-btn">
+      <span class="icon">
+        <img src="assets/imgs/Globe.svg" alt="Globe icon">
+      </span>
+      <span class="hideOnMobile">{{language}}</span>
+      <span class="arrow hideOnMobile">&#9660;</span>
+    </button>
   
-      <ul class="dropdown-content" *ngIf="dropdownOpen">
-        <li (click)="switchLanguage('en')">English</li>
-        <li (click)="switchLanguage('ka')">ქართული</li>
-      </ul>
-    </div>
+    <mat-menu #menuLangMobile="matMenu">
+      <button mat-menu-item (click)="switchLanguage('en')">English</button>
+      <button mat-menu-item (click)="switchLanguage('ka')">ქართული</button>
+    </mat-menu>
   </div>
 </div>

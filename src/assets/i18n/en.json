@@ -81,5 +81,7 @@
   "pdf":"Pdf",
   "startlist":"Start list",
   "description":"description",
-  "address":"Address"
+  "address":"Address",
+  "(qualification)":"(Qualification)",
+  "(final)":"(Final)"
 }

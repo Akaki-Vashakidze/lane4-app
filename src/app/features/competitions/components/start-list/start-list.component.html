@@ -16,7 +16,12 @@
                             <div class="resHeader">{{race.gender | translate }} {{(race.type == 'INDIVIDUAL' ? race.distance : (
                                 '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
-                                translate)}}{{race.hasFinals ? ' (საკვალიფიკაციო)' : ''}}</div>
+                                translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
+
+                            <!-- <div *ngIf="race.parentRace" class="resHeader">{{race.gender | translate }} {{(race.type == 'INDIVIDUAL' ? race.distance : (
+                                '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
+                                '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
+                                translate)}}{{race.hasFinals ? ' (ფინალი)' : ''}}</div> -->
                         </div>
                         <!-- <div>
                             <div class="finished"><mat-icon class="check_circle_outline"

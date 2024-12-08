@@ -81,5 +81,7 @@
   "pdf":"Pdf",
   "startlist":"სტარტ ლისტი",
   "description":"აღწერა",
-  "address":"მისამართი"
+  "address":"მისამართი",
+  "(qualification)":"(საკვალიფიკაციო)",
+  "(final)":"(ფინალი)"
 }

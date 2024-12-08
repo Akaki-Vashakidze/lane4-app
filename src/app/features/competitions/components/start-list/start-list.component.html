@@ -17,11 +17,6 @@
                                 '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
                                 translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
-
-                            <!-- <div *ngIf="race.parentRace" class="resHeader">{{race.gender | translate }} {{(race.type == 'INDIVIDUAL' ? race.distance : (
-                                '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
-                                '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
-                                translate)}}{{race.hasFinals ? ' (ფინალი)' : ''}}</div> -->
                         </div>
                         <!-- <div>
                             <div class="finished"><mat-icon class="check_circle_outline"
@@ -41,19 +36,19 @@
                             <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
                         </div>
                         } @else {
-                        <div>No results yet.</div>
+                        <div>{{'no_res_yet' | translate}}</div>
                         }
                         <div class="RaceResultsContBody">
                             @for (athlete of allAthletesInHeatsArr; track $index) {
                             <div class="athleteResult">
-                                <div class="athlete">{{$index + 1}}. {{athlete?.participant?.lastName}}
-                                    {{athlete?.participant?.firstName || athlete?.participant?.title}}</div>
-                                <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
-                                <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
-                                    athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div>
-                                <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">
-                                    {{athlete?.resultPoint}}</div>
-                                <div class="result" *ngIf="athlete.resultType != 'TIME'">{{athlete?.resultType}}</div>
+                                <div class="athlete">{{$index + 1}}. {{athlete?.athlete?.lastName}}
+                                    {{athlete?.athlete?.firstName }}</div>
+                                <div class="birthDate">{{athlete?.athlete?.birthDate | date:'yyyy'}}</div>
+                                <!-- <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
+                                    athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div> -->
+                                <div class="points" *ngIf="athlete?.qualificationTime">
+                                    {{athlete?.qualificationTime?.minutes + ':' + athlete?.qualificationTime?.seconds + '.' + athlete?.qualificationTime?.milliseconds}}</div>
+                                <div class="result" *ngIf="athlete.point">{{athlete?.point}}</div>
                             </div>
                             }
                         </div>

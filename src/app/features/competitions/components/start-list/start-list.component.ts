@@ -12,7 +12,7 @@
 
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventPartition, Lane, Heat, Race } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Lane, Heat, Race, StartListParticipant } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -37,8 +37,8 @@ export class StartListComponent {
   partitions!: EventPartition[];
   partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
-  allChosenResults!: Lane[];
-  allAthletesInHeatsArr: Lane[] = []
+  allChosenResults!: StartListParticipant[];
+  allAthletesInHeatsArr: StartListParticipant[] = []
   constructor(
     private route: ActivatedRoute,
     private _competitionService: CompetitionService

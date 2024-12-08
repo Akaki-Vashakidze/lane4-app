@@ -158,6 +158,34 @@ export interface EventDetails {
       place:any
       totalSeconds:any;
     }
+
+    export interface StartListParticipant {
+      _id: string,
+      team: {
+          _id: string,
+          title: string
+      },
+      athlete: {
+          _id: string,
+          sid: string,
+          pid: string,
+          lastName: string,
+          firstName: string,
+          birthDate: string,
+          gender: string
+      },
+      race: {
+          _id: string,
+          title: string
+      },
+      qualificationTime: {
+          hours: string,
+          milliseconds: string,
+          minutes: string,
+          seconds: string
+      },
+      point: number
+  }
   
     export interface Participant {
       birthDate: string;

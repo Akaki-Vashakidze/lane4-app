@@ -51,12 +51,10 @@ export class StartListComponent {
   }
   async ngOnInit() {
     this._competitionService.getCompetitionStartList(this.eventId).subscribe(res => {
-      console.log(res.partitions)
       this.event = res.event;
       this.partitions = res.partitions;
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
-      console.log(this.chosenPartition())
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
     })
 
@@ -70,7 +68,6 @@ export class StartListComponent {
   }
 
   openResults(index:any,race:any) {
-    console.log(race)
     this.allAthletesInHeatsArr = race.participants
     // this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;

@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="chosenPartition()" class="compContainer">
     <div class="resultsContainer">
-        <app-custom-tabs (tabChanged)="onTabChange($event)" [subHeader]="event?.title" [header]="'Start list'" [tabs]="partitionTitles">
+        <app-custom-tabs (tabChanged)="onTabChange($event)" [subHeader]="event?.title" [header]="'start_list' | translate" [tabs]="partitionTitles">
             <div class="resBody shadow1 body">
                 @for (race of chosenPartition().races; track $index) {
                 <div class="resLineCont">
@@ -18,12 +18,7 @@
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
                                 translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
                         </div>
-                        <!-- <div>
-                            <div class="finished"><mat-icon class="check_circle_outline"
-                                    *ngIf="!race.isPublished">check_circle_outline</mat-icon></div>
-                            <div class="finished"><mat-icon class="check_circle"
-                                    *ngIf="race.isPublished">check_circle</mat-icon></div>
-                        </div> -->
+                        <div></div>
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
                     </div>
                     <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
@@ -36,7 +31,7 @@
                             <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
                         </div>
                         } @else {
-                        <div>{{'no_res_yet' | translate}}</div>
+                        <div>{{'no_startlist_yet' | translate}}</div>
                         }
                         <div class="RaceResultsContBody">
                             @for (athlete of allAthletesInHeatsArr; track $index) {

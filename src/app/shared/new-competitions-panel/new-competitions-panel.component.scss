@@ -60,9 +60,13 @@
         padding-bottom: 15px;
         text-align: center;
     }
+    .labels {
+        gap: 15px;
+    }
 }
 
 @media (max-width:768px){
+
     ::ng-deep .CompetitionsListSection .mat-expansion-panel-header {
         height: 70px;
     }   

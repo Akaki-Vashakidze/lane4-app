@@ -24,13 +24,6 @@
         <textarea (keyup)="onInputChange()" formControlName="message" class="custom-input1" [placeholder]="'Your message here' | translate"></textarea>
       </div>
       
-      <div class="checkAgree">
-        <mat-checkbox (change)="onInputChange()" formControlName="checkAgree" class="example-margin">
-          {{ 'I accept the ' | translate }}
-        </mat-checkbox>
-        <span style="text-decoration: underline; cursor: pointer;">{{ 'Terms' }}</span>
-      </div>
-      
       <app-button (click)="submitForm()" style="margin: auto; padding-top: 20px;" height="50px" [text]="'Submit' | translate"></app-button>
 
       <app-loader-spinner height="100px" color="$002155" *ngIf="requestOn"></app-loader-spinner>

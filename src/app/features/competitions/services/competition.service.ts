@@ -29,7 +29,7 @@ export class CompetitionService {
 
   getAllCompetitions() {
     return this.httpClient
-      .get<Event[] | []>(`/consoleApi/public/events`).pipe(
+      .get<Event[] >(`/consoleApi/public/events`).pipe(
         tap(item => console.log(item))
       )
   }

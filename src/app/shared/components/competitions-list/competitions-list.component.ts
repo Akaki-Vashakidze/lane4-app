@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { CompetitionCardComponent } from '../competition-card/competition-card.component';
 import { ButtonComponent } from '../button/button.component';
-import { V } from '@angular/cdk/keycodes';
 import { SharedService } from '../../services/shared.service';
-import { CostumerComment, LiveEvent } from '../../interfaces/interfaces';
+import { CostumerComment, Event, LiveEvent } from '../../interfaces/interfaces';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CostumerCardComponent } from '../costumer-card/costumer-card.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { Router, RouterModule } from '@angular/router';
+import { CompetitionService } from '../../../features/competitions/services/competition.service';
 
 @Component({
   selector: 'app-competitions-list',
@@ -22,13 +22,13 @@ export class CompetitionsListComponent {
   @ViewChild('customOwl', { static: false }) customOwl!: any;
   @Input() BackgroundImg: boolean = true;
   @Input() backgroundColor: boolean = true;
-  constructor(private sharedService:SharedService, public _router:Router){
-    sharedService.getCompetitions().subscribe(item => {
+  public competitions:Event[] = [];
+  public displayedCompetitions = 6; 
+  constructor(private sharedService:SharedService,private _compService:CompetitionService, public _router:Router){
+    _compService.getAllCompetitions().subscribe(item => {
       this.competitions = item;
     })
   }
-  public competitions:LiveEvent[] = [];
-  public displayedCompetitions = 6; 
 
   public costumerComments:CostumerComment[] = [
     {
@@ -96,7 +96,6 @@ export class CompetitionsListComponent {
   loadLess() {
     this.displayedCompetitions > 6 ? this.displayedCompetitions -= 6 : '';
     this.displayedCompetitions < 6 ? this.displayedCompetitions = 6 : '';
-    console.log(this.displayedCompetitions,this.competitions.length )
   }
 
   navigationToCompetitions(){

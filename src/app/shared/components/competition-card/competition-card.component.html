@@ -3,8 +3,14 @@
         <div class="title headerFont">{{title}}</div>
         <div class="text">{{text}}</div>
         <div class="buttons">
-            <app-button borderRadius="10px" class="headerFont" [text]="'Results' | translate" (click)="navigateToCompResults()"></app-button>
-            <app-button borderRadius="10px" class="headerFont" [text]="'PDF' | translate" (click)="getRankingsPdf()"></app-button>
+            <app-button borderRadius="10px" class="headerFont" [text]="'Results' | translate"
+                (click)="navigateToCompResults()"></app-button>
+            <!-- <app-button borderRadius="10px" class="headerFont" [text]="'PDF' | translate" (click)="getRankingsPdf()"></app-button> -->
+            <app-button borderRadius="10px" [routerLink]="'/competitions/races/' + Event._id"
+                [text]="'heats' | translate" width="100%"></app-button>
+            <div></div>
+            <app-button borderRadius="10px" [routerLink]="'/competitions/startList/' + Event._id"
+                [text]="'startlist' | translate" width="100%"></app-button>
         </div>
         <div class="date">
             <div class="dates">{{date | date: 'dd-MM-yyyy'}}</div>

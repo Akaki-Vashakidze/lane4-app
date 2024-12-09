@@ -10,8 +10,8 @@
       <app-button *ngIf="!BackgroundImg"  style="border-radius: 20px;" class="shadow1" routerLink="/competitions" [text]="'all_competitions' | translate" height="45px"></app-button>
     </div>
     <div class="body">
-      <app-competition-card paddingBottom="20px" class="shadow1 borderRadius20" *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"
-        [text]="comp.event.description" [EventId]="comp.event._id" [date]="comp.event.startDate">
+      <app-competition-card paddingBottom="20px" class="shadow1 borderRadius20" *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.title"
+        [text]="comp.description" [Event]="comp" [date]="comp.startDate">
       </app-competition-card>
     </div>
     <div class="actionsCont">
@@ -43,8 +43,8 @@
         width="300px" 
         height="300px">
       </app-costumer-card> -->
-            <app-competition-card paddingBottom="17px" [title]="content.event.title" [text]="content.event.description"
-              [EventId]="content.event._id" [date]="content.event.startDate">
+            <app-competition-card paddingBottom="17px" [title]="content.title" [text]="content.description"
+              [Event]="content" [date]="content.startDate">
             </app-competition-card>
           </div>
         </ng-template>

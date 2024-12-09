@@ -1,5 +1,4 @@
 
-
 <div class="MaskBlureImgCont" *ngIf="chosenPartition()" >
     <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
 </div>
@@ -18,14 +17,13 @@
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
                                 translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
                         </div>
-                        <!-- <div>
+                        <div>
                             <div class="finished"><mat-icon class="check_circle_outline"
                                     *ngIf="!race.isPublished">check_circle_outline</mat-icon></div>
                             <div class="finished"><mat-icon class="check_circle"
                                     *ngIf="race.isPublished">check_circle</mat-icon></div>
-                        </div> -->
+                        </div>
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
-                        <div></div>
                     </div>
                     <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
                         @if (allAthletesInHeatsArr.length > 0) {
@@ -61,3 +59,9 @@
     </div>
 </div>
 <app-loader-spinner *ngIf="!chosenPartition()" color="black" height="500px"></app-loader-spinner>
+
+
+
+
+
+

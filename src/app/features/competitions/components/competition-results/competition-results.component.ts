@@ -1,3 +1,5 @@
+
+
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventPartition, Lane, Heat } from '../../../../shared/interfaces/interfaces';
@@ -43,19 +45,17 @@ export class CompetitionResultsComponent {
         partition.races.map((race, raceIndex) => {
           let isPublished = race.heats.some(heat => {
             return heat.lanes.some(lane => {
-              return lane.result;
+              return lane.isPublished == true
             })
           })
           res.partitions[partitionIndex].races[raceIndex].isPublished = isPublished;
         })
       })
-      console.log(res)
       this.event = res.event;
       this.partitions = res.partitions;
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      console.log(this.chosenPartition())
     })
 
 
@@ -74,14 +74,13 @@ export class CompetitionResultsComponent {
     this.allAthletesInHeatsArr = [];
     for (let i = 0; i < lanes.length; i++) {
       for (let j = 0; j < lanes[i].length; j++) {
-        if (lanes[i][j].result && lanes[i][j].result?.seconds) {
+        if (lanes[i][j].isPublished && lanes[i][j].result?.seconds) {
           lanes[i][j].totalSeconds = this._competitionService.convertResultToSeconds(lanes[i][j].result)
           this.allAthletesInHeatsArr.push(lanes[i][j])
         }
       }
     }
     this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
-    console.log(this.allAthletesInHeatsArr)
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
   }
 

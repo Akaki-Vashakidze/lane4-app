@@ -11,7 +11,7 @@ export class CompetitionService {
   private readonly httpClient = inject(HttpClient);
 
   getEventDetails(eventId:string) {
-    return this.httpClient.get<EventDetails>(`/consoleApi/event/details/${eventId}`)
+    return this.httpClient.get<EventDetails>(`/consoleApi/public/events/${eventId}/details`)
   }
 
   convertResultToSeconds(result:Time) {
@@ -24,12 +24,12 @@ export class CompetitionService {
 
 
   getCompetitionStartList(id:string){
-    return this.httpClient.get<any>(`/consoleApi/event/${id}/participants`);
+    return this.httpClient.get<any>(`/consoleApi/public/events/${id}/participants`);
   }
 
   getAllCompetitions() {
     return this.httpClient
-      .get<Event[] | []>(`/consoleApi/event/all`).pipe(
+      .get<Event[] | []>(`/consoleApi/public/events`).pipe(
         tap(item => console.log(item))
       )
   }

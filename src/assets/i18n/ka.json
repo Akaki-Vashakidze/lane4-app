@@ -86,5 +86,8 @@
   "(final)":"(ფინალი)",
   "no_res_yet":"არ არის შედეგები.",
   "no_startlist_yet":"არ არის სტარტლისტი.",
-  "start_list":"სტარტ ლისტი"
+  "start_list":"სტარტ ლისტი",
+  "team":"გუნდი",
+  "startlist_available_when_registration_finish":"სტარტლისტი ხელმისაწვდომი იქნება რეგისტრაციის დასრულების შემდეგ.",
+   "registration_finish":"რეგისტრაციის დასასრული"
 }

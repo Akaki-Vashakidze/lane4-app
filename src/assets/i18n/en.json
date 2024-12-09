@@ -86,5 +86,8 @@
   "(final)":"(Final)",
   "no_res_yet":"No results yet.",
   "no_startlist_yet":"No startlist yet.",
-  "start_list":"Start list"
+  "start_list":"Start list",
+  "team":"Team",
+  "startlist_available_when_registration_finish":"Startlist will be available when registration deadline is over.",
+  "registration_finish":"Registration deadline"
 }

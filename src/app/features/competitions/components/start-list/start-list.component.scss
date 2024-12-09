@@ -32,7 +32,7 @@ mat-tab-group {
     gap: 5px;
 }
 
-.resultsContainer{
+.resultsContainer {
     border: 2px solid var(--dark-blue4);
     border-radius: 20px;
     overflow: hidden;
@@ -124,7 +124,7 @@ mat-tab-group {
     padding: 0px 10px;
     font-weight: 800;
     display: grid;
-    grid-template-columns: 47% 25% 20% 5%;
+    grid-template-columns: 40% 18% 16% 18% 5%;
 }
 
 .RaceResultsContBody {
@@ -132,7 +132,7 @@ mat-tab-group {
 
     .athleteResult {
         display: grid;
-        grid-template-columns: 47% 25% 20% 5%;
+        grid-template-columns: 40% 18% 16% 18% 5%;
         width: 100%;
         padding: 10px 10px;
     }
@@ -166,26 +166,6 @@ mat-tab-group {
     top: 2px;
 }
 
-@media only screen and (max-width: 700px) {
-    .resLine {
-        height: 50px;
-        font-size: 15px;
-        padding: 0px 20px 0px 10px;
-    }
-
-    .logo {
-        img {
-            height: 35px;
-        }
-    }
-
-    .icon {
-        img {
-            height: 28px;
-        }
-    }
-}
-
 .matSpinner {
     position: fixed;
     top: 50%;
@@ -205,5 +185,57 @@ mat-tab-group {
 
 
 ::ng-deep .mat-expansion-indicator {
-    height: 24px!important;
+    height: 24px !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .resLine {
+        height: 50px;
+        font-size: 15px;
+        padding: 0px 20px 0px 10px;
+    }
+
+    .logo {
+        img {
+            height: 35px;
+        }
+    }
+
+    .icon {
+        img {
+            height: 28px;
+        }
+    }
+
+    // .RaceResultsContHeader {
+    //     grid-template-columns: 47% 25% 20% 5%;
+    // }
+
+    // .RaceResultsContBody {
+    //     .athleteResult {
+    //         grid-template-columns: 47% 25% 20% 5%;
+    //     }
+    // }
+
+    // .teamHead , .teamInfo{
+    //     display: none;
+    // }
+
+    .compContainer {
+        width: 98%;
+    }
+
+    .resLineCont {
+        width: 98%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .compContainer {
+        width: 99.5%;
+    }
+
+    .resLineCont {
+        width: 99.2%;
+    }
 }

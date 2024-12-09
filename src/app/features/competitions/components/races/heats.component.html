@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="event" class="compContainer">
     <div class="resultsContainer">
-        <app-custom-tabs (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">
+        <app-custom-tabs [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'heats_available_when_registration_finish' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'registration_finish' | translate}}{{':'}}{{event.registrationEndDate | date: 'dd-MM-yyy'}}</div>
@@ -48,7 +48,7 @@
                                 <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
                                 <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
                                  <div class="result" *ngIf="lane?.participant?.firstName">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' +lane?.result?.milliseconds}}</div>
-                                <div class="points" *ngIf="lane?.participant?.firstName">{{'600'}}</div>
+                                <div class="points" *ngIf="lane?.participant?.firstName">{{lane?.qualificationTimePoint}}</div>
                             </div>
                             }
                         </div>

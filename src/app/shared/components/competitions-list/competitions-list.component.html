@@ -15,10 +15,10 @@
       </app-competition-card>
     </div>
     <div class="actionsCont">
-      <app-button style="top: -15px;" *ngIf="displayedCompetitions > 6" class="loadMoreButton" width="100px" height="40px" text="Show Less"
+      <app-button style="top: -15px;" *ngIf="displayedCompetitions > 3" class="loadMoreButton" width="100px" height="40px" text="Show Less"
         fontSize="12px" (click)="loadLess()">
       </app-button>
-      <app-button style="top: -15px;" *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
+      <app-button style="top: -15px;" *ngIf="competitions.length > 3 && competitions.length > displayedCompetitions" class="loadMoreButton"
         width="100px" height="40px" text="Show More" fontSize="12px" (click)="loadMore()">
       </app-button>
     </div>
@@ -55,7 +55,7 @@
         <div class="carouselButtonItem" (click)="goNext()"><img width="40px" src="assets/imgs/carouselButtonRight.svg">
         </div>
       </div>
-      <app-button class="buttonLoadMore" *ngIf="competitions.length > 6 && competitions.length > displayedCompetitions" class="loadMoreButton"
+      <app-button class="buttonLoadMore" *ngIf="competitions.length > 3 && competitions.length > displayedCompetitions" class="loadMoreButton"
         width="100px" height="40px" text="Show More" fontSize="12px" (click)="navigationToCompetitions()">
       </app-button>
     </div>

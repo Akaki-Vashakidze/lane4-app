@@ -9,12 +9,12 @@ import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.compone
 import { TranslateModule } from '@ngx-translate/core';
 import { CostumerCardComponent } from '../costumer-card/costumer-card.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-competitions-list',
   standalone: true,
-  imports: [CommonModule,CompetitionCardComponent, ButtonComponent ,ButtonComponent, LoaderSpinnerComponent, TranslateModule,CostumerCardComponent,CarouselModule],
+  imports: [CommonModule,CompetitionCardComponent,RouterModule, ButtonComponent ,ButtonComponent, LoaderSpinnerComponent, TranslateModule,CostumerCardComponent,CarouselModule],
   templateUrl: './competitions-list.component.html',
   styleUrl: './competitions-list.component.scss'
 })

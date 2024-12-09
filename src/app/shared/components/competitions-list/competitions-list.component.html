@@ -6,8 +6,8 @@
   *ngIf="competitions.length > 0">
   <div class="competitionsList">
     <div class="header headerFont" [style]="BackgroundImg ? 'justify-content:center' : ''">
-      <div class="title textShadow1">{{'Competitions' | translate}}</div>
-      <app-button *ngIf="!BackgroundImg" style="border-radius: 20px;" class="shadow1" [text]="'all_competitions' | translate" height="45px"></app-button>
+      <div class="title">{{'Competitions' | translate}}</div>
+      <app-button *ngIf="!BackgroundImg"  style="border-radius: 20px;" class="shadow1" routerLink="/competitions" [text]="'all_competitions' | translate" height="45px"></app-button>
     </div>
     <div class="body">
       <app-competition-card paddingBottom="20px" class="shadow1 borderRadius20" *ngFor="let comp of competitions | slice:0:displayedCompetitions" [title]="comp.event.title"

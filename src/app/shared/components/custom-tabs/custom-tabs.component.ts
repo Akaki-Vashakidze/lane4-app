@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-custom-tabs',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, MatIconModule],
   templateUrl: './custom-tabs.component.html',
   styleUrl: './custom-tabs.component.scss'
 })
@@ -19,8 +20,13 @@ export class CustomTabsComponent {
   @Input() infoText!:string;
   activeTabIndex:number = 0; 
   @Output() tabChanged = new EventEmitter<number>();
+  @Output() onPrint = new EventEmitter<any>();
   tabChange(index:number){
    this.activeTabIndex = index;
    this.tabChanged.emit(index); 
+  }
+
+  onPrintF(){
+    this.onPrint.emit(true)
   }
 }

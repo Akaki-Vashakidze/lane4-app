@@ -58,6 +58,10 @@ export class HeatsComponent {
     return currentDate > endDate;
 }
 
+  onPrint(event:any){
+    console.log(event)
+  }
+
   onTabChange(index: number) {
     this.activeTabIndex = index;
     this.resultsOpen = 999

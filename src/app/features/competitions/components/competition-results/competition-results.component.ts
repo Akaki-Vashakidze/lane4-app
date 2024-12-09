@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { async } from 'rxjs';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-competition-results',
@@ -30,6 +32,7 @@ export class CompetitionResultsComponent {
   allChosenResults!: Lane[];
   allAthletesInHeatsArr: Lane[] = []
   constructor(
+    private _sharedService:SharedService,
     private route: ActivatedRoute,
     private _competitionService: CompetitionService
   ) {
@@ -66,6 +69,40 @@ export class CompetitionResultsComponent {
     this.resultsOpen = 999
     this.chosenPartition.set(this.partitions[index])
   }
+
+  //download pdf
+  // onPrint(event: any) {
+  //   this._sharedService.getEventResultsPDF(this.eventId).subscribe({
+  //     next: (res: any) => {
+  //       const blob = new Blob([res], { type: 'application/pdf' });
+  //       const url = window.URL.createObjectURL(blob);
+  //       const link = document.createElement('a');
+  //       link.href = url;
+  //       link.download = `EventResults_${this.eventId}.pdf`;
+  //       link.click();
+  //       window.URL.revokeObjectURL(url);
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to fetch PDF:', err);
+  //     },
+  //   });
+  // }
+
+  onPrint(event: any) {
+    this._sharedService.getEventResultsPDF(this.eventId).subscribe({
+      next: (res: any) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+      },
+      error: (err) => {
+        console.error('Failed to fetch PDF:', err);
+      },
+    });
+  }
+  
+  
 
   openResults(index: any, heats: any) {
     let lanes = heats.map((heat: Heat) => {

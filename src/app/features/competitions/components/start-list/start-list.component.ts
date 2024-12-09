@@ -73,6 +73,10 @@ export class StartListComponent {
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
   }
 
+  onPrint(event:any){
+    console.log(event)
+  }
+
   onTabChanged(event: any) {
     this.resultsOpen = 999;
     this.chosenPartition.set(this.partitions[event.index])

@@ -17,39 +17,39 @@ export class SharedService {
       );
   }
 
-  getEventResultsPDF(eventId:string) {
-    return this.httpClient.get('/consoleApi/event/eventPdf/' + eventId, { responseType: 'blob' }).pipe(
+  getEventResultsPDF(eventId: string) {
+    return this.httpClient.post(`/consoleApi/public/events/${eventId}/pdf/`, {}, { responseType: 'blob' }).pipe(
       map(res => {
         return new Blob([res], { type: 'application/pdf', });
-    })
+      })
     )
   }
 
-  getRankings(){
+  getRankings() {
     return this.httpClient.get<GetRanksData>('/consoleApi/congifuration/rankings')
   }
-  
-  getWRTs(){
+
+  getWRTs() {
     return this.httpClient.get<WRTsData>('/consoleApi/congifuration/WRT')
   }
 
-  sendContactMessage(body:ContactMessage){
-    return this.httpClient.post<any>('/consoleApi/contact/message',{data:body})
+  sendContactMessage(body: ContactMessage) {
+    return this.httpClient.post<any>('/consoleApi/contact/message', { data: body })
   }
 
-  addMailForSubscr(body : {email : string}){
-    return this.httpClient.post<any>('/consoleApi/contact/mail',{data:body})
+  addMailForSubscr(body: { email: string }) {
+    return this.httpClient.post<any>('/consoleApi/contact/mail', { data: body })
   }
 
-  getAthleteResults(athleteId:string){
+  getAthleteResults(athleteId: string) {
     return this.httpClient.get<any>('/consoleApi/athlete/results/' + athleteId)
   }
 
-  getAthletes(data:SearchAthletePayload){
-    return this.httpClient.post<any>('/consoleApi/athlete/search',data)
+  getAthletes(data: SearchAthletePayload) {
+    return this.httpClient.post<any>('/consoleApi/athlete/search', data)
   }
 
-  getAthleteStrokeRes(athleteId:string, poolLength:any,distance:any, stroke:string, ){
+  getAthleteStrokeRes(athleteId: string, poolLength: any, distance: any, stroke: string,) {
     return this.httpClient.get<any>(`/consoleApi/athlete/results/${athleteId}/${poolLength}/${distance}/${stroke}`)
   }
 }

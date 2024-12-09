@@ -1,0 +1,62 @@
+
+
+<div class="MaskBlureImgCont" *ngIf="chosenPartition()" >
+    <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
+</div>
+<div *ngIf="event" class="compContainer">
+    <div class="resultsContainer">
+        <app-custom-tabs (tabChanged)="onTabChange($event)" [header]="event?.title" [tabs]="partitionTitles">
+            <div class="resBody shadow1 body">
+                <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'heats_available_when_registration_finish' | translate}}</div>
+                <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'registration_finish' | translate}}{{':'}}{{event.registrationEndDate | date: 'dd-MM-yyy'}}</div>
+                @for (race of chosenPartition().races; track $index) {
+                <div class="resLineCont">
+                    <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
+                        class="resLine">
+                        <div class="logoAthlete">
+                            <div class="logo"><img src="/assets/imgs/swimmerLogo.png" /></div>
+                            <div class="resHeader">{{race.gender | translate }} {{(race.type == 'INDIVIDUAL' ? race.distance : (
+                                '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
+                                '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
+                                translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
+                        </div>
+                        <div></div>
+                        <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
+                    </div>
+                    <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
+                        @if (chosenHeats && chosenHeats.length > 0) {
+                        <div class="RaceResultsContHeader">
+                            <div class="title">{{'name' | translate}}</div>
+                            <div class="team">{{'team' | translate}}</div>
+                            <div class="bithDate"><span *ngIf="race.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span>
+                            </div>
+                            <div class="result">{{'result' | translate}}</div>
+                            <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
+                        </div>
+                        } @else {
+                        <div>{{'no_races_yet' | translate}}</div>
+                        }
+                        <div class="RaceResultsContBody">
+                            @for (heat of chosenHeats; track $index) {
+                            <div class="heatInfo">
+                                {{heat.name | translate}}{{' / ' + chosenHeats.length}}
+                            </div>
+                            <div *ngFor="let lane of heat.lanes" class="athleteResult">
+                                <div class="athlete">{{lane.lane}}. {{lane?.participant?.lastName}}
+                                    {{lane?.participant?.firstName || lane?.participant?.title}}</div>
+                                    <div class="team">{{lane?.team?.title}}</div>
+                                <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
+                                <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
+                                 <div class="result" *ngIf="lane?.participant?.firstName">00:39:02</div>
+                                <div class="points" *ngIf="lane?.participant?.firstName">{{'600'}}</div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </app-custom-tabs>
+    </div>
+</div>
+<app-loader-spinner *ngIf="!event" color="black" height="500px"></app-loader-spinner>

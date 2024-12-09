@@ -157,6 +157,7 @@ export interface EventDetails {
       resultType:any;
       place:any
       totalSeconds:any;
+      team?:Team;
     }
 
     export interface StartListParticipant {

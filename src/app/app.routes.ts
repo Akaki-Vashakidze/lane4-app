@@ -11,6 +11,7 @@ import { AthleteResultsComponent } from './shared/components/athlete-results/ath
 import { AthleteStyleResultsComponent } from './shared/components/athlete-style-results/athlete-style-results.component';
 import { NewCompetitionsPanelComponent } from './shared/new-competitions-panel/new-competitions-panel.component';
 import { StartListComponent } from './features/competitions/components/start-list/start-list.component';
+import { HeatsComponent } from './features/competitions/components/races/heats.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +55,10 @@ export const routes: Routes = [
         {
           path: 'competitions',
           children: [
+            {
+              path: 'races/:id',
+              component: HeatsComponent,
+            },
             {
               path: '',
               children: [

@@ -3,7 +3,7 @@
     <input type="text" (input)="onInput($event)" [(ngModel)]="searchQuery" id="search-input" placeholder="Search" autocomplete="off">
   </div>
   
-  <ul *ngIf="filteredSuggestions.length > 0" class="suggestions-list">
+  <ul *ngIf="filteredSuggestions && filteredSuggestions.length > 0" class="suggestions-list">
     <li *ngFor="let suggestion of filteredSuggestions" (click)="selectSuggestion(suggestion)">
       {{ suggestion.lastName + ' ' + suggestion.firstName}}
     </li>

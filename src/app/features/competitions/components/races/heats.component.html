@@ -47,7 +47,7 @@
                                     <div class="team">{{lane?.team?.title}}</div>
                                 <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
                                 <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
-                                 <div class="result" *ngIf="lane?.participant?.firstName">00:39:02</div>
+                                 <div class="result" *ngIf="lane?.participant?.firstName">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' +lane?.result?.milliseconds}}</div>
                                 <div class="points" *ngIf="lane?.participant?.firstName">{{'600'}}</div>
                             </div>
                             }

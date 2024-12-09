@@ -3,7 +3,7 @@
 <div *ngIf="!isLoading" class="athleteCont shadow1">
     <div class="header">
             <label for="search-input">{{'Search athlete' | translate}}</label>
-            <app-custom-autocomplete (onSelect)="onSelect($event)" [data]="allAthletes()"></app-custom-autocomplete>
+            <app-custom-autocomplete (onType)="onAthleteType($event)" (onSelect)="onSelect($event)" [data]="allAthletes() "></app-custom-autocomplete>
     </div>
     <div class="athleteBio">
         <img width="100px" *ngIf="selectedAthlete?.gender == 'MALE'" src="/assets/imgs/men.svg"/>
@@ -44,7 +44,7 @@
                             <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)" [timeObj]="item['LONG'][0].result"></app-time>
                             <div class="rows">{{item['LONG'][0].resultPoint}}</div>
-                            <div class="rows">{{item['LONG'][0].partition.startDate | date: 'dd-MM-yyy' }}</div>
+                            <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div class="rows">{{item['LONG'][0].event.title}}</div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <div class="rows">{{item['SHORT'][0].partition.poolLength == 'SHORT'? '50m' : '25m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['SHORT'][0].race.distance,item['SHORT'][0].race.style,item['SHORT'][0].partition.poolLength)" [timeObj]="item['SHORT'][0].result"></app-time>
                             <div class="rows">{{item['SHORT'][0].resultPoint}}</div>
-                            <div class="rows">{{item['SHORT'][0].partition.startDate | date: 'dd-MM-yyy' }}</div>
+                            <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div class="rows">{{item['SHORT'][0].event.title}}</div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="resultsExpand" *ngIf="resInfoIndex == 'LONG' + i">
                             <div class="rows">{{item['LONG'][0].event.title}}</div>
                             <div class="rows">{{item['LONG'][0].resultPoint + ' '}}{{'points' | translate}}</div>
-                            <div class="rows">{{item['LONG'][0].partition.startDate | date: 'dd-MM-yyy' }}</div>
+                            <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div></div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         <div class="resultsExpand" *ngIf="resInfoIndex == 'SHORT' + i">
                             <div class="rows">{{item['SHORT'][0].event.title}}</div>
                             <div class="rows">{{item['SHORT'][0].resultPoint + ' '}}{{'points' | translate}}</div>
-                            <div class="rows">{{item['SHORT'][0].partition.startDate | date: 'dd-MM-yyy' }}</div>
+                            <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div></div>
                         </div>
                     </div>

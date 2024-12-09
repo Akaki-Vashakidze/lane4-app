@@ -1,3 +1,5 @@
+
+
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventPartition, Lane, Heat } from '../../../../shared/interfaces/interfaces';

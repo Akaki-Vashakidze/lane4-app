@@ -49,9 +49,6 @@ export class AthleteResultsComponent implements OnInit{
     '400MEDLEY': {},
   };
   constructor(public activatedRoute:ActivatedRoute,public _sharedService: SharedService, public _router:Router) {
-    _sharedService.getAthletes({data:{userType:'',searchQuery:''}, paging: new Paging(0,10000)}).subscribe(item => {
-      this.allAthletes.set(item.docs)
-    })
     this.currentYear = new Date().getFullYear();
     this.populateYearsForSelect();
   }
@@ -59,11 +56,22 @@ export class AthleteResultsComponent implements OnInit{
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if(params['athlete']) {
+        this.athleteId = params['athlete'];
         this.getAthleteResults(params['athlete'])
       } else {
         this.isLoading = false;
       }
     });
+  }
+
+  getAthletes(searchQuery:string){
+    this._sharedService.getAthletes({data:{userType:'',searchQuery}, paging: new Paging(0,10000)}).subscribe(item => {
+      this.allAthletes.set(item.docs)
+    })
+  }
+
+  onAthleteType(query:any){
+    this.getAthletes(query)
   }
 
   getAthleteResults(athlete:any){

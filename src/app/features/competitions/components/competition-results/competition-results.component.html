@@ -18,13 +18,14 @@
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
                                 translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
                         </div>
-                        <div>
+                        <!-- <div>
                             <div class="finished"><mat-icon class="check_circle_outline"
                                     *ngIf="!race.isPublished">check_circle_outline</mat-icon></div>
                             <div class="finished"><mat-icon class="check_circle"
                                     *ngIf="race.isPublished">check_circle</mat-icon></div>
-                        </div>
+                        </div> -->
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
+                        <div></div>
                     </div>
                     <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
                         @if (allAthletesInHeatsArr.length > 0) {

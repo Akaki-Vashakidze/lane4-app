@@ -60,7 +60,7 @@
   "Third Level": "Third Level",
   "name": "Name",
   "Birth_date": "Birth Date",
-  "result": "Records",
+  "result": "Results",
   "points": "Points",
   "email": "Email",
   "Long_Course": "LC",
@@ -134,5 +134,9 @@
   "Heat 41": "Heat 41",
   "Heat 42": "Heat 42",
   "Heat 43": "Heat 43",
-  "Heat 44": "Heat 44"
+  "Heat 44": "Heat 44",
+  "LONG":"Long",
+  "SHORT":"Short",
+  "heats":"Heats",
+  "entry_time":"Entry time"
 }

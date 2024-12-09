@@ -8,7 +8,7 @@
             <div class="name">{{athlete?.lastName + ' ' + athlete?.firstName}}</div>
             <div class="bornYear">{{athlete?.birthDate | date:'yyyy'}}</div>
             <div class="stroke">{{athleteStrokeData()[0]?.race?.distance + ' '}}{{athleteStrokeData()[0]?.race?.style | translate}}</div>
-            <div class="stroke">{{athleteStrokeData()[0]?.partition?.poolLength}}</div>
+            <div class="stroke">{{athleteStrokeData()[0]?.partition?.poolLength | translate}}</div>
         </div>
     </div>
     <div class="results">

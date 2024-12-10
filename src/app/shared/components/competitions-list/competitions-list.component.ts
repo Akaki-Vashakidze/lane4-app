@@ -23,7 +23,7 @@ export class CompetitionsListComponent {
   @Input() BackgroundImg: boolean = true;
   @Input() backgroundColor: boolean = true;
   public competitions:Event[] = [];
-  public displayedCompetitions = 6; 
+  public displayedCompetitions = 3; 
   constructor(private sharedService:SharedService,private _compService:CompetitionService, public _router:Router){
     _compService.getAllCompetitions().subscribe(item => {
       this.competitions = item;
@@ -89,13 +89,13 @@ export class CompetitionsListComponent {
   }
 
   loadMore() {
-    this.competitions.length > this.displayedCompetitions ? this.displayedCompetitions += 6 : '';
+    this.competitions.length > this.displayedCompetitions ? this.displayedCompetitions += 3 : '';
     console.log(this.displayedCompetitions,this.competitions.length )
   }
 
   loadLess() {
-    this.displayedCompetitions > 6 ? this.displayedCompetitions -= 6 : '';
-    this.displayedCompetitions < 6 ? this.displayedCompetitions = 6 : '';
+    this.displayedCompetitions > 3 ? this.displayedCompetitions -= 3 : '';
+    this.displayedCompetitions < 3 ? this.displayedCompetitions = 3 : '';
   }
 
   navigationToCompetitions(){

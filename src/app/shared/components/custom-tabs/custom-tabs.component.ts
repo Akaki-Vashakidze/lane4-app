@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class CustomTabsComponent {
   @Input() tabs:string[] = ['tab1','tab2','tab3','tab4'];
+  @Input() print:boolean = false;
   @Input() header!:string;
   @Input() subHeader!:string;
   @Input() subHeader2!:string;

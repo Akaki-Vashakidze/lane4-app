@@ -158,6 +158,7 @@ export interface EventDetails {
       place:any
       totalSeconds:any;
       team?:Team;
+      qualificationTimePoint?:number;
     }
 
     export interface StartListParticipant {

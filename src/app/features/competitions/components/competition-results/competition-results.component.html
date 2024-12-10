@@ -4,7 +4,7 @@
 </div>
 <div *ngIf="chosenPartition()" class="compContainer">
     <div class="resultsContainer">
-        <app-custom-tabs (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'results' | translate" [tabs]="partitionTitles">
+        <app-custom-tabs [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'results' | translate" [tabs]="partitionTitles">
             <div class="resBody shadow1 body">
                 @for (race of chosenPartition().races; track $index) {
                 <div class="resLineCont">

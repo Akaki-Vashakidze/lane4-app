@@ -3,6 +3,7 @@
 <div class="MaskBlureImgCont" *ngIf="chosenPartition()" >
     <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
 </div>
+<div><mat-icon style="color: #fff;" [routerLink]="'/competitions/races/' + eventId + '/pdfBackup'">print</mat-icon></div>
 <div *ngIf="event" class="compContainer">
     <div class="resultsContainer">
         <app-custom-tabs [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">
@@ -47,8 +48,11 @@
                                     <div class="team">{{lane?.team?.title}}</div>
                                 <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
                                 <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
-                                 <div class="result" *ngIf="lane?.participant?.firstName">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' +lane?.result?.milliseconds}}</div>
-                                <div class="points" *ngIf="lane?.participant?.firstName">{{lane?.qualificationTimePoint}}</div>
+                                <div *ngIf="lane?.qualificationTime?.seconds" class="result" >{{lane?.qualificationTime?.minutes + ':' + lane?.qualificationTime?.seconds + '.' +lane?.qualificationTime?.milliseconds}}</div>
+                                <div *ngIf="lane?.qualificationTime?.seconds" class="points" >{{lane?.qualificationTimePoint}}</div>
+
+                                <div *ngIf="!lane?.qualificationTime?.seconds && lane?.participant?.firstName">-</div>
+                                <div *ngIf="!lane?.qualificationTime?.seconds && lane?.participant?.firstName">-</div>
                             </div>
                             }
                         </div>

@@ -1,0 +1,63 @@
+.competitionHeatsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 98%;
+    text-align: center;
+    padding: 15px;
+    color: black;
+}
+.partitionHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 0px;
+    border-bottom: 1px solid black;
+}
+
+.racesCont {
+    padding: 10px 0px;
+}
+
+.laneInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.heatTitle{
+    text-align: left;
+    border-bottom: 1px solid gray;
+}
+
+.laneInfo, .laneTitles{
+    display: grid;
+    grid-template-columns: 5fr 2fr 2fr 2fr;
+}
+
+.laneTitles {
+    border-bottom: 1px solid gray;
+}
+
+.laneInfo div, .laneTitles div{
+    text-align: left;
+}
+
+.athleteQualRes {
+    text-align: right !important;
+    padding-right: 13px;
+}
+
+.qualResHeader {
+    text-align: right!important;
+    padding-right: 25px;
+}
+
+.heatsCont {
+    margin: 5px 0 25px 0;
+}
+
+.raceHeader , .genderRace{
+    position: relative;
+    top: 5px;
+}

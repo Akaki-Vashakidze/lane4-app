@@ -1,0 +1,38 @@
+<app-loader-spinner *ngIf="!event" color="black" height="500px"></app-loader-spinner>
+
+<div class="competitionHeatsContainer">
+    <div class="header headerFont">{{event()?.event?.title}}</div>
+    <div class="date">{{event()?.event?.startDate | date : 'dd/MM/yyyy'}}{{' '}}{{event()?.event?.endDate | date : 'dd/MM/yyyy'}}</div>
+    <div *ngFor="let partition of event()?.partitions" class="partitionContainer">
+        <div class="partitionHeader">
+            <div class="title">{{partition?.title}}</div>
+            <div class="partDate">{{partition?.startDate | date : 'dd/MM/yyyy'}}{{' '}}</div>
+        </div>
+        <div class="racesCont">
+            <div *ngFor="let race of partition.races" class="raceContainer">
+                <div class="raceHeader">{{race?.distance + 'მ '}}{{race?.style ?? '' | translate}}</div>
+                <div class="genderRace" style="opacity: 0.8;">{{race?.gender ?? '' | translate}}</div>
+                <div *ngFor="let heat of race?.heats" class="heatsCont">
+                    <div class="heatTitle" style="font-weight: 900;">{{heat?.name ?? ''| translate}}</div>
+                    <div class="laneTitles">
+                        <div>{{'athlete' | translate}}</div>
+                        <div>{{'birthDate' | translate}}</div>
+                        <div>{{'team' | translate}}</div>
+                        <div class="qualResHeader">{{'result' | translate}}</div>
+                    </div>
+                    <div *ngFor="let lane of heat?.lanes, let i = index" class="heatContainer">
+                        <div *ngIf="lane?.participant?.firstName" class="laneInfo">
+                            <div class="athleteName">{{lane.lane + '. '}}{{lane?.participant?.firstName + ' ' + lane?.participant?.lastName}}</div>
+                            <div class="athleteTeam">{{lane?.participant?.birthDate | date : 'yyyy'}}</div>
+                            <div class="athleteTeam">{{lane?.team?.title}}</div>
+                            <div class="athleteQualRes">{{lane?.qualificationTime?.minutes + ':' + lane?.qualificationTime?.seconds + '.' + lane?.qualificationTime?.milliseconds}}</div>
+                        </div>
+                        <div *ngIf="!lane?.participant?.firstName" class="laneInfo">
+                            <div>{{(i + 1) + '. '}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

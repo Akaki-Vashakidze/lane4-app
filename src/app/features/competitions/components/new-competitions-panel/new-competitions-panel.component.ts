@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { CompetitionService } from '../../features/competitions/services/competition.service';
-import { Event } from '../interfaces/interfaces';
+import { CompetitionService } from '../../services/competition.service';
+import { Event } from '../../../../shared/interfaces/interfaces';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { LoaderSpinnerComponent } from '../components/loader-spinner/loader-spinner.component';
+import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { LabelComponent } from '../components/label/label.component';
-import { ButtonComponent } from "../components/button/button.component";
+import { LabelComponent } from '../../../../shared/components/label/label.component';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { Route, Router, RouterModule } from '@angular/router';
-import { SharedService } from '../services/shared.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-new-competitions-panel',

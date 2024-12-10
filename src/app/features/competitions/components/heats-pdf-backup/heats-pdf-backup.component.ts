@@ -1,26 +1,24 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { EventPartition, Lane, Heat } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Lane, Heat, Event, EventDetails } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
-import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
-import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-heats',
+  selector: 'app-heats-pdf-backup',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, RouterModule,TranslateModule, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
-  templateUrl: './heats.component.html',
-  styleUrl: './heats.component.scss'
+  imports: [CommonModule, MatTabsModule, RouterModule,TranslateModule, MatIconModule, LoaderSpinnerComponent],
+  templateUrl: './heats-pdf-backup.component.html',
+  styleUrl: './heats-pdf-backup.component.scss'
 })
-export class HeatsComponent {
+export class HeatsPdfBackupComponent implements OnInit {
   resultsOpen!: any;
   eventId!: string;
-  event: any;
+  event = signal<EventDetails | null>(null)
   activeTabIndex!: number;
   partitions!: EventPartition[];
   partitionTitles!: string[];
@@ -39,17 +37,16 @@ export class HeatsComponent {
   async ngOnInit() {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
-      this.event = res.event;
-      if(!registrationIsFinished) return
-      this.event = res.event;
+      this.event.set(res)
+      // if(!registrationIsFinished) return
       this.partitions = res.partitions;
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
+      console.log(this.event)
+      // this.event
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
       console.log(this.chosenPartition())
     })
-
-
   }
 
    isDeadlinePassed(registrationEndDate:Date) {
@@ -58,25 +55,4 @@ export class HeatsComponent {
     return currentDate > endDate;
 }
 
-  onPrint(event:any){
-    console.log(event)
-  }
-
-  onTabChange(index: number) {
-    this.activeTabIndex = index;
-    this.resultsOpen = 999
-    this.chosenPartition.set(this.partitions[index])
-  }
-
-  openResults(index: any, heats: any) {
-    console.log(heats)
-    this.chosenHeats = heats;
-    this.chosenHeats.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-    this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
-  }
-
-  onTabChanged(event: any) {
-    this.resultsOpen = 999;
-    this.chosenPartition.set(this.partitions[event.index])
-  }
 }

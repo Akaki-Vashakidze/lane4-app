@@ -138,5 +138,7 @@
   "LONG":"Long",
   "SHORT":"Short",
   "heats":"Heats",
-  "entry_time":"Entry time"
+  "entry_time":"Entry time",
+  "athlete":"Athlete",
+  "birthDate":"Birth date"
 }

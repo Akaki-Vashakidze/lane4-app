@@ -9,9 +9,10 @@ import { AbousUsComponent } from './shared/components/abous-us/abous-us.componen
 import { ClassificationContainerComponent } from './shared/components/classificationComps/classification-container/classification-container.component';
 import { AthleteResultsComponent } from './shared/components/athlete-results/athlete-results.component';
 import { AthleteStyleResultsComponent } from './shared/components/athlete-style-results/athlete-style-results.component';
-import { NewCompetitionsPanelComponent } from './shared/new-competitions-panel/new-competitions-panel.component';
+import { NewCompetitionsPanelComponent } from './features/competitions/components/new-competitions-panel/new-competitions-panel.component';
 import { StartListComponent } from './features/competitions/components/start-list/start-list.component';
 import { HeatsComponent } from './features/competitions/components/races/heats.component';
+import { HeatsPdfBackupComponent } from './features/competitions/components/heats-pdf-backup/heats-pdf-backup.component';
 
 export const routes: Routes = [
     {
@@ -58,6 +59,10 @@ export const routes: Routes = [
             {
               path: 'races/:id',
               component: HeatsComponent,
+            },
+            {
+              path: 'races/:id/pdfBackup',
+              component: HeatsPdfBackupComponent,
             },
             {
               path: '',

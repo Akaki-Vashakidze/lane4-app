@@ -35,7 +35,7 @@
             <div class="row">{{'meet' | translate}}</div>
         </div>
         <div class="resRows">
-            <div class="noData" *ngIf="!filteredArr">No data</div>
+            <div class="noData" *ngIf="!filteredArr">{{'search_athlete' | translate}}</div>
             <div class="resRowsStyles" *ngIf="filteredArr">
                 <div class="resultsForTableR" *ngFor="let item of filteredArr">
                     <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m')" >
@@ -74,7 +74,7 @@
             <div></div>
         </div>
         <div class="resRows">
-            <div class="noData" *ngIf="!filteredArr">No data</div>
+            <div class="noData" *ngIf="!filteredArr">{{'search_athlete' | translate}}</div>
             <div class="resRowsStyles" *ngIf="filteredArr">
                 <div class="resultsForTableR" *ngFor="let item of filteredArr; let i = index">
                     <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m') && item['LONG'][0].resultType == 'TIME'" >

@@ -3,7 +3,7 @@
 <div class="MaskBlureImgCont" *ngIf="chosenPartition()" >
     <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg"/>
 </div>
-<div><mat-icon style="color: #fff;" [routerLink]="'/competitions/races/' + eventId + '/pdfBackup'">print</mat-icon></div>
+<!-- <div><mat-icon style="color: #fff;" [routerLink]="'/competitions/races/' + eventId + '/pdfBackup'">print</mat-icon></div> -->
 <div *ngIf="event" class="compContainer">
     <div class="resultsContainer">
         <app-custom-tabs [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">

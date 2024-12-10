@@ -9,6 +9,7 @@ import { Paging } from '../../classes/classes';
 import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
+import { debounce, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-athlete-results',
@@ -65,8 +66,8 @@ export class AthleteResultsComponent implements OnInit{
   }
 
   getAthletes(searchQuery:string){
-    this._sharedService.getAthletes({data:{userType:'',searchQuery}, paging: new Paging(0,10000)}).subscribe(item => {
-      this.allAthletes.set(item.docs)
+    this._sharedService.getAthletes({data:{userType:'',searchQuery}}).subscribe(item => {
+      this.allAthletes.set(item)
     })
   }
 

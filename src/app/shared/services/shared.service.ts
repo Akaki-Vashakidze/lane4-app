@@ -46,7 +46,7 @@ export class SharedService {
   }
 
   getAthletes(data: SearchAthletePayload) {
-    return this.httpClient.post<any>('/consoleApi/athlete/search', data)
+    return this.httpClient.post<any>('/consoleApi/public/athletes/search', data)
   }
 
   getAthleteStrokeRes(athleteId: string, poolLength: any, distance: any, stroke: string,) {

@@ -31,7 +31,7 @@ export class CustomAutocompleteComponent implements OnInit, OnChanges{
   onInput(event: Event) {
     if(this.searchQuery.length > 1) {
     const query = this.searchQuery.toLowerCase();
-      this.emitQuery(query)
+    this.emitQuery(query)
     this.filteredSuggestions = this.data;
     }
   }

@@ -283,5 +283,5 @@ export interface BaseTimeWR {
 
 export interface SearchAthletePayload {
   data:{userType:string,searchQuery:string};
-  paging: Paging;
+  paging?: Paging;
 }

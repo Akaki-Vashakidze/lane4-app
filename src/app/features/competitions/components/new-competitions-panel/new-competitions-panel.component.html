@@ -26,9 +26,9 @@
                     <app-label [label]="'description' | translate" [value]="competition.description"></app-label>
                 </div>
                 <div class="actionsComp">
-                  <app-button [routerLink]="'/competitions/startList/' + competition._id" [text]="'startlist' | translate" width="100%"></app-button>
-                  <app-button [routerLink]="'/competitions/races/' + competition._id" [text]="'heats' | translate" width="100%"></app-button>
-                    <app-button (click)="navigateToCompResults(competition._id)" [text]="'results' | translate" width="100%"></app-button>
+                  <app-button padding="10px" [routerLink]="'/competitions/startList/' + competition._id" [text]="'startlist' | translate" width="100%"></app-button>
+                  <app-button padding="10px"  [routerLink]="'/competitions/races/' + competition._id" [text]="'heats' | translate" width="100%"></app-button>
+                  <app-button padding="10px"  (click)="navigateToCompResults(competition._id)" [text]="'results' | translate" width="100%"></app-button>
                     <!-- <app-button (click)="getRankingsPdf(competition._id)" [text]="'pdf' | translate" results width="100%"></app-button> -->
                 </div>
               </div>

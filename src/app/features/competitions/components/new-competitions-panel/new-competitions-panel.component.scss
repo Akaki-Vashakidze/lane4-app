@@ -19,7 +19,7 @@
 
 .header-content {
     width: 100%;
-    padding: 0px 10px;
+    padding-right: 10px;
 }
 
 .compTitle1 {
@@ -31,7 +31,7 @@
 }
 
 ::ng-deep .CompetitionsListSection .mat-expansion-panel-body {
-    padding: 5px 15px 15px 35px;
+    padding: 5px 15px 15px 24px;
 }
 
 .labels {
@@ -87,6 +87,10 @@
 
     .labels {
         grid-template-columns: 1fr;
+    }
+
+    .actionsComp {
+        justify-content: center;
     }
 }
 

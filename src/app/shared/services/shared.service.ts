@@ -26,11 +26,11 @@ export class SharedService {
   }
 
   getRankings() {
-    return this.httpClient.get<GetRanksData>('/consoleApi/congifuration/rankings')
+    return this.httpClient.get<GetRanksData>('/consoleApi/configuration/rankings')
   }
 
   getWRTs() {
-    return this.httpClient.get<WRTsData>('/consoleApi/congifuration/WRT')
+    return this.httpClient.get<WRTsData>('/consoleApi/configuration/WRT')
   }
 
   sendContactMessage(body: ContactMessage) {

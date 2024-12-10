@@ -166,25 +166,6 @@ mat-tab-group {
     top: 2px;
 }
 
-@media only screen and (max-width: 700px) {
-    .resLine {
-        height: 50px;
-        font-size: 15px;
-        padding: 0px 20px 0px 10px;
-    }
-
-    .logo {
-        img {
-            height: 35px;
-        }
-    }
-
-    .icon {
-        img {
-            height: 28px;
-        }
-    }
-}
 
 .matSpinner {
     position: fixed;
@@ -203,4 +184,27 @@ mat-tab-group {
     max-width: 1226px;
 }
 
+@media only screen and (max-width: 768px) {
+    .resLine {
+        height: 50px;
+        font-size: 15px;
+        padding: 0px 20px 0px 10px;
+    }
+
+    .logo {
+        img {
+            height: 35px;
+        }
+    }
+
+    .icon {
+        img {
+            height: 28px;
+        }
+    }
+
+    .compContainer {
+        width: 96%;
+    }
+}
 

@@ -56,6 +56,7 @@ export class StartListComponent {
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
+      console.log(this.chosenPartition())
     })
 
 
@@ -68,6 +69,8 @@ export class StartListComponent {
   }
 
   openResults(index:any,race:any) {
+    console.log(this.chosenPartition())
+    console.log(race)
     this.allAthletesInHeatsArr = race.participants
     // this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;

@@ -46,7 +46,6 @@ export class HeatsComponent {
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      console.log(this.chosenPartition())
     })
 
 

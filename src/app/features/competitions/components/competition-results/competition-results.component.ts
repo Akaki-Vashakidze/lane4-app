@@ -44,21 +44,24 @@ export class CompetitionResultsComponent {
   }
   async ngOnInit() {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
-      res.partitions.map((partition, partitionIndex) => {
-        partition.races.map((race, raceIndex) => {
-          let isPublished = race.heats.some(heat => {
-            return heat.lanes.some(lane => {
-              return lane.isPublished == true
-            })
-          })
-          res.partitions[partitionIndex].races[raceIndex].isPublished = isPublished;
-        })
-      })
       this.event = res.event;
-      this.partitions = res.partitions;
-      this.partitionTitles = this.partitions.map(item => item.title)
-      this.chosenPartition.set(this.partitions[0])
-      this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
+      if(res.partitions){
+        res.partitions.map((partition, partitionIndex) => {
+          partition.races.map((race, raceIndex) => {
+            let isPublished = race.heats.some(heat => {
+              return heat.lanes.some(lane => {
+                return lane.isPublished == true
+              })
+            })
+            res.partitions[partitionIndex].races[raceIndex].isPublished = isPublished;
+          })
+        })
+        this.partitions = res.partitions;
+        this.partitionTitles = this.partitions.map(item => item.title)
+        this.chosenPartition.set(this.partitions[0])
+        this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
+      }
+
     })
 
 

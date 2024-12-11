@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUri: 'https://lobster-app-xx9ip.ondigitalocean.app',
+  apiUri: 'https://api-dev.lane4.ge',
 };

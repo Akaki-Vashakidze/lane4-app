@@ -31,6 +31,7 @@ export class CompetitionResultsComponent {
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   allChosenResults!: Lane[];
   allAthletesInHeatsArr: Lane[] = []
+  printLoader = signal<any>(false);
   constructor(
     private _sharedService:SharedService,
     private route: ActivatedRoute,
@@ -92,8 +93,10 @@ export class CompetitionResultsComponent {
   // }
 
   onPrint(event: any) {
+    this.printLoader.set(true)
     this._sharedService.getEventResultsPDF(this.eventId).subscribe({
       next: (res: any) => {
+        this.printLoader.set(false)
         const blob = new Blob([res], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         window.open(url, '_blank');

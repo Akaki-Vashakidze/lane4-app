@@ -40,7 +40,7 @@ export class HeatsComponent {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
       this.event = res.event;
-      if(!registrationIsFinished) return
+      // if(!registrationIsFinished) return
       this.event = res.event;
       this.partitions = res.partitions;
       this.partitionTitles = this.partitions.map(item => item.title)

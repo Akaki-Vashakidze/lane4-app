@@ -143,5 +143,6 @@
   "birthDate":"Birth date",
   "search_athlete":"Please type athlete name",
   "results_available_when_comp_start":"Results will be available when competition starts",
-  "comp_start":"Competition starts"
+  "comp_start":"Competition starts",
+  "no_heats_yet":"No heats yet"
 }

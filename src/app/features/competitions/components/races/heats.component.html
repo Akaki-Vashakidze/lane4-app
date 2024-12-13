@@ -35,7 +35,7 @@
                             <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
                         </div>
                         } @else {
-                        <div>{{'no_races_yet' | translate}}</div>
+                        <div>{{'no_heats_yet' | translate}}</div>
                         }
                         <div class="RaceResultsContBody">
                             @for (heat of chosenHeats; track $index) {

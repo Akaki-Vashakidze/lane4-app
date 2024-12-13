@@ -26,6 +26,7 @@ export class HeatsComponent {
   partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   chosenHeats!:Heat[];
+  printLoader!:boolean;
   constructor(
     private route: ActivatedRoute,
     private _competitionService: CompetitionService

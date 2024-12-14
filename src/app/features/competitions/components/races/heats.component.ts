@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-heats',
@@ -26,8 +27,9 @@ export class HeatsComponent {
   partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   chosenHeats!:Heat[];
-  printLoader!:boolean;
+  printLoader = signal<any>(false);
   constructor(
+    private _sharedService:SharedService,
     private route: ActivatedRoute,
     private _competitionService: CompetitionService
   ) {
@@ -58,8 +60,20 @@ export class HeatsComponent {
     return currentDate > endDate;
 }
 
-  onPrint(event:any){
-    console.log(event)
+  onPrint(event: any) {
+    this.printLoader.set(true)
+    this._sharedService.getEventHeatsPDF(this.eventId).subscribe({
+      next: (res: any) => {
+        this.printLoader.set(false)
+        const blob = new Blob([res], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+      },
+      error: (err) => {
+        console.error('Failed to fetch PDF:', err);
+      },
+    });
   }
 
   onTabChange(index: number) {

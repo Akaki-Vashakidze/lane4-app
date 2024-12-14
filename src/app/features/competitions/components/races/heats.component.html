@@ -6,7 +6,7 @@
 <!-- <div><mat-icon style="color: #fff;" [routerLink]="'/competitions/races/' + eventId + '/pdfBackup'">print</mat-icon></div> -->
 <div *ngIf="event" class="compContainer">
     <div class="resultsContainer">
-        <app-custom-tabs [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">
+        <app-custom-tabs [loaderOn]="printLoader()" [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="event?.title" [header]="'heats' | translate"  [tabs]="partitionTitles">
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'heats_available_when_registration_finish' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'registration_finish' | translate}}{{': '}}{{event.registrationEndDate | date: 'dd-MM-yyy'}}</div>

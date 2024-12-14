@@ -25,6 +25,14 @@ export class SharedService {
     )
   }
 
+  getEventHeatsPDF(eventId: string) {
+    return this.httpClient.get(`/consoleApi/public/events/${eventId}/heats/pdf`, { responseType: 'blob' }).pipe(
+      map(res => {
+        return new Blob([res], { type: 'application/pdf', });
+      })
+    )
+  }
+
   getRankings() {
     return this.httpClient.get<GetRanksData>('/consoleApi/configuration/rankings')
   }

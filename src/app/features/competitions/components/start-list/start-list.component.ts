@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-start-list',
@@ -39,9 +40,11 @@ export class StartListComponent {
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   allChosenResults!: StartListParticipant[];
   allAthletesInHeatsArr: StartListParticipant[] = []
+  printLoader = signal<any>(false);
   constructor(
     private route: ActivatedRoute,
-    private _competitionService: CompetitionService
+    private _competitionService: CompetitionService,
+    private _sharedService:SharedService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
@@ -81,8 +84,21 @@ export class StartListComponent {
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
   }
 
-  onPrint(event:any){
-    console.log(event)
+
+  onPrint(event: any) {
+    this.printLoader.set(true)
+    this._sharedService.getEventParticipantsPDF(this.eventId).subscribe({
+      next: (res: any) => {
+        this.printLoader.set(false)
+        const blob = new Blob([res], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+      },
+      error: (err) => {
+        console.error('Failed to fetch PDF:', err);
+      },
+    });
   }
 
   onTabChanged(event: any) {

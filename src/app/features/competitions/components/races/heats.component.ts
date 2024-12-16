@@ -43,9 +43,14 @@ export class HeatsComponent {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
       this.event = res.event;
-      // if(!registrationIsFinished) return
+      if(!registrationIsFinished) return
       this.event = res.event;
-      this.partitions = res.partitions;
+      this.partitions = res.partitions.map(partition => {
+        return {
+            ...partition,
+            races: partition.races.sort((a, b) => a.orderNumber - b.orderNumber)
+        };
+      });
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);

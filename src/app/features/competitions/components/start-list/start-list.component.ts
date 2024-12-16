@@ -52,7 +52,12 @@ export class StartListComponent {
   async ngOnInit() {
     this._competitionService.getCompetitionStartList(this.eventId).subscribe(res => {
       this.event = res.event;
-      this.partitions = res.partitions;
+      this.partitions = res.partitions.map((partition:any) => {
+        return {
+            ...partition,
+            races: partition.races.sort((a:any, b:any) => a.orderNumber - b.orderNumber)
+        };
+      });
       this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);

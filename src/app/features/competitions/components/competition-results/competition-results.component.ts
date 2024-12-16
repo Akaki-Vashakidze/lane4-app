@@ -50,13 +50,13 @@ export class CompetitionResultsComponent {
         res.partitions.map((partition, partitionIndex) => {
           partition.races.map((race, raceIndex) => {
             let isPublished = race.heats.some(heat => {
-              return heat.lanes.some(lane => {
-                return lane.isPublished == true
-              })
-            })
+              return heat.lanes.some(lane => lane.isPublished === true);
+            });
             res.partitions[partitionIndex].races[raceIndex].isPublished = isPublished;
-          })
-        })
+          });
+        
+          res.partitions[partitionIndex].races.sort((a, b) => a.orderNumber - b.orderNumber);
+        });
         this.partitions = res.partitions;
         this.partitionTitles = this.partitions.map(item => item.title)
         this.chosenPartition.set(this.partitions[0])

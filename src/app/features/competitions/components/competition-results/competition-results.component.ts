@@ -2,7 +2,7 @@
 
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventPartition, Lane, Heat } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Lane, Heat, Race } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,6 +13,7 @@ import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/c
 import { Meta, Title } from '@angular/platform-browser';
 import { async } from 'rxjs';
 import { SharedService } from '../../../../shared/services/shared.service';
+import { SocketService } from '../../../../shared/services/socket.service';
 
 @Component({
   selector: 'app-competition-results',
@@ -33,17 +34,44 @@ export class CompetitionResultsComponent {
   allAthletesInHeatsArr: Lane[] = []
   printLoader = signal<any>(false);
   constructor(
-    private _sharedService:SharedService,
+    private _sharedService: SharedService,
     private route: ActivatedRoute,
-    private _competitionService: CompetitionService
+    private _competitionService: CompetitionService,
+    private _socket: SocketService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.eventId = params.id
       }
     })
+
+    this._socket.subscribeOnLive(async (data: any) => {
+      if (data.eventId === this.eventId) {
+        await this.getEventDetails(() => { this.showRace(data.partition, data.race, data.heat) });
+      }
+    })
   }
   async ngOnInit() {
+    this.getEventDetails();
+  }
+
+  async showRace(partition: string, race: string, heat: string) {
+    this.partitions.forEach(p => {
+      if (p._id == partition) {
+        this.chosenPartition.set(p);
+        this.chosenPartition().races.forEach((r: Race, index: number) => {
+          if (r._id == race) {
+            if (this.resultsOpen == index) {
+              this.openResults(index, r.heats, true);
+            }
+          }
+        })
+      }
+    })
+
+
+  }
+  async getEventDetails(cb?: () => void) {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       this.event = res.event;
       if(res.partitions){
@@ -61,13 +89,11 @@ export class CompetitionResultsComponent {
         this.partitionTitles = this.partitions.map(item => item.title)
         this.chosenPartition.set(this.partitions[0])
         this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
+        if (cb) cb();
       }
 
     })
-
-
   }
-
   onTabChange(index: number) {
     this.activeTabIndex = index;
     this.resultsOpen = 999
@@ -110,7 +136,7 @@ export class CompetitionResultsComponent {
   
   
 
-  openResults(index: any, heats: any) {
+  openResults(index: any, heats: any, openFromSocket = false) {
     let lanes = heats.map((heat: Heat) => {
       return heat.lanes
     })
@@ -124,7 +150,9 @@ export class CompetitionResultsComponent {
       }
     }
     this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
-    this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
+    if (openFromSocket) {
+      this.resultsOpen = index;
+    } else this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
   }
 
   onTabChanged(event: any) {

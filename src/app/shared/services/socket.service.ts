@@ -27,4 +27,10 @@ export class SocketService {
       throw error;
     }
   }
+
+  async subscribeOnLive(cb: Function) {
+    this._socket.on('liveEvent', (data) => {
+      cb(data);
+    });
+  }
 }

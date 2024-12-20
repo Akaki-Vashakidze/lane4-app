@@ -9,7 +9,7 @@ import { Paging } from '../../classes/classes';
 import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autocomplete.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
-import { debounce, debounceTime } from 'rxjs';
+import { catchError, debounce, debounceTime, of } from 'rxjs';
 
 @Component({
   selector: 'app-athlete-results',
@@ -20,6 +20,7 @@ import { debounce, debounceTime } from 'rxjs';
 })
 export class AthleteResultsComponent implements OnInit{
   currentYear: number;
+  athleteNotFount:boolean = false;
   yearsForSelect: any[] = []
   resultsForTable: any = [];
   courseSelect: string = 'All';
@@ -56,6 +57,7 @@ export class AthleteResultsComponent implements OnInit{
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
+      console.log(params['athlete'])
       if(params['athlete']) {
         this.athleteId = params['athlete'];
         this.getAthleteResults(params['athlete'])
@@ -75,22 +77,35 @@ export class AthleteResultsComponent implements OnInit{
     this.getAthletes(query)
   }
 
-  getAthleteResults(athlete:any){
+  getAthleteResults(athlete: any) {
     this.isLoading = true;
-    this._sharedService.getAthleteResults(athlete).subscribe(item => {
+    this._sharedService.getAthleteResults(athlete).pipe(
+      catchError(error => {
+        this.isLoading = false;
+        this.selectedAthlete = null;
+        this.athleteNotFount = true;
+        this.filteredArr = [];
+        return of(null); 
+      })
+    ).subscribe(item => {
+      if (!item) {
+        return;
+      }
+  
+      this.athleteNotFount = false;
       this.isLoading = false;
-      console.log(item)
+      console.log(item);
       this.selectedAthlete = item.data.athlete;
       let data: any = [];
-      console.log(this.map1)
+      console.log(this.map1);
       Object.keys(this.map1).forEach(event => {
-        if(item?.data?.results[event]) {
-          data.push(item.data.results[event])
+        if (item?.data?.results[event]) {
+          data.push(item.data.results[event]);
         }
-      })
+      });
       this.resultsForTable = data;
       this.filteredArr = data;
-    })
+    });
   }
 
   changeQueryParams(newParams: { [key: string]: any }) {

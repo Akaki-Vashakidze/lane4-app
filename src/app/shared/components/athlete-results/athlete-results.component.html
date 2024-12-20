@@ -9,6 +9,7 @@
         <img width="100px" *ngIf="selectedAthlete?.gender == 'MALE'" src="/assets/imgs/men.svg"/>
         <img width="100px" *ngIf="selectedAthlete?.gender == 'FEMALE'" src="/assets/imgs/women.svg"/>
         <div class="bio">
+            <div *ngIf="athleteNotFount">{{'not_found_athlete_res' | translate}}</div>
             <div class="name">{{selectedAthlete ? selectedAthlete?.lastName + ' ' + selectedAthlete?.firstName : 'PleaseSearchAthlete' | translate}}</div>
             <div class="bornYear">{{selectedAthlete?.birthDate | date:'yyyy'}}</div>
         </div>

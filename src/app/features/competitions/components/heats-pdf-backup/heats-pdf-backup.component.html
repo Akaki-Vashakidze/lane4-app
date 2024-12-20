@@ -22,7 +22,7 @@
                     </div>
                     <div *ngFor="let lane of heat?.lanes, let i = index" class="heatContainer">
                         <div *ngIf="lane?.participant?.firstName" class="laneInfo">
-                            <div class="athleteName">{{lane.lane + '. '}}{{lane?.participant?.firstName + ' ' + lane?.participant?.lastName}}</div>
+                            <div class="athleteName">{{lane.lane + '. '}}{{lane?.participant?.lastName + ' ' + lane?.participant?.firstName}}</div>
                             <div class="athleteTeam">{{lane?.participant?.birthDate | date : 'yyyy'}}</div>
                             <div class="athleteTeam">{{lane?.team?.title}}</div>
                             <div class="athleteQualRes">{{lane?.qualificationTime?.minutes + ':' + lane?.qualificationTime?.seconds + '.' + lane?.qualificationTime?.milliseconds}}</div>

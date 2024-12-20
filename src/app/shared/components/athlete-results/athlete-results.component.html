@@ -41,7 +41,7 @@
                     <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m')" >
                         <div class="longShortRows">
                             <div class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)">{{item['LONG'][0].race.distance + ' '}}{{item['LONG'][0].race.style + '_Short' | translate}}</div>
-                            <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
+                            <div class="rows">{{'50m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)" [timeObj]="item['LONG'][0].result"></app-time>
                             <div class="rows">{{item['LONG'][0].resultPoint}}</div>
                             <div class="rows">{{item['LONG'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
@@ -51,7 +51,7 @@
                     <div class="newRows" *ngIf="item['SHORT'] && (courseSelect == 'All' || courseSelect == '25m')">
                         <div class="longShortRows">
                             <div class="rows showMoreResults" (click)="showMoreResults(item['SHORT'][0].race.distance,item['SHORT'][0].race.style,item['SHORT'][0].partition.poolLength)">{{item['SHORT'][0].race.distance + ' '}}{{item['SHORT'][0].race.style + '_Short' | translate}}</div>
-                            <div class="rows">{{item['SHORT'][0].partition.poolLength == 'SHORT'? '50m' : '25m'}}</div>
+                            <div class="rows">{{'25m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['SHORT'][0].race.distance,item['SHORT'][0].race.style,item['SHORT'][0].partition.poolLength)" [timeObj]="item['SHORT'][0].result"></app-time>
                             <div class="rows">{{item['SHORT'][0].resultPoint}}</div>
                             <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
@@ -80,7 +80,7 @@
                     <div class="newRows" *ngIf="item['LONG'] && (courseSelect == 'All' || courseSelect == '50m') && item['LONG'][0].resultType == 'TIME'" >
                         <div class="longShortRows">
                             <div class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)">{{item['LONG'][0].race.distance + ' '}}{{item['LONG'][0].race.style + '_Short' | translate}}</div>
-                            <div class="rows">{{item['LONG'][0].partition.poolLength == 'LONG'? '50m' : '25m'}}</div>
+                            <div class="rows">{{'50m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['LONG'][0].race.distance,item['LONG'][0].race.style,item['LONG'][0].partition.poolLength)" [timeObj]="item['LONG'][0].result"></app-time>
                             <div (click)="openResInfo(i , 'LONG')"><mat-icon>keyboard_arrow_down</mat-icon></div>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="newRows" *ngIf="item['SHORT'] && (courseSelect == 'All' || courseSelect == '25m') && item['SHORT'][0].resultType == 'TIME'">
                         <div class="longShortRows">
                             <div class="rows showMoreResults" (click)="showMoreResults(item['SHORT'][0].race.distance,item['SHORT'][0].race.style,item['SHORT'][0].partition.poolLength)">{{item['SHORT'][0].race.distance + ' '}}{{item['SHORT'][0].race.style + '_Short' | translate}}</div>
-                            <div class="rows">{{item['SHORT'][0].partition.poolLength == 'SHORT'? '50m' : '25m'}}</div>
+                            <div class="rows">{{'25m'}}</div>
                             <app-time class="rows showMoreResults" (click)="showMoreResults(item['SHORT'][0].race.distance,item['SHORT'][0].race.style,item['SHORT'][0].partition.poolLength)" [timeObj]="item['SHORT'][0].result"></app-time>
                             <div (click)="openResInfo(i , 'SHORT')"><mat-icon>keyboard_arrow_down</mat-icon></div>
                         </div>

@@ -101,7 +101,8 @@
                         </div>
                         <div class="resultsExpand" *ngIf="resInfoIndex == 'SHORT' + i">
                             <div class="rows">{{item['SHORT'][0].event.title}}</div>
-                            <div class="rows">{{item['SHORT'][0].resultPoint + ' '}}{{'points' | translate}}</div>
+                            <div class="rows" *ngIf="item['SHORT'][0]?.resultPoint">{{item['SHORT'][0]?.resultPoint + ' '}}{{'points' | translate}}</div>
+                            <div class="rows" *ngIf="!item['SHORT'][0]?.resultPoint"></div>
                             <div class="rows">{{item['SHORT'][0].partition.startDate | date:'yyyy MMMM d' }}</div>
                             <div></div>
                         </div>

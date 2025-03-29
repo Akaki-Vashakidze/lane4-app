@@ -57,7 +57,6 @@ export class AthleteResultsComponent implements OnInit{
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
-      console.log(params['athlete'])
       if(params['athlete']) {
         this.athleteId = params['athlete'];
         this.getAthleteResults(params['athlete'])
@@ -94,10 +93,8 @@ export class AthleteResultsComponent implements OnInit{
   
       this.athleteNotFount = false;
       this.isLoading = false;
-      console.log(item);
       this.selectedAthlete = item.data.athlete;
       let data: any = [];
-      console.log(this.map1);
       Object.keys(this.map1).forEach(event => {
         if (item?.data?.results[event]) {
           data.push(item.data.results[event]);

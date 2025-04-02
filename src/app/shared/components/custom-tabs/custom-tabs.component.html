@@ -1,12 +1,24 @@
 <div class="header">
-    <app-loader-spinner style="position: absolute; right: 0px; top: 30px;" height="10px" *ngIf="showLoader()"></app-loader-spinner>
-    <mat-icon *ngIf="print && !showLoader()" (click)="onPrintF()" style="cursor: pointer;color: #fff;position:absolute; right:15px; top:15px;">print</mat-icon>
+    <app-loader-spinner style="position: absolute; right: 0px; top: 30px;" height="10px"
+        *ngIf="showLoader()"></app-loader-spinner>
+    <mat-icon *ngIf="print && !showLoader()" (click)="onPrintF()"
+        style="cursor: pointer;color: #fff;position:absolute; right:15px; top:15px;">print</mat-icon>
     <div *ngIf="header" class="headerText headerFont">{{header}}</div>
     <div *ngIf="header" class="headerText headerFont" style="font-size: 15px; padding-top: 0px;">{{subHeader}}</div>
     <div *ngIf="header" class="headerText" style="font-size: 15px; padding-top: 0px; opacity: 70%;">{{subHeader2}}</div>
-    <div [style.width]="tabsWidth" class="tabs">
-        <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)" [ngClass]="{'activeTab': i === activeTabIndex}">{{tab | translate}}</div>
+    <div class="tabsContainer">
+        <div (click)="scrollTabs('left')">
+            <mat-icon class="arr" (click)="scrollTabs('left')">chevron_left</mat-icon>
+        </div>
+        <div [style.width]="tabsWidth" #tabsContainer class="tabs">
+            <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)"
+                [ngClass]="{'activeTab': i === activeTabIndex}">{{tab | translate}}</div>
+        </div>
+        <div (click)="scrollTabs('right')">
+            <mat-icon class="arr" >chevron_right</mat-icon>
+        </div>
     </div>
+
 </div>
 <div *ngIf="infoTitle || infoText" class="info">
     <div *ngIf="infoTitle" class="infoTitle headerFont">{{infoTitle}}</div>

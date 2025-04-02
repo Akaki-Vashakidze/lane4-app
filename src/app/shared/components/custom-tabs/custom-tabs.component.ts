@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, Output, signal, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
@@ -19,7 +19,7 @@ export class CustomTabsComponent implements OnChanges{
   @Input() loaderOn!:false;
   @Input() subHeader!:string;
   @Input() subHeader2!:string;
-  @Input() tabsWidth:string = '94%';
+  @Input() tabsWidth:string = '100%';
   @Input() infoTitle!:string;
   @Input() infoText!:string;
   activeTabIndex:number = 0; 
@@ -27,11 +27,23 @@ export class CustomTabsComponent implements OnChanges{
   @Output() onPrint = new EventEmitter<any>();
 
   showLoader = signal<boolean>(false)
+  @ViewChild('tabsContainer', { static: false }) tabsContainer!: ElementRef;
 
   tabChange(index:number){
    this.activeTabIndex = index;
    this.tabChanged.emit(index); 
   }
+
+  scrollTabs(direction: 'left' | 'right') {
+    if (this.tabsContainer) {
+      console.log('ss')
+        const scrollAmount = 150; // Scrolling distance
+        this.tabsContainer.nativeElement.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.showLoader.set(this.loaderOn)

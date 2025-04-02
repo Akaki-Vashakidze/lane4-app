@@ -1,8 +1,33 @@
+@media (min-width: 680px) {
+    .tabs {
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: auto;
+        background-color: var(--blue2);
+    }
+
+    .tab {
+        width: 100%;
+        text-align: center;
+        padding: 7px 5px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .activeTab {
+        background-color: #fff;
+        border-radius: 10px;
+        color: var(--dark-blue2);
+    }
+
+}
 
 
 .header {
     width: 100%;
-    padding:10px 20px;
+    padding: 10px 20px;
     background-color: var(--dark-blue4);
     display: flex;
     flex-direction: column;
@@ -35,9 +60,9 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    overflow-x: auto; 
-    white-space: nowrap; 
-    -webkit-overflow-scrolling: touch; 
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     background-color: var(--blue2);
 }
@@ -46,35 +71,45 @@
     display: none;
 }
 
-.tab {
-    flex-shrink: 0;
-    padding: 7px 10px;
-    cursor: pointer;
-    color: #fff;
-    text-align: center;
+.arrCont {
+    display: none;
 }
 
-.activeTab {
-    background-color: #fff;
-    border-radius: 10px;
-    color: var(--dark-blue2);
-}
+@media (max-width: 680px) {
+    .tab {
+        flex-shrink: 0;
+        padding: 7px 10px;
+        cursor: pointer;
+        color: #fff;
+        text-align: center;
+    }
 
-.tabsContainer {
-    display: flex;
-    flex-direction: row;
-    width: 110%;
-    position: relative;
-    left: -5%;
-}
+    .activeTab {
+        background-color: #fff;
+        border-radius: 10px;
+        color: var(--dark-blue2);
+    }
 
-.arr {
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 33px;
-    height: 33px;
-    padding: 0px 15px;
+    .tabsContainer {
+        display: flex;
+        flex-direction: row;
+        width: 110%;
+        position: relative;
+        left: -5%;
+    }
+
+    .arr {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 33px;
+        height: 33px;
+        padding: 0px 15px;
+    }
+
+    .arrCont {
+        display: block;
+    }
 }

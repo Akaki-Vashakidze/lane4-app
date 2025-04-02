@@ -7,18 +7,17 @@
     <div *ngIf="header" class="headerText headerFont" style="font-size: 15px; padding-top: 0px;">{{subHeader}}</div>
     <div *ngIf="header" class="headerText" style="font-size: 15px; padding-top: 0px; opacity: 70%;">{{subHeader2}}</div>
     <div class="tabsContainer">
-        <div (click)="scrollTabs('left')">
+        <div (click)="scrollTabs('left')" class="arrCont">
             <mat-icon class="arr" (click)="scrollTabs('left')">chevron_left</mat-icon>
         </div>
         <div [style.width]="tabsWidth" #tabsContainer class="tabs">
             <div class="tab" *ngFor="let tab of tabs; let i = index" (click)="tabChange(i)"
                 [ngClass]="{'activeTab': i === activeTabIndex}">{{tab | translate}}</div>
         </div>
-        <div (click)="scrollTabs('right')">
+        <div (click)="scrollTabs('right')" class="arrCont">
             <mat-icon class="arr" >chevron_right</mat-icon>
         </div>
     </div>
-
 </div>
 <div *ngIf="infoTitle || infoText" class="info">
     <div *ngIf="infoTitle" class="infoTitle headerFont">{{infoTitle}}</div>

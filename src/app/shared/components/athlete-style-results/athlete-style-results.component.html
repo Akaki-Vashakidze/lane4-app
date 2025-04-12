@@ -20,8 +20,8 @@
         </div>
         <div class="resCont2">
             <div class="result" *ngFor="let res of athleteStrokeData()">
-                <div class="rowsPC" *ngIf="res.resultType == 'TIME'">
-                    <app-time class="rows showMoreResults" [timeObj]="res.result"></app-time>
+                <div class="rowsPC" *ngIf="res.result.type== 'TIME'">
+                    <app-time class="rows showMoreResults" [timeObj]="res.result.time"></app-time>
                     <div class="rows">{{res.resultPoint}}</div>
                     <div class="rows">{{res.partition.startDate | date: 'dd-MM-yyy' }}</div>
                     <div class="rows">{{res.event.title}}</div>

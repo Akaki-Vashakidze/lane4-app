@@ -33,7 +33,7 @@ export class AthleteStyleResultsComponent {
       const sortedData = item.data.sort((a: any, b: any) => a.result.totalMilliseconds - b.result.totalMilliseconds);
       
       this.athleteStrokeData.set(sortedData);
-      
+      sortedData.sort((a:any, b:any) => a.result.time.totalMilliseconds - b.result.time.totalMilliseconds);
       this.athlete = this.athleteStrokeData()[0].athlete;
     });
   }

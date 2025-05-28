@@ -58,7 +58,7 @@ export class StartListComponent {
       this.partitions = res.partitions.map((partition:any) => {
         return {
             ...partition,
-            races: partition.races.sort((a:any, b:any) => a.orderNumber - b.orderNumber)
+            races: partition.races?.sort((a:any, b:any) => a.orderNumber - b.orderNumber)
         };
       });
       this.partitionTitles = this.partitions.map(item => item.title)

@@ -45,8 +45,7 @@
                                 <div class="teamInfo">{{athlete?.team?.title}}</div>
                                 <!-- <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
                                     athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div> -->
-                                <div class="points" *ngIf="athlete?.qualificationTime">
-                                    {{athlete?.qualificationTime?.minutes == '77' ? 'No time' : (athlete?.qualificationTime?.minutes + ':' + athlete?.qualificationTime?.seconds + '.' + athlete?.qualificationTime?.milliseconds)}}</div>
+                                <app-time class="result" *ngIf="athlete?.qualificationTime?.seconds !== null && athlete?.qualificationTime?.seconds !== undefined" [timeObj]="athlete?.qualificationTime"></app-time>
                                 <div class="result" *ngIf="athlete.point">{{athlete?.point}}</div>
                             </div>
                             }

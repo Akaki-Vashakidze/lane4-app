@@ -48,11 +48,16 @@
                                     <div class="team">{{lane?.team?.title}}</div>
                                 <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
                                 <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
-                                <div *ngIf="lane?.qualificationTime?.seconds" class="result" >{{lane?.qualificationTime?.minutes == '77' ? 'No time' : (lane?.qualificationTime?.minutes + ':' + lane?.qualificationTime?.seconds + '.' +lane?.qualificationTime?.milliseconds)}}</div>
-                                <div *ngIf="lane?.qualificationTime?.seconds" class="points" >{{lane?.qualificationTimePoint}}</div>
+                                <app-time class="result" *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" [timeObj]="lane?.qualificationTime"></app-time>
+                                
+                                <div *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" class="points" >{{lane?.qualificationTimePoint}}</div>
 
-                                <div *ngIf="!lane?.qualificationTime?.seconds && lane?.participant?.firstName">-</div>
-                                <div *ngIf="!lane?.qualificationTime?.seconds && lane?.participant?.firstName">-</div>
+                                <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
+                                -
+                                </div>
+                                <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
+                                -
+                                </div>
                             </div>
                             }
                         </div>

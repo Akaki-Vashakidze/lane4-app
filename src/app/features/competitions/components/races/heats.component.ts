@@ -1,20 +1,20 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { EventPartition, Lane, Heat } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Heat } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
-import { Meta, Title } from '@angular/platform-browser';
 import { SharedService } from '../../../../shared/services/shared.service';
+import { TimeComponent } from "../../../../shared/components/time/time.component";
 
 @Component({
   selector: 'app-heats',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, RouterModule,TranslateModule, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
+  imports: [CommonModule, MatTabsModule, RouterModule, TranslateModule, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent, TimeComponent,TimeComponent],
   templateUrl: './heats.component.html',
   styleUrl: './heats.component.scss'
 })

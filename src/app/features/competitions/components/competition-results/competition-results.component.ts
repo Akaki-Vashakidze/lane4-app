@@ -149,7 +149,26 @@ export class CompetitionResultsComponent {
         }
       }
     }
-    this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
+    
+    this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
+
+    this.allAthletesInHeatsArr.forEach((athlete: any, index: number) => {
+      if (index === 0) {
+        athlete.orderNumber = 1;
+      } else {
+        const prev = this.allAthletesInHeatsArr[index - 1];
+
+        if (athlete.totalSeconds === prev.totalSeconds) {
+          // same time → same place
+          athlete.orderNumber = prev.orderNumber;
+        } else {
+          // Olympic ranking: skip numbers after ties
+          athlete.orderNumber = index + 1;
+        }
+      }
+    });
+
+
     if (openFromSocket) {
       this.resultsOpen = index;
     } else this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;

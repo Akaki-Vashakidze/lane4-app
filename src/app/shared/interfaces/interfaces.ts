@@ -147,6 +147,7 @@ export interface EventDetails {
     }
     
     export interface Lane {
+      orderNumber?: number;
       participant: Participant | Team | any;
       lane: any;
       isPublished:boolean;

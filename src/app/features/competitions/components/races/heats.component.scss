@@ -135,6 +135,7 @@ mat-tab-group {
         grid-template-columns: 40% 18% 16% 18% 5%;
         width: 100%;
         padding: 10px 10px;
+        text-transform: capitalize;
     }
 
     .athleteResult:nth-child(2n-1) {

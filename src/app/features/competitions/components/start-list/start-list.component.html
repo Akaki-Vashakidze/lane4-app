@@ -39,8 +39,8 @@
                         <div class="RaceResultsContBody">
                             @for (athlete of allAthletesInHeatsArr; track $index) {
                             <div class="athleteResult">
-                                <div class="athlete">{{$index + 1}}. {{athlete?.athlete?.lastName}}
-                                    {{athlete?.athlete?.firstName }}</div>
+                                <div class="athlete">{{$index + 1}}. {{ lang() === 'ka' ? athlete?.athlete?.lastName : athlete?.athlete?.lastNameEn }}
+                                    {{ lang() === 'ka' ? athlete?.athlete?.firstName : athlete?.athlete?.firstNameEn || athlete?.athlete?.title}}</div>
                                 <div class="birthDate">{{athlete?.athlete?.birthDate | date:'yyyy'}}</div>
                                 <div class="teamInfo">{{athlete?.team?.title}}</div>
                                 <!-- <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +

@@ -189,8 +189,11 @@ export interface StartListParticipant {
     pid: string,
     lastName: string,
     firstName: string,
+    firstNameEn: string,
+    lastNameEn: string,
     birthDate: string,
-    gender: string
+    gender: string,
+    title?:string
   },
   race: {
     _id: string,
@@ -209,6 +212,8 @@ export interface Participant {
   birthDate: string;
   firstName: string;
   lastName: string;
+  lastNameEn:string;
+  firstNameEn:string;
   pid: string;
   sid: string;
   _id: Time;

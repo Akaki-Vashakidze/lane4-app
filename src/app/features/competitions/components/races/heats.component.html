@@ -43,8 +43,8 @@
                                 {{heat.name | translate}}{{' / ' + chosenHeats.length}}
                             </div>
                             <div *ngFor="let lane of heat.lanes" class="athleteResult">
-                                <div class="athlete">{{lane.lane}}. {{lane?.participant?.lastName}}
-                                    {{lane?.participant?.firstName || lane?.participant?.title}}</div>
+                                <div class="athlete">{{lane.lane}}. {{lang() === 'ka' ? lane?.participant?.lastName : lane?.participant?.lastNameEn}}
+                                    {{ lang() === 'ka' ? lane?.participant?.firstName : lane?.participant?.firstNameEn || lane?.participant?.title}}</div>
                                     <div class="team">{{lane?.team?.title}}</div>
                                 <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
                                 <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->

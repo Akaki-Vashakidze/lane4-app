@@ -14,6 +14,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { async } from 'rxjs';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { SocketService } from '../../../../shared/services/socket.service';
+import { I18nService } from '../../../../shared/services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-competition-results',
@@ -23,6 +25,7 @@ import { SocketService } from '../../../../shared/services/socket.service';
   styleUrl: './competition-results.component.scss'
 })
 export class CompetitionResultsComponent {
+  lang = signal<string>('en');
   resultsOpen!: any;
   eventId!: string;
   event: any;
@@ -37,7 +40,8 @@ export class CompetitionResultsComponent {
     private _sharedService: SharedService,
     private route: ActivatedRoute,
     private _competitionService: CompetitionService,
-    private _socket: SocketService
+    private _socket: SocketService,
+    private _i18nService: I18nService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
@@ -50,6 +54,14 @@ export class CompetitionResultsComponent {
         await this.getEventDetails(() => { this.showRace(data.partition, data.race, data.heat) });
       }
     })
+
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+      }
+    );
   }
   async ngOnInit() {
     this.getEventDetails();
@@ -86,7 +98,7 @@ export class CompetitionResultsComponent {
           res.partitions[partitionIndex].races.sort((a, b) => a.orderNumber - b.orderNumber);
         });
         this.partitions = res.partitions;
-        this.partitionTitles = this.partitions.map(item => item.title)
+        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
         this.chosenPartition.set(this.partitions[0])
         this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
         if (cb) cb();

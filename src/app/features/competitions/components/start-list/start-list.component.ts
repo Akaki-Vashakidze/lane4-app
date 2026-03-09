@@ -22,6 +22,8 @@ import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spi
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { TimeComponent } from "../../../../shared/components/time/time.component";
+import { I18nService } from '../../../../shared/services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-start-list',
@@ -41,32 +43,38 @@ export class StartListComponent {
   allChosenResults!: StartListParticipant[];
   allAthletesInHeatsArr: StartListParticipant[] = []
   printLoader = signal<any>(false);
+  lang = signal<string>('en');
   constructor(
     private route: ActivatedRoute,
     private _competitionService: CompetitionService,
-    private _sharedService:SharedService
+    private _sharedService: SharedService,
+    private _i18nService: I18nService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.eventId = params.id
       }
     })
-  }
-  async ngOnInit() {
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+      }
+    );
+
     this._competitionService.getCompetitionStartList(this.eventId).subscribe(res => {
       this.event = res.event;
-      this.partitions = res.partitions.map((partition:any) => {
+      this.partitions = res.partitions.map((partition: any) => {
         return {
-            ...partition,
-            races: partition.races?.sort((a:any, b:any) => a.orderNumber - b.orderNumber)
+          ...partition,
+          races: partition.races?.sort((a: any, b: any) => a.orderNumber - b.orderNumber)
         };
       });
-      this.partitionTitles = this.partitions.map(item => item.title)
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      console.log(this.chosenPartition())
+      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
     })
-
 
   }
 
@@ -76,7 +84,7 @@ export class StartListComponent {
     this.chosenPartition.set(this.partitions[index])
   }
 
-  openResults(index:any,race:any) {
+  openResults(index: any, race: any) {
     console.log(this.chosenPartition())
     console.log(race)
     this.allAthletesInHeatsArr = race.participants

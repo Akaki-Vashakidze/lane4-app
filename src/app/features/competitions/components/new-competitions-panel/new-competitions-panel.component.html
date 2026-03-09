@@ -15,15 +15,15 @@
               <mat-expansion-panel-header>
                 <div class="header-content">
                   <div class="compTitle1">
-                    <span class="header-title">{{competition.title}}</span>
+                    <span class="header-title">{{lang() == 'ka' ? competition.title : competition.translations.en.title}}</span>
                     <span class="date">{{competition.startDate | date: 'dd/MM/yyyy' }}</span>
                   </div>
                 </div>
               </mat-expansion-panel-header>
               <div class="panel-content">
                 <div class="labels">
-                    <app-label [label]="'address' | translate" [value]="competition.address"></app-label>
-                    <app-label [label]="'description' | translate" [value]="competition.description"></app-label>
+                    <app-label [label]="'address' | translate" [value]="lang() == 'ka' ? competition.address : competition.translations.en.address"></app-label>
+                    <app-label [label]="'description' | translate" [value]="lang() == 'ka' ? competition.description : competition.translations.en.description"></app-label>
                 </div>
                 <div class="actionsComp">
                   <app-button padding="10px" [routerLink]="'/competitions/startList/' + competition._id" [text]="'startlist' | translate" width="100%"></app-button>

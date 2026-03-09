@@ -10,6 +10,8 @@ import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spi
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { TimeComponent } from "../../../../shared/components/time/time.component";
+import { I18nService } from '../../../../shared/services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-heats',
@@ -19,6 +21,7 @@ import { TimeComponent } from "../../../../shared/components/time/time.component
   styleUrl: './heats.component.scss'
 })
 export class HeatsComponent {
+  lang = signal<string>('en');
   resultsOpen!: any;
   eventId!: string;
   event: any;
@@ -31,15 +34,21 @@ export class HeatsComponent {
   constructor(
     private _sharedService:SharedService,
     private route: ActivatedRoute,
-    private _competitionService: CompetitionService
+    private _competitionService: CompetitionService,
+    private _i18nService: I18nService
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
         this.eventId = params.id
       }
     })
-  }
-  async ngOnInit() {
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+      }
+    );
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
       this.event = res.event;
@@ -51,14 +60,11 @@ export class HeatsComponent {
             races: partition.races.sort((a, b) => a.orderNumber - b.orderNumber)
         };
       });
-      this.partitionTitles = this.partitions.map(item => item.title)
+      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
     })
-
-
   }
-
    isDeadlinePassed(registrationEndDate:Date) {
     const currentDate = new Date();
     const endDate = new Date(registrationEndDate);

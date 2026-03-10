@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="event" class="compContainer">
     <div class="resultsContainer">
-        <app-custom-tabs [loaderOn]="printLoader()"  [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="lang() == 'ka' ? event.title : event.translations.en.title" [header]="'start_list' | translate" [tabs]="partitionTitles">
+        <app-custom-tabs [loaderOn]="printLoader()"  [print]="true" (tabChanged)="onTabChange($event)" (onPrint)="onPrint($event)" [subHeader2]="(event.startDate | date: 'dd') + ' - ' + (event.endDate | date: 'dd/MM/yyyy')" [subHeader]="lang() == 'ka' ? event.title : event?.translations?.en?.title" [header]="'start_list' | translate" [tabs]="partitionTitles">
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'startlist_available_when_registration_finish' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'registration_finish' | translate}}{{':'}}{{event.registrationEndDate | date: 'dd-MM-yyy'}}</div>
@@ -42,7 +42,7 @@
                                 <div class="athlete">{{$index + 1}}. {{ lang() === 'ka' ? athlete?.athlete?.lastName : athlete?.athlete?.lastNameEn }}
                                     {{ lang() === 'ka' ? athlete?.athlete?.firstName : athlete?.athlete?.firstNameEn || athlete?.athlete?.title}}</div>
                                 <div class="birthDate">{{athlete?.athlete?.birthDate | date:'yyyy'}}</div>
-                                <div class="teamInfo">{{athlete?.team?.title}}</div>
+                                <div class="teamInfo">{{lang() == 'ka' ? athlete?.team?.title : athlete?.team?.translates?.en?.title }}</div>
                                 <!-- <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
                                     athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div> -->
                                 <app-time class="result" *ngIf="athlete?.qualificationTime?.seconds !== null && athlete?.qualificationTime?.seconds !== undefined" [timeObj]="athlete?.qualificationTime"></app-time>

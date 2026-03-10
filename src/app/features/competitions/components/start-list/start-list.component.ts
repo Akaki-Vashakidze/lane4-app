@@ -59,7 +59,7 @@ export class StartListComponent {
       .pipe(takeUntilDestroyed())
       .subscribe(lang => {
         this.lang.set(lang || 'en')
-        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title))
       }
     );
 
@@ -73,7 +73,7 @@ export class StartListComponent {
       });
       this.chosenPartition.set(this.partitions[0])
       this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title))
     })
 
   }
@@ -85,8 +85,6 @@ export class StartListComponent {
   }
 
   openResults(index: any, race: any) {
-    console.log(this.chosenPartition())
-    console.log(race)
     this.allAthletesInHeatsArr = race.participants
     // this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds)
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;

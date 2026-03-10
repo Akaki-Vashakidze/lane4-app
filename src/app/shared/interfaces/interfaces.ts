@@ -57,6 +57,11 @@ export interface ActiveEvent {
 export interface Team {
   description: string;
   title: string;
+  translations:{
+    en:{
+      title:string
+    }
+  }
   _id: string;
   members: {
     coach: memberInfo;
@@ -182,6 +187,11 @@ export interface StartListParticipant {
   team: {
     _id: string,
     title: string
+    translates: {
+      en:{
+        title:string
+      }
+    }
   },
   athlete: {
     _id: string,

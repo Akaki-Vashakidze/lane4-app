@@ -29,6 +29,7 @@ export class AthleteStyleResultsComponent {
     this.stroke = this.route.snapshot.paramMap.get('stroke');
     this.isLoading = true;
     _sharedService.getAthleteStrokeRes(this.athleteId, this.poolLength, this.distance, this.stroke).subscribe(item => {
+      console.log(item)
       this.isLoading = false;
       const sortedData = item.data.sort((a: any, b: any) => a.result.totalMilliseconds - b.result.totalMilliseconds);
       

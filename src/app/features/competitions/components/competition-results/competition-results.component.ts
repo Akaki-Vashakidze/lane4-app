@@ -59,7 +59,7 @@ export class CompetitionResultsComponent {
       .pipe(takeUntilDestroyed())
       .subscribe(lang => {
         this.lang.set(lang || 'en')
-        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title))
       }
     );
   }
@@ -98,7 +98,7 @@ export class CompetitionResultsComponent {
           res.partitions[partitionIndex].races.sort((a, b) => a.orderNumber - b.orderNumber);
         });
         this.partitions = res.partitions;
-        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item.translations.en.title))
+        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title))
         this.chosenPartition.set(this.partitions[0])
         this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
         if (cb) cb();

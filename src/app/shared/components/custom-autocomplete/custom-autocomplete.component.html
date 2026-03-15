@@ -5,6 +5,6 @@
   
   <ul *ngIf="filteredSuggestions && filteredSuggestions.length > 0" class="suggestions-list">
     <li *ngFor="let suggestion of filteredSuggestions" (click)="selectSuggestion(suggestion)">
-      {{ suggestion.lastName + ' ' + suggestion.firstName}}
+      {{ lang() != 'en' ? suggestion.lastName + ' ' + suggestion.firstName : suggestion.lastNameEn + ' ' + suggestion.firstNameEn }}
     </li>
   </ul>

@@ -10,7 +10,8 @@
         <img width="100px" *ngIf="selectedAthlete?.gender == 'FEMALE'" src="/assets/imgs/women.svg"/>
         <div class="bio">
             <div *ngIf="athleteNotFount">{{'not_found_athlete_res' | translate}}</div>
-            <div class="name">{{selectedAthlete ? selectedAthlete?.lastName + ' ' + selectedAthlete?.firstName : 'PleaseSearchAthlete' | translate}}</div>
+            <div class="name" *ngIf="lang() == 'ka'">{{selectedAthlete ? selectedAthlete?.lastName + ' ' + selectedAthlete?.firstName : 'PleaseSearchAthlete' | translate}}</div>
+            <div class="name" *ngIf="lang() == 'en'">{{selectedAthlete ? selectedAthlete?.lastNameEn + ' ' + selectedAthlete?.firstNameEn : 'PleaseSearchAthlete' | translate}}</div>
             <div class="bornYear">{{selectedAthlete?.birthDate | date:'yyyy'}}</div>
         </div>
     </div>

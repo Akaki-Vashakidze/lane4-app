@@ -10,6 +10,8 @@ import { CustomAutocompleteComponent } from '../custom-autocomplete/custom-autoc
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 import { catchError, debounce, debounceTime, of } from 'rxjs';
+import { I18nService } from '../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-athlete-results',
@@ -19,6 +21,7 @@ import { catchError, debounce, debounceTime, of } from 'rxjs';
   styleUrl: './athlete-results.component.scss'
 })
 export class AthleteResultsComponent implements OnInit{
+  lang = signal<string>('en');
   currentYear: number;
   athleteNotFount:boolean = false;
   yearsForSelect: any[] = []
@@ -50,9 +53,13 @@ export class AthleteResultsComponent implements OnInit{
     '200MEDLEY': {},
     '400MEDLEY': {},
   };
-  constructor(public activatedRoute:ActivatedRoute,public _sharedService: SharedService, public _router:Router) {
+  constructor(public activatedRoute:ActivatedRoute,public _sharedService: SharedService, public _router:Router, private _i18nService: I18nService) {
     this.currentYear = new Date().getFullYear();
     this.populateYearsForSelect();
+
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => this.lang.set(lang || 'en'));
   }
 
   ngOnInit() {

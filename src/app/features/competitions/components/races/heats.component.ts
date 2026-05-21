@@ -52,18 +52,42 @@ export class HeatsComponent {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
       this.event = res.event;
-      // if(!registrationIsFinished) return
-      this.event = res.event;
-      this.partitions = res.partitions.map(partition => {
+      console.log(this.event)
+      
+      const sortedPartitions = [...res.partitions].sort((a: any, b: any) => {
+        const getDateTime = (dateStr: string, timeStr: string) => {
+          const date = new Date(dateStr);
+          if (!timeStr) return date;
+          
+          const [time, modifier] = timeStr.split(' ');
+          let [hours, minutes] = time.split(':').map(Number);
+          
+          if (modifier === 'PM' && hours < 12) hours += 12;
+          if (modifier === 'AM' && hours === 12) hours = 0;
+          
+          date.setUTCHours(hours, minutes, 0, 0);
+          return date;
+        };
+
+        const dateTimeA = getDateTime(a.startDate, a.startTime);
+        const dateTimeB = getDateTime(b.startDate, b.startTime);
+
+        return dateTimeA.getTime() - dateTimeB.getTime();
+      });
+
+      this.partitions = sortedPartitions.map(partition => {
         return {
             ...partition,
             races: partition.races.sort((a, b) => a.orderNumber - b.orderNumber)
         };
       });
+
       this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
-      this.chosenPartition.set(this.partitions[0])
-      this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-    })
+      
+      if (this.partitions.length > 0) {
+        this.chosenPartition.set(this.partitions[0]);
+      }
+    });
   }
    isDeadlinePassed(registrationEndDate:Date) {
     const currentDate = new Date();

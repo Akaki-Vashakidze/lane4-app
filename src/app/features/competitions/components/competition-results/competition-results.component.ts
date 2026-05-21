@@ -83,29 +83,54 @@ export class CompetitionResultsComponent {
 
 
   }
+
   async getEventDetails(cb?: () => void) {
     this._competitionService.getEventDetails(this.eventId).subscribe(res => {
       this.event = res.event;
-      if(res.partitions){
-        res.partitions.map((partition, partitionIndex) => {
-          partition.races.map((race, raceIndex) => {
-            let isPublished = race.heats.some(heat => {
-              return heat.lanes.some(lane => lane.isPublished === true);
-            });
-            res.partitions[partitionIndex].races[raceIndex].isPublished = isPublished;
-          });
-        
-          res.partitions[partitionIndex].races.sort((a, b) => a.orderNumber - b.orderNumber);
+      
+      if (res.partitions) {
+        const sortedPartitions = [...res.partitions].sort((a: any, b: any) => {
+          const getDateTime = (dateStr: string, timeStr: string) => {
+            const date = new Date(dateStr);
+            if (!timeStr) return date;
+            
+            const [time, modifier] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            
+            if (modifier === 'PM' && hours < 12) hours += 12;
+            if (modifier === 'AM' && hours === 12) hours = 0;
+            
+            date.setUTCHours(hours, minutes, 0, 0);
+            return date;
+          };
+
+          const dateTimeA = getDateTime(a.startDate, a.startTime);
+          const dateTimeB = getDateTime(b.startDate, b.startTime);
+
+          return dateTimeA.getTime() - dateTimeB.getTime();
         });
-        this.partitions = res.partitions;
+
+        sortedPartitions.forEach(partition => {
+          partition.races.forEach(race => {
+            race.isPublished = race.heats.some(heat => 
+              heat.lanes.some(lane => lane.isPublished === true)
+            );
+          });
+          partition.races.sort((a, b) => a.orderNumber - b.orderNumber);
+        });
+
+        this.partitions = sortedPartitions;
         this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
-        this.chosenPartition.set(this.partitions[0])
-        this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
+        
+        if (this.partitions.length > 0) {
+          this.chosenPartition.set(this.partitions[0]);
+        }
+        
         if (cb) cb();
       }
-
-    })
+    });
   }
+  
   onTabChange(index: number) {
     this.activeTabIndex = index;
     this.resultsOpen = 999

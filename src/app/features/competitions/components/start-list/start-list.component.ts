@@ -62,19 +62,46 @@ export class StartListComponent {
         this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
       }
     );
-
+    
     this._competitionService.getCompetitionStartList(this.eventId).subscribe(res => {
       this.event = res.event;
-      this.partitions = res.partitions.map((partition: any) => {
+      
+      const sortedPartitions = [...res.partitions].sort((a: any, b: any) => {
+        const getDateTime = (dateStr: string, timeStr: string) => {
+          const date = new Date(dateStr);
+          if (!timeStr) return date;
+          
+          const [time, modifier] = timeStr.split(' ');
+          let [hours, minutes] = time.split(':').map(Number);
+          
+          if (modifier === 'PM' && hours < 12) hours += 12;
+          if (modifier === 'AM' && hours === 12) hours = 0;
+          
+          date.setUTCHours(hours, minutes, 0, 0);
+          return date;
+        };
+
+        const dateTimeA = getDateTime(a.startDate, a.startTime);
+        const dateTimeB = getDateTime(b.startDate, b.startTime);
+
+        return dateTimeA.getTime() - dateTimeB.getTime();
+      });
+
+      this.partitions = sortedPartitions.map((partition: any) => {
         return {
           ...partition,
           races: partition.races?.sort((a: any, b: any) => a.orderNumber - b.orderNumber)
         };
       });
-      this.chosenPartition.set(this.partitions[0])
-      this.chosenPartition().races.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
-      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
-    })
+
+      if (this.partitions.length > 0) {
+        this.chosenPartition.set(this.partitions[0]);
+      }
+
+      this.partitionTitles = this.partitions.map(item => 
+        (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title)
+      );
+    });
 
   }
 

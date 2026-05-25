@@ -50,7 +50,7 @@ export class NewCompetitionsPanelComponent {
   }
 
   async getRankingsPdf(eventId: string): Promise<void> {
-    const request = await this._sharedService.getEventResultsPDF(eventId);
+    const request = await this._sharedService.getEventResultsPDF(eventId, this.lang());
     
     request.pipe(takeUntilDestroyed()).subscribe((res: any) => {
       const blob = res as Blob;

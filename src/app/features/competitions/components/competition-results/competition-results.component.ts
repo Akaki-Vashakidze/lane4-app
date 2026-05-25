@@ -157,7 +157,7 @@ export class CompetitionResultsComponent {
 
   onPrint(event: any) {
     this.printLoader.set(true)
-    this._sharedService.getEventResultsPDF(this.eventId).subscribe({
+    this._sharedService.getEventResultsPDF(this.eventId,this.lang()).subscribe({
       next: (res: any) => {
         this.printLoader.set(false)
         const blob = new Blob([res], { type: 'application/pdf' });

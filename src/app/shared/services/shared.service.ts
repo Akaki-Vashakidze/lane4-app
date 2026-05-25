@@ -17,8 +17,8 @@ export class SharedService {
       );
   }
 
-  getEventResultsPDF(eventId: string) {
-    return this.httpClient.get(`/consoleApi/public/events/${eventId}/results/pdf`, { responseType: 'blob' }).pipe(
+  getEventResultsPDF(eventId: string, lang:string) {
+    return this.httpClient.get(`/consoleApi/public/events/${eventId}/results/pdf?lang=${lang}`, { responseType: 'blob' }).pipe(
       map(res => {
         return new Blob([res], { type: 'application/pdf', });
       })

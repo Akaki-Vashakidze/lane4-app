@@ -16,11 +16,12 @@ import { SharedService } from '../../../../shared/services/shared.service';
 import { SocketService } from '../../../../shared/services/socket.service';
 import { I18nService } from '../../../../shared/services/i18n.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormatRaceTimePipe } from './formatRaceTime.pipe';
 
 @Component({
   selector: 'app-competition-results',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, TranslateModule, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
+  imports: [CommonModule, MatTabsModule, TranslateModule, FormatRaceTimePipe, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
   templateUrl: './competition-results.component.html',
   styleUrl: './competition-results.component.scss'
 })

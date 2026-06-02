@@ -45,8 +45,9 @@
                                 <div class="athlete">{{athlete?.orderNumber}}. {{ lang() === 'ka' ? athlete?.participant?.lastName : athlete?.participant?.lastNameEn }}
                                     {{lang() === 'ka' ? athlete?.participant?.firstName : athlete?.participant?.firstNameEn || athlete?.participant?.title}}</div>
                                 <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
-                                <div class="result" *ngIf="athlete.resultType == 'TIME'">{{athlete?.result?.minutes + ':' +
-                                    athlete?.result?.seconds + '.' + athlete?.result?.milliseconds}}</div>
+                                <div class="result" *ngIf="athlete.resultType === 'TIME' && athlete.result">
+                                {{ athlete.result | formatRaceTime }}
+                                </div>                                
                                 <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">
                                     {{athlete?.resultPoint}}</div>
                                 <div class="result" *ngIf="athlete.resultType != 'TIME'">{{athlete?.resultType}}</div>

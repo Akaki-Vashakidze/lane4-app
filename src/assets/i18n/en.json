@@ -146,5 +146,13 @@
   "comp_start":"Competition starts",
   "no_heats_yet":"No heats yet",
   "not_found_athlete_res":"Can not find athlete results",
-  "summary": "summary"
+  "summary": "summary",
+  "summary_first_day_results": "First day results",
+  "summary_period": "Period",
+  "summary_top_participants_by_gender": "Top participants by gender (leaders)",
+  "summary_team_ranking_and_medals": "Team ranking and medals",
+  "summary_place_1": "1st place",
+  "summary_place_2": "2nd place",
+  "summary_place_3": "3rd place",
+  "summary_total_podium": "Total (podium)"
 }

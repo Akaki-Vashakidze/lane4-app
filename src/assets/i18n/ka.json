@@ -146,5 +146,13 @@
   "comp_start": "შეჯიბრის დწყების თარიღი",
   "no_heats_yet": "არ არის გაცურვები",
   "not_found_athlete_res": "სპორტსმენების შედეგები ვერ მოიძებნა",
-  "summary": "შეჯამება"
+  "summary": "შეჯამება",
+  "summary_first_day_results": "პირველი დღის შედეგები",
+  "summary_period": "პერიოდი",
+  "summary_top_participants_by_gender": "საუკეთესო მონაწილეები სქესის მიხედვით (ლიდერები)",
+  "summary_team_ranking_and_medals": "გუნდური რეიტინგი და მედლები",
+  "summary_place_1": "1 ადგილი",
+  "summary_place_2": "2 ადგილი",
+  "summary_place_3": "3 ადგილი",
+  "summary_total_podium": "ჯამში (პოდიუმი)"
 }

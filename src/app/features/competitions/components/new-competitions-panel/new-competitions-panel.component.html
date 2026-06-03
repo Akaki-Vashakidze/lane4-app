@@ -1,39 +1,46 @@
-
 <app-loader-spinner *ngIf="competitions().length == 0" color="black" height="500px"></app-loader-spinner>
 
 <div class="MaskBlureImgCont">
-    <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
+  <img class="musk_blure_img" src="/assets/imgs/MaskBlure2.svg" />
 </div>
-  
-  <div class="CompetitionsListSection shadow1" ngClass="stylesForCompetitionsPage backgroundColorTrue shadow1"
-    *ngIf="competitions().length > 0">
 
-    <div class="compsContainer">
-        <div class="competitionsHeader headerFont">{{'competitions' | translate}}</div>
-        <mat-accordion>
-            <mat-expansion-panel class="expansionCompetitions" *ngFor="let competition of competitions()">
-              <mat-expansion-panel-header>
-                <div class="header-content">
-                  <div class="compTitle1">
-                    <span class="header-title">{{lang() == 'ka' ? competition.title : competition?.translations?.en?.title ?? competition.title}}</span>
-                    <span class="date">{{competition.startDate | date: 'dd/MM/yyyy' }}</span>
-                  </div>
-                </div>
-              </mat-expansion-panel-header>
-              <div class="panel-content">
-                <div class="labels">
-                    <app-label [label]="'address' | translate" [value]="lang() == 'ka' ? competition.address : competition?.translations?.en?.address ?? competition.address"></app-label>
-                    <app-label [label]="'description' | translate" [value]="lang() == 'ka' ? competition.description : competition?.translations?.en?.description ?? competition.description"></app-label>
-                </div>
-                <div class="actionsComp">
-                  <app-button padding="10px" [routerLink]="'/competitions/startList/' + competition._id" [text]="'startlist' | translate" width="100%"></app-button>
-                  <app-button padding="10px"  [routerLink]="'/competitions/races/' + competition._id" [text]="'heats' | translate" width="100%"></app-button>
-                  <app-button padding="10px"  (click)="navigateToCompResults(competition._id)" [text]="'results' | translate" width="100%"></app-button>
-                    <!-- <app-button (click)="getRankingsPdf(competition._id)" [text]="'pdf' | translate" results width="100%"></app-button> -->
-                </div>
-              </div>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+<div class="CompetitionsListSection shadow1" ngClass="stylesForCompetitionsPage backgroundColorTrue shadow1"
+  *ngIf="competitions().length > 0">
+
+  <div class="compsContainer">
+    <div class="competitionsHeader headerFont">{{'competitions' | translate}}</div>
+    <mat-accordion>
+      <mat-expansion-panel class="expansionCompetitions" *ngFor="let competition of competitions()">
+        <mat-expansion-panel-header>
+          <div class="header-content">
+            <div class="compTitle1">
+              <span class="header-title">{{lang() == 'ka' ? competition.title : competition?.translations?.en?.title ??
+                competition.title}}</span>
+              <span class="date">{{competition.startDate | date: 'dd/MM/yyyy' }}</span>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="panel-content">
+          <div class="labels">
+            <app-label [label]="'address' | translate"
+              [value]="lang() == 'ka' ? competition.address : competition?.translations?.en?.address ?? competition.address"></app-label>
+            <app-label [label]="'description' | translate"
+              [value]="lang() == 'ka' ? competition.description : competition?.translations?.en?.description ?? competition.description"></app-label>
+          </div>
+          <div class="actionsComp">
+
+            <app-button padding="10px" [routerLink]="'/competitions/startList/' + competition._id"
+              [text]="'startlist' | translate" width="100%"></app-button>
+            <app-button padding="10px" [routerLink]="'/competitions/races/' + competition._id"
+              [text]="'heats' | translate" width="100%"></app-button>
+            <app-button padding="10px" (click)="navigateToCompResults(competition._id)" [text]="'results' | translate"
+              width="100%"></app-button>
+            <app-button padding="10px" [routerLink]="'/competitions/summary/' + competition._id"
+              [text]="'summary' | translate" width="100%"></app-button>
+            <!-- <app-button (click)="getRankingsPdf(competition._id)" [text]="'pdf' | translate" results width="100%"></app-button> -->
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
-  

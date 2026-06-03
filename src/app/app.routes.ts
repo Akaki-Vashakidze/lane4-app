@@ -13,118 +13,129 @@ import { NewCompetitionsPanelComponent } from './features/competitions/component
 import { StartListComponent } from './features/competitions/components/start-list/start-list.component';
 import { HeatsComponent } from './features/competitions/components/races/heats.component';
 import { HeatsPdfBackupComponent } from './features/competitions/components/heats-pdf-backup/heats-pdf-backup.component';
+import { EventSummaryComponent } from './shared/components/event-summary/event-summary.component';
+import { EventSummaryPageComponent } from './shared/components/event-summary-page/event-summary-page.component';
 
 export const routes: Routes = [
-    {
-      path: '',
+  {
+    path: '',
     //   canActivate: [userGuard],
     //   runGuardsAndResolvers: 'always',
-      children: [
-        {
-          path: '',
-          redirectTo: 'dashboard',
-          pathMatch: 'full',
-        },
-        {
-          path: 'dashboard',
-          component: DashboardComponent,
-        },
-        {
-          path: 'records',
-          component: RecordsComponent,
-        },
-        {
-          path: 'athletes',
-          component: AthleteResultsComponent,
-        },
-        {
-          path: 'athlete/:stroke/:distance/:athleteId/:poolLength',
-          component: AthleteStyleResultsComponent,
-        },
-        {
-          path: 'contact',
-          component: ContactComponent,
-        },
-        {
-          path: 'about',
-          component: AbousUsComponent,
-        },
-        {
-          path: 'classification',
-          component: ClassificationContainerComponent,
-        },
-        {
-          path: 'competitions',
-          children: [
-            {
-              path: 'races/:id',
-              component: HeatsComponent,
-            },
-            {
-              path: 'races/:id/pdfBackup',
-              component: HeatsPdfBackupComponent,
-            },
-            {
-              path: '',
-              children: [
-                {
-                  path: '',
-                  component: NewCompetitionsPanelComponent,
-                },
-              ],
-            },
-            {
-              path: 'results/:id',
-              children: [
-                {
-                  path: '',
-                  component: CompetitionResultsComponent,
-                },
-              ],
-            },
-            {
-              path: 'startList/:id',
-              children: [
-                {
-                  path: '',
-                  component: StartListComponent,
-                },
-              ],
-            },
-          ],
-        },
-        // {
-        //   path: 'application',
-  
-        //   loadChildren: () =>
-        //     import('./pages/application/application.module').then(
-        //       ({ ApplicationModule }) => ApplicationModule
-        //     ),
-        // },
-        // {
-        //   path: 'resources',
-        //   data: {
-        //     breadcrumb: { disable: true },
-        //   },
-        //   children: [
-        //     {
-        //       path: 'catalogs',
-        //       children: [
-        //         {
-        //           path: '',
-        //           component: CatalogsTreeComponent,
-        //         },
-        //       ],
-        //     },
-        //   ],
-        // },
-        // {
-        //   path: 'throttlers',
-        //   loadChildren: () =>
-        //     import('./pages/throttlers/throttlers-routing.routes').then(
-        //       ({ throttlersRoutes }) => throttlersRoutes
-        //     ),
-        // },
-      ],
-    },
-  ];
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'records',
+        component: RecordsComponent,
+      },
+      {
+        path: 'athletes',
+        component: AthleteResultsComponent,
+      },
+      {
+        path: 'athlete/:stroke/:distance/:athleteId/:poolLength',
+        component: AthleteStyleResultsComponent,
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+      },
+      {
+        path: 'about',
+        component: AbousUsComponent,
+      },
+      {
+        path: 'classification',
+        component: ClassificationContainerComponent,
+      },
+      {
+        path: 'competitions',
+        children: [
+          {
+            path: 'races/:id',
+            component: HeatsComponent,
+          },
+          {
+            path: 'races/:id/pdfBackup',
+            component: HeatsPdfBackupComponent,
+          },
+          {
+            path: '',
+            children: [
+              {
+                path: '',
+                component: NewCompetitionsPanelComponent,
+              },
+            ],
+          },
+          {
+            path: 'results/:id',
+            children: [
+              {
+                path: '',
+                component: CompetitionResultsComponent,
+              },
+            ],
+          },
+          {
+            path: 'startList/:id',
+            children: [
+              {
+                path: '',
+                component: StartListComponent,
+              },
+            ],
+          },
+          {
+            path: 'summary/:id',
+            children: [
+              {
+                path: '',
+                component: EventSummaryPageComponent,
+              },
+            ],
+          },
+        ],
+      },
+      // {
+      //   path: 'application',
+
+      //   loadChildren: () =>
+      //     import('./pages/application/application.module').then(
+      //       ({ ApplicationModule }) => ApplicationModule
+      //     ),
+      // },
+      // {
+      //   path: 'resources',
+      //   data: {
+      //     breadcrumb: { disable: true },
+      //   },
+      //   children: [
+      //     {
+      //       path: 'catalogs',
+      //       children: [
+      //         {
+      //           path: '',
+      //           component: CatalogsTreeComponent,
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'throttlers',
+      //   loadChildren: () =>
+      //     import('./pages/throttlers/throttlers-routing.routes').then(
+      //       ({ throttlersRoutes }) => throttlersRoutes
+      //     ),
+      // },
+    ],
+  },
+];

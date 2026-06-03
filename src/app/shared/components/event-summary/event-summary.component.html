@@ -1,0 +1,78 @@
+<div class="report-container" *ngIf="summary()">
+  
+  <div class="header-banner">
+    <h1 class="header-title">{{ summary().event.title }}</h1>
+    <div class="header-subtitle">📊 პირველი დღის შედეგები</div>
+    <div class="header-meta">
+      📅 <b>პერიოდი:</b> 02 ივნისი, 2026 - 04 ივნისი, 2026
+    </div>
+  </div>
+
+  <h2 class="section-title">👥 საუკეთესო მონაწილეები სქესის მიხედვით (ლიდერები)</h2>
+  <div class="grid-table">
+    
+    <div class="grid-cell padding-right">
+      <div class="gender-heading male-color">♂️ მამაკაცები</div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">#</th>
+            <th>სახელი</th>
+            <th style="text-align: right;">ქულა</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of summary().topParticipantsByGender.MALE; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td><b>{{ cleanName(p.name) }}</b></td>
+            <td style="text-align: right; font-weight: bold; color: #2b6cb0;">{{ p.finaPoint }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-cell padding-left">
+      <div class="gender-heading female-color">♀️ ქალები</div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">#</th>
+            <th>სახელი</th>
+            <th style="text-align: right;">ქულა</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of summary().topParticipantsByGender.FEMALE; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td><b>{{ cleanName(p.name) }}</b></td>
+            <td style="text-align: right; font-weight: bold; color: #b83280;">{{ p.finaPoint }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">🏢 გუნდური რეიტინგი და მედლები</h2>
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>გუნდი</th>
+        <th style="text-align: center;">🥇 1 ადგილი</th>
+        <th style="text-align: center;">🥈 2 ადგილი</th>
+        <th style="text-align: center;">🥉 3 ადგილი</th>
+        <th style="text-align: center; background-color: #e2e8f0; color: #1a202c;">ჯამში (პოდიუმი)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of summary().topTeams">
+        <td><b>{{ team.title }}</b></td>
+        <td style="text-align: center; font-weight: bold; color: #d4af37;">{{ team.topScores.firstPlaceCount }}</td>
+        <td style="text-align: center; font-weight: bold; color: #718096;">{{ team.topScores.secondPlaceCount }}</td>
+        <td style="text-align: center; font-weight: bold; color: #b4745e;">{{ team.topScores.thirdPlaceCount }}</td>
+        <td style="text-align: center; font-weight: bold; background-color: #edf2f7; color: #2d3748;">{{ team.topScores.podiumParticipantsCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -10,27 +10,31 @@ export class CompetitionService {
   constructor() { }
   private readonly httpClient = inject(HttpClient);
 
-  getEventDetails(eventId:string) {
+  getEventDetails(eventId: string) {
     return this.httpClient.get<EventDetails>(`/consoleApi/public/events/${eventId}/details`)
   }
 
-  convertResultToSeconds(result:Time) {
+  convertResultToSeconds(result: Time) {
     return (result?.minutes * 60) + (result?.seconds * 1) + (result?.milliseconds / 100)
   }
 
-  getPlannedEvents(){
+  getPlannedEvents() {
     return this.httpClient.get<any[]>(`/consoleApi/event/planned`);
   }
 
 
-  getCompetitionStartList(id:string){
+  getCompetitionStartList(id: string) {
     return this.httpClient.get<any>(`/consoleApi/public/events/${id}/participants`);
   }
 
   getAllCompetitions() {
     return this.httpClient
-      .get<Event[] >(`/consoleApi/public/events`).pipe(
+      .get<Event[]>(`/consoleApi/public/events`).pipe(
         tap(item => console.log(item))
       )
+  }
+
+  getEventSummary(eventId: string) {
+    return this.httpClient.get<EventDetails>(`/consoleApi/public/events/${eventId}/summary`)
   }
 }

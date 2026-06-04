@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18nService } from '../../services/i18n.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 
 export interface EventData {
   _id: string;
@@ -51,7 +52,7 @@ export interface OlympicFestivalJson {
 @Component({
   selector: 'app-event-summary',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, LoaderSpinnerComponent],
   templateUrl: './event-summary.component.html',
   styleUrls: ['./event-summary.component.css']
 })

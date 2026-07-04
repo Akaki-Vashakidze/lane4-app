@@ -155,5 +155,9 @@
   "summary_place_1": "1st place",
   "summary_place_2": "2nd place",
   "summary_place_3": "3rd place",
-  "summary_total_podium": "Total (podium)"
+  "summary_total_podium": "Total (podium)",
+  "Absolute_category": "Absolute Category",
+  "Juniors": "Juniors",
+  "Seniors": "Seniors",
+  "Cadet": "Cadet"
 }

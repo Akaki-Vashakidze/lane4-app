@@ -1,5 +1,3 @@
-
-
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventPartition, Lane, Heat, Race } from '../../../../shared/interfaces/interfaces';
@@ -18,6 +16,11 @@ import { I18nService } from '../../../../shared/services/i18n.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormatRaceTimePipe } from './formatRaceTime.pipe';
 
+interface AgeGroupResult {
+  groupName: string;
+  athletes: Lane[];
+}
+
 @Component({
   selector: 'app-competition-results',
   standalone: true,
@@ -35,8 +38,10 @@ export class CompetitionResultsComponent {
   partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   allChosenResults!: Lane[];
-  allAthletesInHeatsArr: Lane[] = []
+  allAthletesInHeatsArr: Lane[] = [];
+  groupedAgeResults: AgeGroupResult[] = []; 
   printLoader = signal<any>(false);
+
   constructor(
     private _sharedService: SharedService,
     private route: ActivatedRoute,
@@ -64,6 +69,7 @@ export class CompetitionResultsComponent {
       }
     );
   }
+
   async ngOnInit() {
     this.getEventDetails();
   }
@@ -81,8 +87,6 @@ export class CompetitionResultsComponent {
         })
       }
     })
-
-
   }
 
   async getEventDetails(cb?: () => void) {
@@ -138,24 +142,6 @@ export class CompetitionResultsComponent {
     this.chosenPartition.set(this.partitions[index])
   }
 
-  //download pdf
-  // onPrint(event: any) {
-  //   this._sharedService.getEventResultsPDF(this.eventId).subscribe({
-  //     next: (res: any) => {
-  //       const blob = new Blob([res], { type: 'application/pdf' });
-  //       const url = window.URL.createObjectURL(blob);
-  //       const link = document.createElement('a');
-  //       link.href = url;
-  //       link.download = `EventResults_${this.eventId}.pdf`;
-  //       link.click();
-  //       window.URL.revokeObjectURL(url);
-  //     },
-  //     error: (err) => {
-  //       console.error('Failed to fetch PDF:', err);
-  //     },
-  //   });
-  // }
-
   onPrint(event: any) {
     this.printLoader.set(true)
     this._sharedService.getEventResultsPDF(this.eventId,this.lang()).subscribe({
@@ -171,45 +157,75 @@ export class CompetitionResultsComponent {
       },
     });
   }
-  
-  
 
   openResults(index: any, heats: any, openFromSocket = false) {
     let lanes = heats.map((heat: Heat) => {
       return heat.lanes
     })
+    
     this.allAthletesInHeatsArr = [];
+    let ageGroupsMap = new Map<string, Lane[]>();
+
     for (let i = 0; i < lanes.length; i++) {
       for (let j = 0; j < lanes[i].length; j++) {
         if (lanes[i][j].isPublished && lanes[i][j].result?.seconds) {
-          lanes[i][j].totalSeconds = this._competitionService.convertResultToSeconds(lanes[i][j].result)
-          this.allAthletesInHeatsArr.push(lanes[i][j])
+          const laneItem = { ...lanes[i][j] };
+          laneItem.totalSeconds = this._competitionService.convertResultToSeconds(laneItem.result);
+          
+          this.allAthletesInHeatsArr.push(laneItem);
+
+          if (laneItem.ageGroups && Array.isArray(laneItem.ageGroups)) {
+            let athleteGroups = [...laneItem.ageGroups];
+            
+            if (athleteGroups.includes('Senior') && !athleteGroups.includes('Absolute')) {
+              athleteGroups.push('Absolute');
+            }
+
+            athleteGroups.forEach((group: string) => {
+              if (group === 'Absolute' || group === 'Senior') return;
+
+              if (!ageGroupsMap.has(group)) {
+                ageGroupsMap.set(group, []);
+              }
+              ageGroupsMap.get(group)!.push({ ...laneItem });
+            });
+          }
         }
       }
     }
     
     this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
+    this.rankAthletes(this.allAthletesInHeatsArr);
 
-    this.allAthletesInHeatsArr.forEach((athlete: any, index: number) => {
-      if (index === 0) {
-        athlete.orderNumber = 1;
-      } else {
-        const prev = this.allAthletesInHeatsArr[index - 1];
-
-        if (athlete.totalSeconds === prev.totalSeconds) {
-          // same time → same place
-          athlete.orderNumber = prev.orderNumber;
-        } else {
-          // Olympic ranking: skip numbers after ties
-          athlete.orderNumber = index + 1;
-        }
-      }
+    this.groupedAgeResults = [];
+    ageGroupsMap.forEach((athletes, groupName) => {
+      athletes.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
+      this.rankAthletes(athletes);
+      this.groupedAgeResults.push({
+        groupName: groupName,
+        athletes: athletes
+      });
     });
-
 
     if (openFromSocket) {
       this.resultsOpen = index;
     } else this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
+  }
+
+  private rankAthletes(athletesList: Lane[]) {
+    athletesList.forEach((athlete: any, index: number) => {
+      if (index === 0) {
+        athlete.orderNumber = 1;
+      } else {
+        const prev = athletesList[index - 1] as any;
+        if (athlete.totalSeconds === prev.totalSeconds) {
+          athlete.orderNumber = prev.orderNumber;
+        } else {
+          athlete.orderNumber = index + 1;
+        }
+      }
+    });
+    
   }
 
   onTabChanged(event: any) {

@@ -166,6 +166,7 @@ export interface Heat {
 }
 
 export interface Lane {
+  ageGroups:string[];
   orderNumber?: number;
   participant: Participant | Team | any;
   lane: any;

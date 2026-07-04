@@ -209,3 +209,29 @@ mat-tab-group {
     }
 }
 
+.ageGroupTitleMain {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f4f8;
+    color: var(--dark-blue4, rgb(11 48 105));
+    font-weight: 800;
+    font-size: 14px;
+    border-left: 4px solid rgb(33 139 254);
+    margin-bottom: 5px;
+}
+
+.ageGroupTitleDivider {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f4f8;
+    color: var(--dark-blue4, rgb(11 48 105));
+    font-weight: 800;
+    font-size: 14px;
+    border-left: 4px solid #58cf39;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.RaceResultsCont {
+    max-height: 700px;
+}

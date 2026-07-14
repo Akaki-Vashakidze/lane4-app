@@ -166,7 +166,7 @@ export interface Heat {
 }
 
 export interface Lane {
-  ageGroups:string[];
+  ageGroups:AgeGroup[];
   orderNumber?: number;
   participant: Participant | Team | any;
   lane: any;
@@ -181,6 +181,15 @@ export interface Lane {
   team?: Team;
   qualificationTimePoint?: number;
   qualificationTime?: Time;
+}
+
+export interface AgeGroup {
+  _id: string;
+  name: string;
+  nameEn: string;
+  yearFrom: number;
+  yearTo: number;
+  __v?: number;
 }
 
 export interface StartListParticipant {

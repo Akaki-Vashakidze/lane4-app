@@ -7,6 +7,7 @@
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'results_available_when_comp_start' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'comp_start' | translate}}{{': '}}{{event.startDate | date: 'dd-MM-yyy'}}</div>
+                
                 @for (race of chosenPartition().races; track $index) {
                 <div class="resLineCont">
                     <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
@@ -16,70 +17,62 @@
                             <div class="resHeader">{{race.gender | translate }} {{(race.type == 'INDIVIDUAL' ? race.distance : (
                                 '4 x ' + (race.distance / 4)) | translate)}}მ {{(race.type == 'INDIVIDUAL' ? '' : race.style +
                                 '_MEDLEY'| translate)}} {{(race.type != 'INDIVIDUAL' ? '' : race.style |
-                                translate)}}{{' '}}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
+                                translate)}}{{ ' ' }}{{!race.hasFinals ? '' : '(qualification)' | translate}}{{!race.parentRace ? '' : '(final)' | translate}}</div>
                         </div>
                         <div>
-                            <div class="finished"><mat-icon class="check_circle_outline"
-                                    *ngIf="!race.isPublished">check_circle_outline</mat-icon></div>
-                            <div class="finished"><mat-icon class="check_circle"
-                                    *ngIf="race.isPublished">check_circle</mat-icon></div>
+                            <div class="finished">
+                                <mat-icon class="check_circle_outline" *ngIf="!race.isPublished">check_circle_outline</mat-icon>
+                            </div>
+                            <div class="finished">
+                                <mat-icon class="check_circle" *ngIf="race.isPublished">check_circle</mat-icon>
+                            </div>
                         </div>
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
                     </div>
                     
                     <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
-                        <div class="ageGroupTitleMain">{{ 'Absolute_category' | translate }}</div>
-                        @if (allAthletesInHeatsArr.length > 0) {
-                        <div class="RaceResultsContHeader">
-                            <div class="title">{{'name' | translate}}</div>
-                            <div class="bithDate"><span *ngIf="race.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span>
-                            </div>
-                            <div class="result">{{'result' | translate}}</div>
-                            <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
-                        </div>
-                        <div class="RaceResultsContBody">
-                            @for (athlete of allAthletesInHeatsArr; track $index) {
-                            <div class="athleteResult">
-                                <div class="athlete">{{athlete?.orderNumber}}. {{ lang() === 'ka' ? athlete?.participant?.lastName : athlete?.participant?.lastNameEn || athlete?.participant?.title}}
-                                    {{lang() != 'ka' ? athlete?.participant?.firstNameEn : athlete?.participant?.firstName || athlete?.participant?.translations?.en?.title}}</div>
-                                <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
-                                <div class="result" *ngIf="athlete.resultType === 'TIME' && athlete.result">
-                                {{ athlete.result | formatRaceTime }}
-                                </div>                                
-                                <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">
-                                    {{athlete?.resultPoint}}</div>
-                                <div class="result" *ngIf="athlete.resultType != 'TIME'">{{athlete?.resultType}}</div>
-                            </div>
-                            }
-                        </div>
-                        } @else {
-                        <div>{{'no_res_yet' | translate}}</div>
-                        }
-
-                        @for (ageGroup of groupedAgeResults; track ageGroup.groupName) {
-                            <div class="ageGroupTitleDivider">{{ ageGroup.groupName + 's' | translate }}</div>
-                            <div class="RaceResultsContHeader">
-                                <div class="title">{{'name' | translate}}</div>
-                                <div class="bithDate"><span *ngIf="race.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span></div>
-                                <div class="result">{{'result' | translate}}</div>
-                                <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
-                            </div>
-                            <div class="RaceResultsContBody">
-                                @for (athlete of ageGroup.athletes; track $index) {
-                                <div class="athleteResult">
-                                    <div class="athlete">{{athlete?.orderNumber}}. {{ lang() === 'ka' ? athlete?.participant?.lastName : athlete?.participant?.lastNameEn || athlete?.participant?.title}}
-                                        {{lang() != 'ka' ? athlete?.participant?.firstNameEn : athlete?.participant?.firstName || athlete?.participant?.translations?.en?.title}}</div>
-                                    <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
-                                    <div class="result" *ngIf="athlete.resultType === 'TIME' && athlete.result">
-                                    {{ athlete.result | formatRaceTime }}
-                                    </div>                                
-                                    <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">
-                                        {{athlete?.resultPoint}}</div>
-                                    <div class="result" *ngIf="athlete.resultType != 'TIME'">{{athlete?.resultType}}</div>
-                                </div>
+                        
+                        @for (ageGroup of groupedAgeResults; track ageGroup.groupId) {
+                            @if (ageGroup.athletes.length > 0) {
+                                @if (!ageGroup.isAbsoluteFallback) {
+                                    <div class="ageGroupTitleDivider">
+                                        {{ lang() === 'ka' ? ageGroup.groupName : ageGroup.groupNameEn }}
+                                    </div>
                                 }
-                            </div>
+                                <div class="RaceResultsContHeader">
+                                    <div class="title">{{'name' | translate}}</div>
+                                    <div class="bithDate">
+                                        @if (race.type === 'INDIVIDUAL') {
+                                            <span>{{'Birth_date' | translate}}</span>
+                                        }
+                                    </div>
+                                    <div class="result">{{'result' | translate}}</div>
+                                    <div class="points">
+                                        @if (race.type === 'INDIVIDUAL') {
+                                            <span>{{'points' | translate}}</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="RaceResultsContBody">
+                                    @for (athlete of ageGroup.athletes; track $index) {
+                                    <div class="athleteResult">
+                                        <div class="athlete">{{athlete?.orderNumber}}. {{ lang() === 'ka' ? athlete?.participant?.lastName : athlete?.participant?.lastNameEn || athlete?.participant?.title}}
+                                            {{lang() != 'ka' ? athlete?.participant?.firstNameEn : athlete?.participant?.firstName || athlete?.participant?.translations?.en?.title}}</div>
+                                        <div class="birthDate">{{athlete?.participant?.birthDate | date:'yyyy'}}</div>
+                                        <div class="result" *ngIf="athlete.resultType === 'TIME' && athlete.result">
+                                        {{ athlete.result | formatRaceTime }}
+                                        </div>                                
+                                        <div class="points" *ngIf="athlete.resultType == 'TIME' && athlete.raceType == 'INDIVIDUAL'">
+                                            {{athlete?.resultPoint}}</div>
+                                        <div class="result" *ngIf="athlete.resultType != 'TIME'">{{athlete?.resultType}}</div>
+                                    </div>
+                                    }
+                                </div>
+                            }
+                        } @empty {
+                            <div style="padding: 15px; text-align: center;">{{'no_res_yet' | translate}}</div>
                         }
+                        
                     </div>
                 </div>
                 }

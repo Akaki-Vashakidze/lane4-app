@@ -223,13 +223,13 @@ mat-tab-group {
 .ageGroupTitleDivider {
     width: 100%;
     padding: 10px;
-    background-color: #f0f4f8;
-    color: var(--dark-blue4, rgb(11 48 105));
     font-weight: 800;
     font-size: 14px;
-    border-left: 4px solid #58cf39;
+    border-left: 4px solid var(--dark-blue4);
     margin-top: 25px;
     margin-bottom: 5px;
+    background-color: rgb(182, 227, 255);
+    color: rgb(11, 48, 105);
 }
 
 .RaceResultsCont {

@@ -1,15 +1,13 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, signal, WritableSignal, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventPartition, Lane, Heat, Race } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Lane, Heat, Race, AgeGroup } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { LoaderSpinnerComponent } from '../../../../shared/components/loader-spinner/loader-spinner.component';
 import { CustomTabsComponent } from '../../../../shared/components/custom-tabs/custom-tabs.component';
-import { Meta, Title } from '@angular/platform-browser';
-import { async } from 'rxjs';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { SocketService } from '../../../../shared/services/socket.service';
 import { I18nService } from '../../../../shared/services/i18n.service';
@@ -17,18 +15,30 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormatRaceTimePipe } from './formatRaceTime.pipe';
 
 interface AgeGroupResult {
+  groupId: string;
   groupName: string;
+  groupNameEn: string;
   athletes: Lane[];
+  yearTo?: number;
+  isAbsoluteFallback?: boolean; 
 }
 
 @Component({
   selector: 'app-competition-results',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, TranslateModule, FormatRaceTimePipe, MatIconModule, LoaderSpinnerComponent, CustomTabsComponent],
+  imports: [
+    CommonModule, 
+    MatTabsModule, 
+    TranslateModule, 
+    FormatRaceTimePipe, 
+    MatIconModule, 
+    LoaderSpinnerComponent, 
+    CustomTabsComponent
+  ],
   templateUrl: './competition-results.component.html',
   styleUrl: './competition-results.component.scss'
 })
-export class CompetitionResultsComponent {
+export class CompetitionResultsComponent implements OnInit {
   lang = signal<string>('en');
   resultsOpen!: any;
   eventId!: string;
@@ -36,9 +46,8 @@ export class CompetitionResultsComponent {
   activeTabIndex!: number;
   partitions!: EventPartition[];
   partitionTitles!: string[];
-  chosenPartition: WritableSignal<EventPartition | any> = signal('')
+  chosenPartition: WritableSignal<EventPartition | any> = signal('');
   allChosenResults!: Lane[];
-  allAthletesInHeatsArr: Lane[] = [];
   groupedAgeResults: AgeGroupResult[] = []; 
   printLoader = signal<any>(false);
 
@@ -51,23 +60,22 @@ export class CompetitionResultsComponent {
   ) {
     this.route.params.subscribe((params: any) => {
       if (params.id) {
-        this.eventId = params.id
+        this.eventId = params.id;
       }
-    })
+    });
 
     this._socket.subscribeOnLive(async (data: any) => {
       if (data.eventId === this.eventId) {
         await this.getEventDetails(() => { this.showRace(data.partition, data.race, data.heat) });
       }
-    })
+    });
 
     this._i18nService.changedLang
       .pipe(takeUntilDestroyed())
       .subscribe(lang => {
-        this.lang.set(lang || 'en')
-        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item?.title))
-      }
-    );
+        this.lang.set(lang || 'en');
+        this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item?.title));
+      });
   }
 
   async ngOnInit() {
@@ -84,9 +92,9 @@ export class CompetitionResultsComponent {
               this.openResults(index, r.heats, true);
             }
           }
-        })
+        });
       }
-    })
+    });
   }
 
   async getEventDetails(cb?: () => void) {
@@ -125,7 +133,7 @@ export class CompetitionResultsComponent {
         });
 
         this.partitions = sortedPartitions;
-        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
+        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title));
         
         if (this.partitions.length > 0) {
           this.chosenPartition.set(this.partitions[0]);
@@ -138,15 +146,15 @@ export class CompetitionResultsComponent {
   
   onTabChange(index: number) {
     this.activeTabIndex = index;
-    this.resultsOpen = 999
-    this.chosenPartition.set(this.partitions[index])
+    this.resultsOpen = 999;
+    this.chosenPartition.set(this.partitions[index]);
   }
 
   onPrint(event: any) {
-    this.printLoader.set(true)
-    this._sharedService.getEventResultsPDF(this.eventId,this.lang()).subscribe({
+    this.printLoader.set(true);
+    this._sharedService.getEventResultsPDF(this.eventId, this.lang()).subscribe({
       next: (res: any) => {
-        this.printLoader.set(false)
+        this.printLoader.set(false);
         const blob = new Blob([res], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         window.open(url, '_blank');
@@ -159,57 +167,95 @@ export class CompetitionResultsComponent {
   }
 
   openResults(index: any, heats: any, openFromSocket = false) {
-    let lanes = heats.map((heat: Heat) => {
-      return heat.lanes
-    })
+    let lanes = heats.map((heat: Heat) => heat.lanes);
     
-    this.allAthletesInHeatsArr = [];
-    let ageGroupsMap = new Map<string, Lane[]>();
+    const eventGroups: AgeGroup[] = this.event?.ageGroups || [];
+    this.groupedAgeResults = [];
+
+    const allAthletes: Lane[] = [];
 
     for (let i = 0; i < lanes.length; i++) {
       for (let j = 0; j < lanes[i].length; j++) {
         if (lanes[i][j].isPublished && lanes[i][j].result?.seconds) {
           const laneItem = { ...lanes[i][j] };
           laneItem.totalSeconds = this._competitionService.convertResultToSeconds(laneItem.result);
-          
-          this.allAthletesInHeatsArr.push(laneItem);
-
-          if (laneItem.ageGroups && Array.isArray(laneItem.ageGroups)) {
-            let athleteGroups = [...laneItem.ageGroups];
-            
-            if (athleteGroups.includes('Senior') && !athleteGroups.includes('Absolute')) {
-              athleteGroups.push('Absolute');
-            }
-
-            athleteGroups.forEach((group: string) => {
-              if (group === 'Absolute' || group === 'Senior') return;
-
-              if (!ageGroupsMap.has(group)) {
-                ageGroupsMap.set(group, []);
-              }
-              ageGroupsMap.get(group)!.push({ ...laneItem });
-            });
-          }
+          allAthletes.push(laneItem);
         }
       }
     }
-    
-    this.allAthletesInHeatsArr.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
-    this.rankAthletes(this.allAthletesInHeatsArr);
 
-    this.groupedAgeResults = [];
-    ageGroupsMap.forEach((athletes, groupName) => {
-      athletes.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
-      this.rankAthletes(athletes);
-      this.groupedAgeResults.push({
-        groupName: groupName,
-        athletes: athletes
+    if (allAthletes.length === 0) {
+      if (openFromSocket) {
+        this.resultsOpen = index;
+      } else {
+        this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
+      }
+      return;
+    }
+
+    if (eventGroups.length === 0) {
+      allAthletes.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
+      this.rankAthletes(allAthletes);
+
+      this.groupedAgeResults = [{
+        groupId: 'all_results_fallback',
+        groupName: 'შედეგები',
+        groupNameEn: 'Results',
+        athletes: allAthletes,
+        isAbsoluteFallback: true
+      }];
+    } else {
+      let ageGroupsMap = new Map<string, { info: AgeGroup; athletes: Lane[] }>();
+
+      eventGroups.forEach((group: AgeGroup) => {
+        ageGroupsMap.set(group._id, {
+          info: group,
+          athletes: []
+        });
       });
-    });
+
+      allAthletes.forEach((laneItem) => {
+        if (laneItem.ageGroups && Array.isArray(laneItem.ageGroups)) {
+          laneItem.ageGroups.forEach((group: any) => {
+            const groupId = typeof group === 'string' ? group : group._id;
+            if (ageGroupsMap.has(groupId)) {
+              ageGroupsMap.get(groupId)!.athletes.push({ ...laneItem });
+            }
+          });
+        }
+      });
+
+      const rawGroupedResults: AgeGroupResult[] = [];
+      
+      eventGroups.forEach((group: AgeGroup) => {
+        const groupData = ageGroupsMap.get(group._id);
+        
+        if (groupData && groupData.athletes.length > 0) {
+          groupData.athletes.sort((a: any, b: any) => a.totalSeconds - b.totalSeconds);
+          this.rankAthletes(groupData.athletes);
+          
+          rawGroupedResults.push({
+            groupId: group._id,
+            groupName: group.name,
+            groupNameEn: group.nameEn || group.name,
+            athletes: groupData.athletes,
+            yearTo: group.yearTo
+          });
+        }
+      });
+
+      this.groupedAgeResults = rawGroupedResults.sort((a, b) => {
+        const yearToA = a.yearTo !== undefined && a.yearTo !== null ? a.yearTo : Infinity;
+        const yearToB = b.yearTo !== undefined && b.yearTo !== null ? b.yearTo : Infinity;
+        return yearToB - yearToA;
+      });
+    }
 
     if (openFromSocket) {
       this.resultsOpen = index;
-    } else this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
+    } else {
+      this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
+    }
   }
 
   private rankAthletes(athletesList: Lane[]) {
@@ -225,11 +271,10 @@ export class CompetitionResultsComponent {
         }
       }
     });
-    
   }
 
   onTabChanged(event: any) {
     this.resultsOpen = 999;
-    this.chosenPartition.set(this.partitions[event.index])
+    this.chosenPartition.set(this.partitions[event.index]);
   }
 }

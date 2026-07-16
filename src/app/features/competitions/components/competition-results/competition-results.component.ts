@@ -176,7 +176,7 @@ export class CompetitionResultsComponent implements OnInit {
 
     for (let i = 0; i < lanes.length; i++) {
       for (let j = 0; j < lanes[i].length; j++) {
-        if (lanes[i][j].isPublished && lanes[i][j].result?.seconds) {
+        if (lanes[i][j].isPublished && lanes[i][j].result && (lanes[i][j].result.seconds ?? null) !== null) {
           const laneItem = { ...lanes[i][j] };
           laneItem.totalSeconds = this._competitionService.convertResultToSeconds(laneItem.result);
           allAthletes.push(laneItem);

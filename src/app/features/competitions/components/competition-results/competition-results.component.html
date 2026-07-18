@@ -7,10 +7,13 @@
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'results_available_when_comp_start' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'comp_start' | translate}}{{': '}}{{event.startDate | date: 'dd-MM-yyy'}}</div>
-                
-                @for (race of chosenPartition().races; track $index) {
+
+                @if (chosenPartition() && racesLoading()) {
+                    <app-loader-spinner color="black" height="150px"></app-loader-spinner>
+                }
+                @for (race of chosenPartition().races || []; track $index) {
                 <div class="resLineCont">
-                    <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
+                    <div (click)="openResults($index,race)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
                         class="resLine">
                         <div class="logoAthlete">
                             <div class="logo"><img src="/assets/imgs/swimmerLogo.png" /></div>
@@ -29,9 +32,11 @@
                         </div>
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
                     </div>
-                    
-                    <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
-                        
+
+                    <div class="RaceResultsCont" [ngClass]="(resultsOpen == $index || heatsLoadingIndex === $index) ? 'show' : 'hide'">
+                        @if (heatsLoadingIndex === $index) {
+                            <app-loader-spinner color="black" height="80px" size="40px"></app-loader-spinner>
+                        }
                         @for (ageGroup of groupedAgeResults; track ageGroup.groupId) {
                             @if (ageGroup.athletes.length > 0) {
                                 @if (!ageGroup.isAbsoluteFallback) {

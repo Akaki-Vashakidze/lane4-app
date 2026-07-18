@@ -1,6 +1,6 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { EventPartition, Heat } from '../../../../shared/interfaces/interfaces';
+import { EventPartition, Heat, Race } from '../../../../shared/interfaces/interfaces';
 import { CompetitionService } from '../../services/competition.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -31,6 +31,8 @@ export class HeatsComponent {
   chosenPartition: WritableSignal<EventPartition | any> = signal('')
   chosenHeats!:Heat[];
   printLoader = signal<any>(false);
+  racesLoading = signal<boolean>(false);
+  heatsLoadingIndex: number | null = null;
   constructor(
     private _sharedService:SharedService,
     private route: ActivatedRoute,
@@ -49,22 +51,23 @@ export class HeatsComponent {
         this.partitionTitles = this.partitions?.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
       }
     );
-    this._competitionService.getEventDetails(this.eventId).subscribe(res => {
-      let registrationIsFinished = this.isDeadlinePassed(res.event.registrationEndDate);
-      this.event = res.event;
-      console.log(this.event)
-      
-      const sortedPartitions = [...res.partitions].sort((a: any, b: any) => {
+
+    this._competitionService.getEventInfo(this.eventId).subscribe(event => {
+      this.event = event;
+    });
+
+    this._competitionService.getEventPartitions(this.eventId).subscribe(partitions => {
+      const sortedPartitions = [...partitions].sort((a: any, b: any) => {
         const getDateTime = (dateStr: string, timeStr: string) => {
           const date = new Date(dateStr);
           if (!timeStr) return date;
-          
+
           const [time, modifier] = timeStr.split(' ');
           let [hours, minutes] = time.split(':').map(Number);
-          
+
           if (modifier === 'PM' && hours < 12) hours += 12;
           if (modifier === 'AM' && hours === 12) hours = 0;
-          
+
           date.setUTCHours(hours, minutes, 0, 0);
           return date;
         };
@@ -75,20 +78,30 @@ export class HeatsComponent {
         return dateTimeA.getTime() - dateTimeB.getTime();
       });
 
-      this.partitions = sortedPartitions.map(partition => {
-        return {
-            ...partition,
-            races: partition.races.sort((a, b) => a.orderNumber - b.orderNumber)
-        };
-      });
-
+      this.partitions = sortedPartitions;
       this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title))
-      
+
       if (this.partitions.length > 0) {
-        this.chosenPartition.set(this.partitions[0]);
+        this.selectPartition(this.partitions[0]);
       }
     });
   }
+
+  private selectPartition(partition: EventPartition) {
+    this.chosenPartition.set(partition);
+    if (!partition.races) {
+      this.loadRaces(partition);
+    }
+  }
+
+  private loadRaces(partition: EventPartition) {
+    this.racesLoading.set(true);
+    this._competitionService.getPartitionRaces(this.eventId, partition._id).subscribe(races => {
+      partition.races = races.sort((a, b) => a.orderNumber - b.orderNumber);
+      this.racesLoading.set(false);
+    });
+  }
+
    isDeadlinePassed(registrationEndDate:Date) {
     const currentDate = new Date();
     const endDate = new Date(registrationEndDate);
@@ -114,11 +127,23 @@ export class HeatsComponent {
   onTabChange(index: number) {
     this.activeTabIndex = index;
     this.resultsOpen = 999
-    this.chosenPartition.set(this.partitions[index])
+    this.selectPartition(this.partitions[index]);
   }
 
-  openResults(index: any, heats: any) {
-    console.log(heats)
+  openResults(index: number, race: Race) {
+    if (!race.heats) {
+      this.heatsLoadingIndex = index;
+      this._competitionService.getRaceHeats(this.eventId, race.partition, race._id).subscribe(heats => {
+        race.heats = heats;
+        this.heatsLoadingIndex = null;
+        this.showHeats(index, heats);
+      });
+      return;
+    }
+    this.showHeats(index, race.heats);
+  }
+
+  private showHeats(index: number, heats: Heat[]) {
     this.chosenHeats = heats;
     this.chosenHeats.sort((a: any, b: any) => a.orderNumber - b.orderNumber);
     this.resultsOpen != index ? this.resultsOpen = index : this.resultsOpen = 999;
@@ -126,6 +151,6 @@ export class HeatsComponent {
 
   onTabChanged(event: any) {
     this.resultsOpen = 999;
-    this.chosenPartition.set(this.partitions[event.index])
+    this.selectPartition(this.partitions[event.index]);
   }
 }

@@ -48,8 +48,10 @@ export class CompetitionResultsComponent implements OnInit {
   partitionTitles!: string[];
   chosenPartition: WritableSignal<EventPartition | any> = signal('');
   allChosenResults!: Lane[];
-  groupedAgeResults: AgeGroupResult[] = []; 
+  groupedAgeResults: AgeGroupResult[] = [];
   printLoader = signal<any>(false);
+  racesLoading = signal<boolean>(false);
+  heatsLoadingIndex: number | null = null;
 
   constructor(
     private _sharedService: SharedService,
@@ -66,7 +68,7 @@ export class CompetitionResultsComponent implements OnInit {
 
     this._socket.subscribeOnLive(async (data: any) => {
       if (data.eventId === this.eventId) {
-        await this.getEventDetails(() => { this.showRace(data.partition, data.race, data.heat) });
+        this.refreshLiveRace(data.partition, data.race);
       }
     });
 
@@ -79,75 +81,85 @@ export class CompetitionResultsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.getEventDetails();
+    this.loadEventInfo();
+    this.loadPartitions();
   }
 
-  async showRace(partition: string, race: string, heat: string) {
-    this.partitions.forEach(p => {
-      if (p._id == partition) {
-        this.chosenPartition.set(p);
-        this.chosenPartition().races.forEach((r: Race, index: number) => {
-          if (r._id == race) {
-            if (this.resultsOpen == index) {
-              this.openResults(index, r.heats, true);
-            }
-          }
-        });
+  private loadEventInfo() {
+    this._competitionService.getEventInfo(this.eventId).subscribe(event => {
+      this.event = event;
+    });
+  }
+
+  private loadPartitions() {
+    this._competitionService.getEventPartitions(this.eventId).subscribe(partitions => {
+      const sortedPartitions = [...partitions].sort((a: any, b: any) => {
+        const getDateTime = (dateStr: string, timeStr: string) => {
+          const date = new Date(dateStr);
+          if (!timeStr) return date;
+
+          const [time, modifier] = timeStr.split(' ');
+          let [hours, minutes] = time.split(':').map(Number);
+
+          if (modifier === 'PM' && hours < 12) hours += 12;
+          if (modifier === 'AM' && hours === 12) hours = 0;
+
+          date.setUTCHours(hours, minutes, 0, 0);
+          return date;
+        };
+
+        const dateTimeA = getDateTime(a.startDate, a.startTime);
+        const dateTimeB = getDateTime(b.startDate, b.startTime);
+
+        return dateTimeA.getTime() - dateTimeB.getTime();
+      });
+
+      this.partitions = sortedPartitions;
+      this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title));
+
+      if (this.partitions.length > 0) {
+        this.selectPartition(this.partitions[0]);
       }
     });
   }
 
-  async getEventDetails(cb?: () => void) {
-    this._competitionService.getEventDetails(this.eventId).subscribe(res => {
-      this.event = res.event;
-      
-      if (res.partitions) {
-        const sortedPartitions = [...res.partitions].sort((a: any, b: any) => {
-          const getDateTime = (dateStr: string, timeStr: string) => {
-            const date = new Date(dateStr);
-            if (!timeStr) return date;
-            
-            const [time, modifier] = timeStr.split(' ');
-            let [hours, minutes] = time.split(':').map(Number);
-            
-            if (modifier === 'PM' && hours < 12) hours += 12;
-            if (modifier === 'AM' && hours === 12) hours = 0;
-            
-            date.setUTCHours(hours, minutes, 0, 0);
-            return date;
-          };
+  private selectPartition(partition: EventPartition) {
+    this.chosenPartition.set(partition);
+    if (!partition.races) {
+      this.loadRaces(partition);
+    }
+  }
 
-          const dateTimeA = getDateTime(a.startDate, a.startTime);
-          const dateTimeB = getDateTime(b.startDate, b.startTime);
-
-          return dateTimeA.getTime() - dateTimeB.getTime();
-        });
-
-        sortedPartitions.forEach(partition => {
-          partition.races.forEach(race => {
-            race.isPublished = race.heats.some(heat => 
-              heat.lanes.some(lane => lane.isPublished === true)
-            );
-          });
-          partition.races.sort((a, b) => a.orderNumber - b.orderNumber);
-        });
-
-        this.partitions = sortedPartitions;
-        this.partitionTitles = this.partitions.map(item => (this.lang() === 'ka' ? item.title : item?.translations?.en?.title ?? item.title));
-        
-        if (this.partitions.length > 0) {
-          this.chosenPartition.set(this.partitions[0]);
-        }
-        
-        if (cb) cb();
-      }
+  private loadRaces(partition: EventPartition) {
+    this.racesLoading.set(true);
+    this._competitionService.getPartitionRaces(this.eventId, partition._id).subscribe(races => {
+      partition.races = races.sort((a, b) => a.orderNumber - b.orderNumber);
+      this.racesLoading.set(false);
     });
   }
-  
+
+  private refreshLiveRace(partitionId: string, raceId: string) {
+    const partition = this.partitions?.find(p => p._id === partitionId);
+    if (!partition) return;
+
+    this.chosenPartition.set(partition);
+    if (!partition.races) return;
+
+    const index = partition.races.findIndex((r: Race) => r._id === raceId);
+    if (index === -1 || this.resultsOpen !== index) return;
+
+    const race = partition.races[index];
+    this._competitionService.getRaceHeats(this.eventId, partitionId, raceId).subscribe(heats => {
+      race.heats = heats;
+      race.isPublished = heats.some(heat => heat.lanes.some(lane => lane.isPublished === true));
+      this.buildResults(index, heats, true);
+    });
+  }
+
   onTabChange(index: number) {
     this.activeTabIndex = index;
     this.resultsOpen = 999;
-    this.chosenPartition.set(this.partitions[index]);
+    this.selectPartition(this.partitions[index]);
   }
 
   onPrint(event: any) {
@@ -166,7 +178,21 @@ export class CompetitionResultsComponent implements OnInit {
     });
   }
 
-  openResults(index: any, heats: any, openFromSocket = false) {
+  openResults(index: number, race: Race, openFromSocket = false) {
+    if (!race.heats) {
+      this.heatsLoadingIndex = index;
+      this._competitionService.getRaceHeats(this.eventId, race.partition, race._id).subscribe(heats => {
+        race.heats = heats;
+        race.isPublished = heats.some(heat => heat.lanes.some(lane => lane.isPublished === true));
+        this.heatsLoadingIndex = null;
+        this.buildResults(index, heats, openFromSocket);
+      });
+      return;
+    }
+    this.buildResults(index, race.heats, openFromSocket);
+  }
+
+  private buildResults(index: number, heats: Heat[], openFromSocket = false) {
     let lanes = heats.map((heat: Heat) => heat.lanes);
     
     const eventGroups: AgeGroup[] = this.event?.ageGroups || [];
@@ -275,6 +301,6 @@ export class CompetitionResultsComponent implements OnInit {
 
   onTabChanged(event: any) {
     this.resultsOpen = 999;
-    this.chosenPartition.set(this.partitions[event.index]);
+    this.selectPartition(this.partitions[event.index]);
   }
 }

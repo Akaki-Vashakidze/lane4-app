@@ -91,7 +91,7 @@ export interface EventPartition {
   startTime?: string;
   endTime?: string;
   poolLength: string;
-  races: Race[];
+  races?: Race[];
   type: string
   participantApproveType: string,
   translations: {
@@ -152,7 +152,7 @@ export interface Race {
   startDate: Date;
   type: string;
   partition: string;
-  heats: Heat[]
+  heats?: Heat[]
 }
 
 export interface Heat {

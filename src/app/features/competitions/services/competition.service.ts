@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Event, EventDetails, Time } from '../../../shared/interfaces/interfaces';
+import { Event, EventDetails, EventPartition, Heat, Lane, Race, Time } from '../../../shared/interfaces/interfaces';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,24 @@ export class CompetitionService {
   constructor() { }
   private readonly httpClient = inject(HttpClient);
 
-  getEventDetails(eventId: string) {
-    return this.httpClient.get<EventDetails>(`/consoleApi/public/events/${eventId}/details`)
+  getEventInfo(eventId: string) {
+    return this.httpClient.get<Event>(`/consoleApi/public/events/${eventId}/info`);
+  }
+
+  getEventPartitions(eventId: string) {
+    return this.httpClient.get<EventPartition[]>(`/consoleApi/public/events/${eventId}/partitions`);
+  }
+
+  getPartitionRaces(eventId: string, partitionId: string) {
+    return this.httpClient.get<Race[]>(`/consoleApi/public/events/${eventId}/partitions/${partitionId}/races`);
+  }
+
+  getRaceHeats(eventId: string, partitionId: string, raceId: string) {
+    return this.httpClient.get<Heat[]>(`/consoleApi/public/events/${eventId}/partitions/${partitionId}/races/${raceId}/heats`);
+  }
+
+  getHeatParticipants(eventId: string, partitionId: string, raceId: string, heatId: string) {
+    return this.httpClient.get<Lane[]>(`/consoleApi/public/events/${eventId}/partitions/${partitionId}/races/${raceId}/heats/${heatId}/participants`);
   }
 
   convertResultToSeconds(result: Time) {

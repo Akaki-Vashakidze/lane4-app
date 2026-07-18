@@ -10,9 +10,12 @@
             <div class="resBody shadow1 body">
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'heats_available_when_registration_finish' | translate}}</div>
                 <div *ngIf="!chosenPartition()" style="padding: 15px; text-align: center;">{{'registration_finish' | translate}}{{': '}}{{event.registrationEndDate | date: 'dd-MM-yyy'}}</div>
-                @for (race of chosenPartition().races; track $index) {
+                @if (chosenPartition() && racesLoading()) {
+                    <app-loader-spinner color="black" height="150px"></app-loader-spinner>
+                }
+                @for (race of chosenPartition().races || []; track $index) {
                 <div class="resLineCont">
-                    <div (click)="openResults($index,race.heats)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
+                    <div (click)="openResults($index,race)" [ngClass]="resultsOpen == $index ? 'resultsOpen' : ''"
                         class="resLine">
                         <div class="logoAthlete">
                             <div class="logo"><img src="/assets/imgs/swimmerLogo.png" /></div>
@@ -24,43 +27,47 @@
                         <div></div>
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
                     </div>
-                    <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
-                        @if (chosenHeats && chosenHeats.length > 0) {
-                        <div class="RaceResultsContHeader">
-                            <div class="title">{{'name' | translate}}</div>
-                            <div class="team">{{'team' | translate}}</div>
-                            <div class="bithDate"><span *ngIf="race.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span>
-                            </div>
-                            <div class="result">{{'entry_time' | translate}}</div>
-                            <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
-                        </div>
-                        } @else {
-                        <div>{{'no_heats_yet' | translate}}</div>
-                        }
-                        <div class="RaceResultsContBody">
-                            @for (heat of chosenHeats; track $index) {
-                            <div class="heatInfo">
-                                {{heat.name | translate}}{{' / ' + chosenHeats.length}}
-                            </div>
-                            <div *ngFor="let lane of heat.lanes" class="athleteResult">
-                                <div class="athlete">{{lane.lane}}. {{lang() === 'ka' ? lane?.participant?.lastName : lane?.participant?.lastNameEn}}
-                                    {{ lang() === 'ka' ? lane?.participant?.firstName : lane?.participant?.firstNameEn || lane?.participant?.title}}</div>
-                                    <div class="team">{{lang() == 'ka' ? lane?.team?.title : lane?.team?.translations?.en?.title ?? lane?.team?.title}}</div>
-                                <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
-                                <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
-                                <app-time class="result" *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" [timeObj]="lane?.qualificationTime"></app-time>
-                                
-                                <div *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" class="points" >{{lane?.qualificationTimePoint}}</div>
-
-                                <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
-                                -
+                    <div class="RaceResultsCont" [ngClass]="(resultsOpen == $index || heatsLoadingIndex === $index) ? 'show' : 'hide'">
+                        @if (heatsLoadingIndex === $index) {
+                            <app-loader-spinner color="black" height="80px" size="40px"></app-loader-spinner>
+                        } @else if (resultsOpen === $index) {
+                            @if (chosenHeats && chosenHeats.length > 0) {
+                            <div class="RaceResultsContHeader">
+                                <div class="title">{{'name' | translate}}</div>
+                                <div class="team">{{'team' | translate}}</div>
+                                <div class="bithDate"><span *ngIf="race.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span>
                                 </div>
-                                <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
-                                -
-                                </div>
+                                <div class="result">{{'entry_time' | translate}}</div>
+                                <div class="points"><span *ngIf="race.type == 'INDIVIDUAL'">{{'points' | translate}}</span></div>
                             </div>
+                            } @else {
+                            <div>{{'no_heats_yet' | translate}}</div>
                             }
-                        </div>
+                            <div class="RaceResultsContBody">
+                                @for (heat of chosenHeats; track $index) {
+                                <div class="heatInfo">
+                                    {{heat.name | translate}}{{' / ' + chosenHeats.length}}
+                                </div>
+                                <div *ngFor="let lane of heat.lanes" class="athleteResult">
+                                    <div class="athlete">{{lane.lane}}. {{lang() === 'ka' ? lane?.participant?.lastName : lane?.participant?.lastNameEn}}
+                                        {{ lang() === 'ka' ? lane?.participant?.firstName : lane?.participant?.firstNameEn || lane?.participant?.title}}</div>
+                                        <div class="team">{{lang() == 'ka' ? lane?.team?.title : lane?.team?.translations?.en?.title ?? lane?.team?.title}}</div>
+                                    <div class="birthDate">{{lane?.participant?.birthDate | date:'yyyy'}}</div>
+                                    <!-- <div class="result">{{lane?.result?.minutes + ':' + lane?.result?.seconds + '.' + lane?.result?.milliseconds}}</div> -->
+                                    <app-time class="result" *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" [timeObj]="lane?.qualificationTime"></app-time>
+
+                                    <div *ngIf="lane?.qualificationTime?.seconds !== null && lane?.qualificationTime?.seconds !== undefined" class="points" >{{lane?.qualificationTimePoint}}</div>
+
+                                    <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
+                                    -
+                                    </div>
+                                    <div *ngIf="lane?.qualificationTime?.seconds == null && lane?.participant?.firstName">
+                                    -
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
                 }

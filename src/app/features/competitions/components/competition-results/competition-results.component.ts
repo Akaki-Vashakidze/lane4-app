@@ -153,9 +153,6 @@ export class CompetitionResultsComponent implements OnInit {
 
   loadPartitionRaces(partitionId: string, cb?: () => void) {
     this._competitionService.getPartitionRaces(this.eventId, partitionId).subscribe(races => {
-      races.forEach(race => {
-        race.isPublished = true; 
-      });
       races.sort((a, b) => a.orderNumber - b.orderNumber);
       
       if (this.chosenPartition() && this.chosenPartition()._id === partitionId) {

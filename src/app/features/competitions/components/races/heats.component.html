@@ -34,7 +34,7 @@
                         </div>
 
                         <ng-container *ngIf="!loadingHeats()">
-                            @if (chosenHeats && chosenHeats.length > 0) {
+                            @if (chosenHeats && chosenHeats.length > 0 || false) {
                             <div class="RaceResultsContHeader">
                                 <div class="title">{{'name' | translate}}</div>
                                 <div class="team">{{'team' | translate}}</div>

@@ -24,7 +24,7 @@
                         <div class="icon"><img src="/assets/imgs/slideDownIcon.png" /></div>
                     </div>
                     <div class="RaceResultsCont" [ngClass]="resultsOpen == $index ? 'show' : 'hide'">
-                        @if (allAthletesInHeatsArr.length > 0 || false) {
+                        @if (allAthletesInHeatsArr.length > 0) {
                         <div class="RaceResultsContHeader">
                             <div class="title">{{'name' | translate}}</div>
                             <div class="bithDate"><span *ngIf="race?.type == 'INDIVIDUAL'">{{'Birth_date' | translate}}</span>
